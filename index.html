@@ -21,11 +21,10 @@
 .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);padding-bottom:var(--gap)}
 
 .id{grid-column:span 6;grid-row:span 2;display:flex;gap:30px;align-items:center;padding:34px}
-.mark{flex:0 0 196px;height:214px;border-radius:11px;overflow:hidden;position:relative;
-  background:radial-gradient(circle at 42% 26%,#1d2732,#0c0f13);display:grid;place-items:center}
-.mark b{font-size:86px;font-weight:800;color:var(--yellow);text-shadow:0 0 34px rgba(255,212,59,.4);line-height:1}
-.mark::after{content:"";position:absolute;inset:0;
-  background:repeating-linear-gradient(0deg,rgba(75,139,190,.13) 0 1px,transparent 1px 4px)}
+.mark{flex:0 0 196px;height:214px;border-radius:11px;overflow:hidden;position:relative;background:#0c0f13}
+.mark img{width:100%;height:100%;object-fit:cover;object-position:center 20%;
+  transition:transform .5s ease}
+.id:hover .mark img{transform:scale(1.04)}
 .id h1{margin:0 0 16px;font-size:clamp(29px,3.6vw,40px);font-weight:400;line-height:1.14;letter-spacing:-.5px}
 .roles{display:flex;flex-direction:column;gap:6px;font-size:14.5px;font-style:italic;color:#a6a6a6}
 .roles span{display:flex;align-items:center;gap:9px;white-space:nowrap}
@@ -93,7 +92,7 @@
 @media (max-width:680px){
   .about,.showcase,.hobby,.blob,.social{grid-column:span 12}
   .id{flex-direction:column;align-items:flex-start;padding:26px}
-  .mark{width:100%;flex:0 0 auto;height:190px}
+  .mark{width:100%;flex:0 0 auto;height:260px}
   .stats{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){ .track{animation:none} }
@@ -121,7 +120,9 @@
 
     <section class="box id reveal">
       <a class="overlay" href="about.html" aria-label="More about me"></a>
-      <div class="mark"><b>E</b></div>
+      <div class="mark"><img src="assets/portrait.jpg"
+        srcset="assets/portrait.jpg 1x, assets/portrait@2x.jpg 2x"
+        alt="Elyotam Cohen" width="196" height="214"></div>
       <div>
         <h1>Elyotam<br>Cohen</h1>
         <div class="roles">
