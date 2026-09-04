@@ -12,24 +12,27 @@
 <meta property="og:description" content="Websites, apps and AI automation.">
 <meta property="og:url" content="https://elyotam.github.io/">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0a0a0a; --inner:#181818; --line:#262626;
+  --bg:#111111; --inner:#1e1e1e; --line:#282828;
   --fg:#f4f4f4; --dim:#9a9a9a; --faint:#7b7b7b;
   --blue:#4B8BBE; --yellow:#FFD43B;
-  --gap:20px; --r:20px; --ri:16px; --max:1144px;
+  --gap:24px; --r:30px; --ri:20px; --max:1170px;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
   margin:0;background:var(--bg);color:var(--fg);overflow-x:hidden;
-  font:16px/1.55 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font:16px/1.55 Inter,ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   -webkit-font-smoothing:antialiased;
 }
 /* the faint pinhole texture the whole page sits on */
 body::before{
-  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55;
-  background-image:radial-gradient(#1a1a1a 1px,transparent 1px);background-size:22px 22px;
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:1;
+  background-image:radial-gradient(#323232 .5px,transparent .5px);background-size:4.25px 4.25px;
 }
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
@@ -57,8 +60,8 @@ a{color:inherit;text-decoration:none}
 .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);padding-bottom:var(--gap)}
 .box{
   position:relative;border-radius:var(--r);padding:24px;overflow:hidden;
-  background:linear-gradient(150deg,#171717 0%,#121212 46%,#0f0f0f 100%);
-  border:1px solid #202020;transition:border-color .25s,transform .25s;
+  background:linear-gradient(145deg,#1a1a1a 0%,#151515 52%,#111111 100%);
+  border:1px solid #1d1d1d;transition:border-color .25s,transform .25s;
 }
 .box:hover{border-color:#333;transform:translateY(-2px)}
 .box::after{content:"";position:absolute;inset:0;opacity:0;transition:opacity .3s;pointer-events:none;
@@ -68,7 +71,7 @@ a{color:inherit;text-decoration:none}
 .title{margin:0;font-size:21px;font-weight:400;letter-spacing:-.2px;color:var(--fg)}
 .overlay{position:absolute;inset:0;z-index:9;border-radius:inherit;opacity:0}
 .plus{
-  position:absolute;right:26px;bottom:26px;width:40px;height:40px;border-radius:50%;
+  position:absolute;right:30px;bottom:35px;width:40px;height:40px;border-radius:50%;
   border:1px solid #3a3a3a;display:grid;place-items:center;color:#8d8d8d;
   opacity:.28;transition:opacity .3s,border-color .25s,color .25s,transform .25s;
 }
@@ -129,7 +132,7 @@ a{color:inherit;text-decoration:none}
 
 /* row 3 ------------------------------------------------------------------ */
 .stats{grid-column:span 6;padding:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.cell{background:var(--inner);border:1px solid var(--line);border-radius:var(--ri);padding:26px 12px;
+.cell{background:#202020;border:1px solid #282828;border-radius:var(--ri);padding:26px 12px;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center}
 .cell b{font-size:36px;font-weight:400;line-height:1;letter-spacing:-.5px}
 .cell .heart{font-size:34px;line-height:1}
