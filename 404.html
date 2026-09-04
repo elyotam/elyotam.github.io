@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found — Elyotam Cohen</title>
+<meta name="description" content="That page does not exist on elyotam.github.io.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#111111">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+.lost{display:grid;place-items:center;text-align:center;padding:70px 30px 90px;
+  min-height:46vh;gap:0}
+.code{font-size:clamp(92px,19vw,190px);font-weight:500;line-height:.92;letter-spacing:-7px;
+  background:linear-gradient(90deg,#f472b6,#a78bfa 45%,#60a5fa);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.lost h1{margin:20px 0 10px;font-size:clamp(22px,3.4vw,30px);font-weight:400;letter-spacing:-.6px}
+.lost p{margin:0 0 34px;color:var(--dim);font-size:15px;max-width:44ch;line-height:1.7}
+.ways{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.way{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:13px;
+  border:1px solid #2f2f2f;background:#151515;font-size:14.5px;font-weight:500;transition:.2s}
+.way:hover{border-color:#4a4a4a;background:#1b1b1b;transform:translateY(-2px)}
+.way.key{background:#f0f0f0;border-color:#f0f0f0;color:#111}
+.way.key:hover{background:#fff;border-color:#fff}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top">
+    <a class="ghost" href="/">HELLO WORLD!</a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav">
+      <a href="/">Home</a><a href="/about.html">About</a>
+      <a href="/projects.html">My Projects</a><a href="/contact.html">Contact</a>
+    </nav>
+    <a class="pill" href="/contact.html">
+      <svg viewBox="0 0 24 24"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002M7 8.48H3V21h4zm6.32 0H9.34V21h3.92v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91z"/></svg>
+      Let&rsquo;s Connect!
+    </a>
+  </div>
+
+  <main>
+    <section class="box lost reveal">
+      <div class="code">404</div>
+      <h1>This page took a wrong turn.</h1>
+      <p>The link is broken or the page has moved. Everything worth seeing is
+        one click away.</p>
+      <div class="ways">
+        <a class="way key" href="/">Back home</a>
+        <a class="way" href="/projects.html">See the projects</a>
+        <a class="way" href="/contact.html">Get in touch</a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <nav>
+    <a href="/">Home</a><a href="/about.html">About</a>
+    <a href="/projects.html">My Projects</a><a href="/contact.html">Contact</a>
+  </nav>
+  <div><span id="yr">2026</span> &copy; Created with love by
+    <a class="by" href="https://github.com/elyotam" rel="noopener">Elyotam Cohen</a></div>
+</footer>
+
+<script src="/assets/site.js"></script>
+<script src="/assets/cursor.js"></script>
+</body>
+</html>

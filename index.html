@@ -7,11 +7,20 @@
 <meta name="description" content="Elyotam Cohen builds websites, apps and AI automation, and runs the infrastructure behind them on AWS, Kubernetes and Terraform.">
 <meta name="theme-color" content="#0a0a0a">
 <link rel="canonical" href="https://elyotam.github.io/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Elyotam Cohen">
-<meta property="og:description" content="Websites, apps and AI automation.">
-<meta property="og:url" content="https://elyotam.github.io/">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Elyotam Cohen">
+<meta property="og:title" content="Elyotam Cohen — Websites, Apps &amp; AI Automation">
+<meta property="og:description" content="Websites, apps and AI automation, plus the AWS, Kubernetes and Terraform infrastructure that runs them.">
+<meta property="og:url" content="https://elyotam.github.io/">
+<meta property="og:image" content="https://elyotam.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Elyotam Cohen — websites, apps and AI automation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Elyotam Cohen — Websites, Apps &amp; AI Automation">
+<meta name="twitter:description" content="Websites, apps and AI automation, plus the AWS, Kubernetes and Terraform infrastructure that runs them.">
+<meta name="twitter:image" content="https://elyotam.github.io/assets/og.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -119,10 +128,21 @@
   .hobby{grid-column:span 8}.blob{grid-column:span 14}.social{grid-column:span 22}
 }
 @media (max-width:680px){
-  .about,.showcase,.hobby,.blob,.social{grid-column:span 22}
+  /* 22 columns cannot shrink past 21 gaps (504px), so the grid has to go
+     single-column here rather than just re-spanning the cards */
+  .bento{grid-template-columns:1fr}
+  .bento > *{grid-column:auto;grid-row:auto}
+  .hobby,.blob,.social,.stats,.cta{margin-top:0}
   .id{flex-direction:column;align-items:flex-start;padding:26px}
   .mark{width:100%;flex:0 0 auto;height:260px}
+  .stats{grid-template-columns:repeat(3,1fr);gap:10px;padding:14px;min-height:0}
+  .cell b{font-size:26px}
+  .cell .heart{font-size:24px}
+  .cell small{font-size:10.5px}
+}
+@media (max-width:430px){
   .stats{grid-template-columns:1fr}
+  .cell{padding:16px 8px}
 }
 @media (prefers-reduced-motion:reduce){ .track{animation:none} }
 </style>
@@ -178,16 +198,17 @@
 
     <a class="box showcase reveal" href="projects.html">
       <div class="ghostword" aria-hidden="true">PROJECTS</div>
-      <div class="shot"><i></i><img src="assets/work/code92-website.jpg" alt="" loading="lazy"></div>
+      <div class="shot"><i></i><img src="assets/work/cpa-ms.jpg" alt="" loading="lazy"></div>
       <p class="kicker">Showcase</p>
       <h2 class="title">Projects</h2>
       <span class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
     </a>
 
-    <a class="box hobby reveal" href="https://github.com/elyotam" rel="noopener" id="work">
-      <div class="badge"><img src="assets/icons/github.svg" alt=""></div>
-      <p class="kicker">My code</p>
-      <h2 class="title">GitHub</h2>
+    <a class="box hobby reveal" id="shop"
+       href="https://www.etsy.com/shop/ColorCatt" rel="noopener">
+      <div class="badge"><img src="assets/icons/etsy.svg" alt=""></div>
+      <p class="kicker">Etsy shop</p>
+      <h2 class="title">ColorCatt</h2>
       <span class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
     </a>
 
@@ -203,7 +224,8 @@
           <img src="assets/icons/github.svg" alt=""></a>
         <a class="orb" href="https://wa.me/972522057074" rel="noopener" aria-label="WhatsApp">
           <img src="assets/icons/whatsapp.svg" alt=""></a>
-        <a class="orb" href="projects.html" aria-label="My projects"><b>&#9679;&#9679;</b></a>
+        <a class="orb" href="https://www.etsy.com/shop/ColorCatt" rel="noopener" aria-label="ColorCatt on Etsy">
+          <img src="assets/icons/etsy.svg" alt=""></a>
       </div>
       <p class="kicker">Let&rsquo;s connect</p>
       <h2 class="title">My Social Profiles</h2>
@@ -212,13 +234,13 @@
 
     <section class="box stats reveal">
       <a class="overlay" href="https://github.com/elyotam" rel="noopener" aria-label="GitHub profile"></a>
-      <div class="cell"><b id="sRepos">5</b><small>Public<br>repositories</small></div>
+      <div class="cell"><b id="sRepos">10</b><small>Public<br>repositories</small></div>
       <div class="cell"><span class="heart">&#10084;</span><small>Made<br>with love</small></div>
       <div class="cell"><b>34</b><small>Tools<br>in the stack</small></div>
     </section>
 
     <section class="box cta reveal">
-      <a class="overlay" href="https://github.com/elyotam" rel="noopener" aria-label="Get in touch"></a>
+      <a class="overlay" href="contact.html" aria-label="Get in touch"></a>
       <div class="spark" aria-hidden="true">
         <svg viewBox="0 0 40 52"><path d="M20 0c.7 14 3 20 12 24-9 4-11.3 10-12 24-.7-14-3-20-12-24 9-4 11.3-10 12-24z"/></svg>
       </div>
