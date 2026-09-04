@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elyotam Cohen — Websites, Apps &amp; AI Automation</title>
+<meta name="description" content="Elyotam Cohen builds websites, apps and AI automation, and runs infrastructure on AWS, Kubernetes and Terraform.">
+<meta name="theme-color" content="#0b1220">
+<link rel="canonical" href="https://elyotam.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Elyotam Cohen">
+<meta property="og:description" content="Websites, apps and AI automation.">
+<meta property="og:url" content="https://elyotam.github.io/">
+<meta property="og:image" content="https://elyotam.github.io/assets/og.png">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<style>
+:root{
+  --bg:#0b1220; --bg2:#0d1117; --panel:#111826; --line:#1e293b;
+  --fg:#e6edf3; --dim:#93a4b8;
+  --blue:#4B8BBE; --blue-deep:#3776AB; --yellow:#FFD43B; --yellow-pale:#FFE873;
+  --radius:14px; --max:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font:16px/1.65 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:var(--yellow);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--yellow);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+
+/* ---------------------------------------------------------------- header */
+header{
+  position:sticky;top:0;z-index:40;backdrop-filter:blur(10px);
+  background:rgba(11,18,32,.78);border-bottom:1px solid var(--line);
+}
+header .wrap{display:flex;align-items:center;gap:20px;height:60px}
+.brand{font-weight:700;letter-spacing:.5px;color:var(--fg)}
+.brand b{color:var(--yellow)}
+nav{margin-left:auto;display:flex;gap:22px;flex-wrap:wrap}
+nav a{color:var(--dim);font-size:14.5px}
+nav a:hover{color:var(--fg);text-decoration:none}
+.menu-btn{display:none;margin-left:auto;background:none;border:1px solid var(--line);
+  color:var(--fg);border-radius:8px;padding:7px 11px;font-size:15px;cursor:pointer}
+
+/* ------------------------------------------------------------------ hero */
+.hero{position:relative;min-height:min(92vh,760px);display:grid;place-items:center;
+  overflow:hidden;border-bottom:1px solid var(--line)}
+#rain{position:absolute;inset:0;width:100%;height:100%}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at center,transparent 30%,rgba(11,18,32,.92) 78%)}
+.plate{position:relative;z-index:2;text-align:center;padding:38px 30px;
+  border:2px solid var(--yellow-pale);border-radius:18px;background:rgba(13,17,23,.84);
+  box-shadow:0 0 26px rgba(255,232,115,.22),inset 0 0 26px rgba(0,0,0,.5);
+  margin:0 18px;max-width:760px}
+.plate h1{margin:0;font-size:clamp(30px,7vw,56px);font-weight:800;letter-spacing:.5px;line-height:1.1}
+.plate h1 .slash{color:var(--yellow)}
+.plate h1 .last{color:var(--blue)}
+.plate p{margin:16px 0 0;color:var(--blue);letter-spacing:2px;
+  font-size:clamp(12px,2.4vw,17px);text-transform:uppercase}
+.bar{margin:22px auto 0;max-width:420px;border:2px solid var(--yellow);border-radius:6px;
+  padding:5px;display:flex;gap:5px}
+.bar i{flex:1;height:13px;border-radius:2px;background:var(--yellow);
+  animation:blip 2.4s steps(1) infinite}
+@keyframes blip{0%,49%{opacity:1}50%,100%{opacity:.2}}
+.cta{margin-top:26px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:600;font-size:15px;
+  border:1px solid var(--yellow);color:var(--yellow);transition:.18s}
+.btn:hover{background:var(--yellow);color:#1a1500;text-decoration:none}
+.btn.solid{background:var(--yellow);color:#1a1500}
+.btn.solid:hover{background:var(--yellow-pale)}
+
+/* -------------------------------------------------------------- sections */
+section{padding:82px 0;border-bottom:1px solid var(--line)}
+h2{font-size:clamp(23px,3.6vw,32px);margin:0 0 10px;letter-spacing:-.3px}
+h2 span{color:var(--yellow)}
+.lede{color:var(--dim);margin:0 0 38px;max-width:62ch}
+.grid{display:grid;gap:18px}
+.g4{grid-template-columns:repeat(auto-fit,minmax(232px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px;transition:.2s}
+.card:hover{border-color:var(--blue);transform:translateY(-3px)}
+.card h3{margin:12px 0 8px;font-size:18px}
+.card p{margin:0;color:var(--dim);font-size:14.6px}
+.card .ico{width:38px;height:38px;display:grid;place-items:center;border-radius:10px;
+  background:rgba(75,139,190,.16);color:var(--blue);font-size:19px}
+
+/* ----------------------------------------------------------------- stack */
+.stack{list-style:none;margin:0;padding:0;display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:14px}
+.stack li{display:flex;flex-direction:column;align-items:center;gap:7px;
+  padding:12px 4px;border-radius:12px;border:1px solid transparent;transition:.18s}
+.stack li:hover{border-color:var(--line);background:var(--panel)}
+.stack img{width:52px;height:52px;border-radius:12px}
+.stack span{font-size:11.5px;color:var(--dim);text-align:center;line-height:1.25}
+
+/* ------------------------------------------------------------------ work */
+.work{overflow:hidden;padding:0;display:flex;flex-direction:column}
+.work img{aspect-ratio:16/10;object-fit:cover;object-position:top;
+  border-bottom:1px solid var(--line)}
+.work .body{padding:20px 22px 24px}
+.work h3{margin:0 0 6px;font-size:18px}
+.work p{margin:0 0 14px;color:var(--dim);font-size:14.4px;min-height:44px}
+.tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.tag{font-size:11.5px;color:var(--blue);border:1px solid rgba(75,139,190,.4);
+  border-radius:20px;padding:3px 11px}
+.work .links{display:flex;gap:14px;font-size:14px}
+
+/* ----------------------------------------------------------------- stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px;text-align:center}
+.stat b{display:block;font-size:31px;color:var(--yellow);line-height:1.15}
+.stat span{color:var(--dim);font-size:13.5px}
+
+/* ---------------------------------------------------------------- footer */
+footer{padding:34px 0;color:var(--dim);font-size:13.5px}
+footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+/* --------------------------------------------------------------- reveals */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:720px){
+  nav{display:none;position:absolute;top:60px;left:0;right:0;background:var(--bg2);
+    border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:8px 22px 16px}
+  nav.open{display:flex}
+  nav a{padding:10px 0;border-bottom:1px solid var(--line)}
+  .menu-btn{display:block}
+  section{padding:60px 0}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .bar i{animation:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="brand mono" href="#top">\<b>Elyotam</b>Cohen\</a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="nav" id="menuBtn">Menu</button>
+    <nav id="nav">
+      <a href="#services">What I do</a>
+      <a href="#stack">Stack</a>
+      <a href="#work">Work</a>
+      <a href="#github">GitHub</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <div class="hero">
+    <canvas id="rain" aria-hidden="true"></canvas>
+    <div class="plate">
+      <h1 class="mono"><span class="slash">\</span>Elyotam<span class="last">Cohen</span><span class="slash">\</span></h1>
+      <p class="mono">Websites &middot; Apps &middot; AI Automation</p>
+      <div class="bar" aria-hidden="true">
+        <i style="animation-delay:0s"></i><i style="animation-delay:.12s"></i>
+        <i style="animation-delay:.24s"></i><i style="animation-delay:.36s"></i>
+        <i style="animation-delay:.48s"></i><i style="animation-delay:.6s"></i>
+        <i style="animation-delay:.72s"></i><i style="animation-delay:.84s"></i>
+        <i style="animation-delay:.96s"></i><i style="animation-delay:1.08s"></i>
+        <i style="animation-delay:1.2s"></i><i style="animation-delay:1.32s"></i>
+      </div>
+      <div class="cta">
+        <a class="btn solid" href="#work">See the work</a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="wrap">
+      <h2 class="reveal">What I <span>do</span></h2>
+      <p class="lede reveal">Four things, end to end &mdash; from the first line of markup
+        to the pipeline that ships it and the box it runs on.</p>
+      <div class="grid g4">
+        <article class="card reveal">
+          <div class="ico">&#9679;</div>
+          <h3>Websites</h3>
+          <p>Fast, responsive, RTL-ready sites built to load quickly and rank &mdash;
+            not template drops.</p>
+        </article>
+        <article class="card reveal">
+          <div class="ico">&#9632;</div>
+          <h3>Apps &amp; systems</h3>
+          <p>Web apps, online stores and internal tools, with the database and
+            deployment behind them.</p>
+        </article>
+        <article class="card reveal">
+          <div class="ico">&#9670;</div>
+          <h3>AI automation</h3>
+          <p>Workflows that remove manual work: content, data handling, routing
+            and the glue between the tools you already pay for.</p>
+        </article>
+        <article class="card reveal">
+          <div class="ico">&#9650;</div>
+          <h3>Infrastructure</h3>
+          <p>AWS, Docker, Kubernetes and Terraform &mdash; CI/CD, monitoring and
+            the plumbing that keeps it all up.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="wrap">
+      <h2 class="reveal">Tech <span>stack</span></h2>
+      <p class="lede reveal">What I actually build and run things with. Hover any tile for its name.</p>
+      <ul class="stack reveal">
+          <li><img src="assets/icons/linux.svg" alt="Linux" title="Linux" loading="lazy" width="52" height="52"><span>Linux</span></li>
+          <li><img src="assets/icons/windows.svg" alt="Windows" title="Windows" loading="lazy" width="52" height="52"><span>Windows</span></li>
+          <li><img src="assets/icons/fortinet.svg" alt="Fortinet" title="Fortinet" loading="lazy" width="52" height="52"><span>Fortinet</span></li>
+          <li><img src="assets/icons/falcon.svg" alt="CrowdStrike Falcon" title="CrowdStrike Falcon" loading="lazy" width="52" height="52"><span>CrowdStrike Falcon</span></li>
+          <li><img src="assets/icons/openvpn.svg" alt="OpenVPN" title="OpenVPN" loading="lazy" width="52" height="52"><span>OpenVPN</span></li>
+          <li><img src="assets/icons/jumpcloud.svg" alt="JumpCloud" title="JumpCloud" loading="lazy" width="52" height="52"><span>JumpCloud</span></li>
+          <li><img src="assets/icons/ninite.svg" alt="Ninite" title="Ninite" loading="lazy" width="52" height="52"><span>Ninite</span></li>
+          <li><img src="assets/icons/bash.svg" alt="Bash" title="Bash" loading="lazy" width="52" height="52"><span>Bash</span></li>
+          <li><img src="assets/icons/py.svg" alt="Python" title="Python" loading="lazy" width="52" height="52"><span>Python</span></li>
+          <li><img src="assets/icons/git.svg" alt="Git" title="Git" loading="lazy" width="52" height="52"><span>Git</span></li>
+          <li><img src="assets/icons/github.svg" alt="GitHub" title="GitHub" loading="lazy" width="52" height="52"><span>GitHub</span></li>
+          <li><img src="assets/icons/githubactions.svg" alt="GitHub Actions" title="GitHub Actions" loading="lazy" width="52" height="52"><span>GitHub Actions</span></li>
+          <li><img src="assets/icons/npm.svg" alt="npm" title="npm" loading="lazy" width="52" height="52"><span>npm</span></li>
+          <li><img src="assets/icons/docker.svg" alt="Docker" title="Docker" loading="lazy" width="52" height="52"><span>Docker</span></li>
+          <li><img src="assets/icons/kubernetes.svg" alt="Kubernetes" title="Kubernetes" loading="lazy" width="52" height="52"><span>Kubernetes</span></li>
+          <li><img src="assets/icons/helm.svg" alt="Helm" title="Helm" loading="lazy" width="52" height="52"><span>Helm</span></li>
+          <li><img src="assets/icons/argocd.svg" alt="Argo CD" title="Argo CD" loading="lazy" width="52" height="52"><span>Argo CD</span></li>
+          <li><img src="assets/icons/terraform.svg" alt="Terraform" title="Terraform" loading="lazy" width="52" height="52"><span>Terraform</span></li>
+          <li><img src="assets/icons/ansible.svg" alt="Ansible" title="Ansible" loading="lazy" width="52" height="52"><span>Ansible</span></li>
+          <li><img src="assets/icons/aws.svg" alt="AWS" title="AWS" loading="lazy" width="52" height="52"><span>AWS</span></li>
+          <li><img src="assets/icons/postgres.svg" alt="PostgreSQL" title="PostgreSQL" loading="lazy" width="52" height="52"><span>PostgreSQL</span></li>
+          <li><img src="assets/icons/prometheus.svg" alt="Prometheus" title="Prometheus" loading="lazy" width="52" height="52"><span>Prometheus</span></li>
+          <li><img src="assets/icons/grafana.svg" alt="Grafana" title="Grafana" loading="lazy" width="52" height="52"><span>Grafana</span></li>
+          <li><img src="assets/icons/microsoft365.svg" alt="Microsoft 365" title="Microsoft 365" loading="lazy" width="52" height="52"><span>Microsoft 365</span></li>
+          <li><img src="assets/icons/googleworkspace.svg" alt="Google Workspace" title="Google Workspace" loading="lazy" width="52" height="52"><span>Google Workspace</span></li>
+          <li><img src="assets/icons/salesforce.svg" alt="Salesforce" title="Salesforce" loading="lazy" width="52" height="52"><span>Salesforce</span></li>
+          <li><img src="assets/icons/voicenter.svg" alt="Voicenter" title="Voicenter" loading="lazy" width="52" height="52"><span>Voicenter</span></li>
+          <li><img src="assets/icons/slack.svg" alt="Slack" title="Slack" loading="lazy" width="52" height="52"><span>Slack</span></li>
+          <li><img src="assets/icons/figma.svg" alt="Figma" title="Figma" loading="lazy" width="52" height="52"><span>Figma</span></li>
+          <li><img src="assets/icons/vscode.svg" alt="VS Code" title="VS Code" loading="lazy" width="52" height="52"><span>VS Code</span></li>
+          <li><img src="assets/icons/cursor.svg" alt="Cursor" title="Cursor" loading="lazy" width="52" height="52"><span>Cursor</span></li>
+          <li><img src="assets/icons/claudecode.svg" alt="Claude Code" title="Claude Code" loading="lazy" width="52" height="52"><span>Claude Code</span></li>
+          <li><img src="assets/icons/codex.svg" alt="Codex" title="Codex" loading="lazy" width="52" height="52"><span>Codex</span></li>
+          <li><img src="assets/icons/antigravity.svg" alt="Google Antigravity" title="Google Antigravity" loading="lazy" width="52" height="52"><span>Google Antigravity</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <h2 class="reveal">Selected <span>work</span></h2>
+      <p class="lede reveal">Live sites, each one online right now.</p>
+      <div class="grid g3">
+        <article class="card work reveal">
+          <img src="assets/work/code92-website.jpg" alt="CODE92 agency site" loading="lazy" width="880" height="550">
+          <div class="body">
+            <h3>CODE92</h3>
+            <p>Digital agency site &mdash; websites, apps, online stores and AI
+              automation for businesses.</p>
+            <div class="tags"><span class="tag">JavaScript</span><span class="tag">RTL</span><span class="tag">Animation</span></div>
+            <div class="links">
+              <a href="https://elyotam.github.io/code92-website/" rel="noopener">Visit &rarr;</a>
+              <a href="https://github.com/elyotam/code92-website" rel="noopener">Source</a>
+            </div>
+          </div>
+        </article>
+        <article class="card work reveal">
+          <img src="assets/work/elyotam-website.jpg" alt="Elyotam agency site" loading="lazy" width="880" height="550">
+          <div class="body">
+            <h3>Elyotam</h3>
+            <p>Premium agency site with a cinematic, scroll-driven hero for
+              sites, stores, apps and automation.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">Scroll UX</span><span class="tag">RTL</span></div>
+            <div class="links">
+              <a href="https://elyotam.github.io/elyotam-website/" rel="noopener">Visit &rarr;</a>
+              <a href="https://github.com/elyotam/elyotam-website" rel="noopener">Source</a>
+            </div>
+          </div>
+        </article>
+        <article class="card work reveal">
+          <img src="assets/work/ahuvit-website.jpg" alt="Ahuvit Mor boutique cakes site" loading="lazy" width="880" height="550">
+          <div class="body">
+            <h3>Ahuvit Mor</h3>
+            <p>Boutique cake studio &mdash; a warm, image-led storefront for a
+              hand-made product.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">Client work</span><span class="tag">RTL</span></div>
+            <div class="links">
+              <a href="https://elyotam.github.io/ahuvit-website/" rel="noopener">Visit &rarr;</a>
+              <a href="https://github.com/elyotam/ahuvit-website" rel="noopener">Source</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="github">
+    <div class="wrap">
+      <h2 class="reveal">On <span>GitHub</span></h2>
+      <p class="lede reveal">Pulled live from the GitHub API when this page loads &mdash;
+        so it is never out of date.</p>
+      <div class="stats reveal">
+        <div class="stat"><b id="s-repos">&mdash;</b><span>Public repositories</span></div>
+        <div class="stat"><b id="s-langs">&mdash;</b><span>Languages</span></div>
+        <div class="stat"><b id="s-stars">&mdash;</b><span>Stars earned</span></div>
+        <div class="stat"><b id="s-since">&mdash;</b><span>On GitHub since</span></div>
+      </div>
+      <p style="margin-top:26px" class="reveal">
+        <a class="btn" href="https://github.com/elyotam" rel="noopener">View the profile &rarr;</a>
+      </p>
+    </div>
+  </section>
+
+  <section id="contact" style="border-bottom:none">
+    <div class="wrap">
+      <h2 class="reveal">Let&rsquo;s <span>talk</span></h2>
+      <p class="lede reveal">Got a site, an app or a manual process that should be
+        running itself? Send it over.</p>
+      <div class="cta" style="justify-content:flex-start">
+        <a class="btn solid" href="https://github.com/elyotam" rel="noopener">GitHub</a>
+        <a class="btn" href="https://elyotam.github.io/code92-website/" rel="noopener">CODE92</a>
+        <!-- Add your own channels here, for example:
+             <a class="btn" href="mailto:you@example.com">Email</a>
+             <a class="btn" href="https://www.linkedin.com/in/USERNAME/">LinkedIn</a>
+             <a class="btn" href="https://wa.me/9725XXXXXXXX">WhatsApp</a>  -->
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; <span id="yr">2026</span> Elyotam Cohen</span>
+    <span class="mono">Built by hand &mdash; no framework, no build step.</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* --- mobile nav ------------------------------------------------------- */
+const btn = document.getElementById('menuBtn'), nav = document.getElementById('nav');
+btn.addEventListener('click', () => {
+  const open = nav.classList.toggle('open');
+  btn.setAttribute('aria-expanded', open);
+});
+nav.addEventListener('click', e => {
+  if (e.target.tagName === 'A') { nav.classList.remove('open'); btn.setAttribute('aria-expanded', false); }
+});
+
+/* --- scroll reveal ---------------------------------------------------- */
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (reduce) {
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+} else {
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+}
+
+/* --- matrix rain ------------------------------------------------------ */
+(function () {
+  const cv = document.getElementById('rain');
+  if (!cv || reduce) return;
+  const ctx = cv.getContext('2d');
+  let cols = [], w = 0, h = 0, step = 18, dpr = Math.min(devicePixelRatio || 1, 2);
+
+  function size() {
+    w = cv.clientWidth; h = cv.clientHeight;
+    cv.width = w * dpr; cv.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cols = Array.from({ length: Math.ceil(w / step) },
+      () => ({ y: Math.random() * -h, v: 0.9 + Math.random() * 2.1 }));
+  }
+  size();
+  addEventListener('resize', size, { passive: true });
+
+  let last = 0;
+  (function frame(t) {
+    requestAnimationFrame(frame);
+    if (t - last < 33) return;          // ~30fps is plenty and stays cheap
+    last = t;
+    ctx.fillStyle = 'rgba(11,18,32,0.14)';
+    ctx.fillRect(0, 0, w, h);
+    ctx.font = '14px ui-monospace, Menlo, Consolas, monospace';
+    cols.forEach((c, i) => {
+      const x = i * step + 5;
+      ctx.fillStyle = Math.random() < 0.04 ? '#FFD43B' : '#3776AB';
+      ctx.fillText(Math.random() < 0.5 ? '0' : '1', x, c.y);
+      c.y += c.v * 4;
+      if (c.y > h + 40) { c.y = -20; c.v = 0.9 + Math.random() * 2.1; }
+    });
+  })(0);
+})();
+
+/* --- live GitHub numbers ---------------------------------------------- */
+(async function () {
+  const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+  try {
+    const [user, repos] = await Promise.all([
+      fetch('https://api.github.com/users/elyotam').then(r => r.ok ? r.json() : Promise.reject()),
+      fetch('https://api.github.com/users/elyotam/repos?per_page=100').then(r => r.ok ? r.json() : Promise.reject())
+    ]);
+    set('s-repos', user.public_repos);
+    set('s-langs', new Set(repos.map(r => r.language).filter(Boolean)).size);
+    set('s-stars', repos.reduce((n, r) => n + r.stargazers_count, 0));
+    set('s-since', new Date(user.created_at).getFullYear());
+  } catch (e) {
+    // Rate-limited or offline: leave the dashes rather than showing a wrong number.
+    ['s-repos', 's-langs', 's-stars', 's-since'].forEach(id => set(id, '—'));
+  }
+})();
+</script>
+</body>
+</html>
