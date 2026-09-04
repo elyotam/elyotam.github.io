@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenVPN Access Server על AWS — Elyotam Cohen</title>
+<meta name="description" content="מודול Terraform לשימוש חוזר שמקים OpenVPN Access Server בחשבון AWS בלי לשמור אף סוד ב-Terraform state.">
+<meta name="theme-color" content="#111111">
+<link rel="canonical" href="https://elyotam.github.io/openvpn-he.html">
+<link rel="alternate" hreflang="he" href="https://elyotam.github.io/openvpn-he.html">
+<link rel="alternate" hreflang="en" href="https://elyotam.github.io/openvpn.html">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Elyotam Cohen">
+<meta property="og:title" content="OpenVPN Access Server על AWS — Elyotam Cohen">
+<meta property="og:description" content="מודול Terraform לשימוש חוזר שמקים OpenVPN Access Server בחשבון AWS בלי לשמור אף סוד ב-Terraform state.">
+<meta property="og:url" content="https://elyotam.github.io/openvpn-he.html">
+<meta property="og:image" content="https://elyotam.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OpenVPN Access Server על AWS — Elyotam Cohen">
+<meta name="twitter:description" content="מודול Terraform לשימוש חוזר שמקים OpenVPN Access Server בחשבון AWS בלי לשמור אף סוד ב-Terraform state.">
+<meta name="twitter:image" content="https://elyotam.github.io/assets/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/readme.css">
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top">
+    <a class="ghost" href="./">HELLO WORLD!</a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav">
+      <a href="./">Home</a><a href="about.html">About</a>
+      <a class="on" href="projects.html">My Projects</a><a href="contact.html">Contact</a>
+    </nav>
+    <a class="pill" href="contact.html">
+      <svg viewBox="0 0 24 24"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002M7 8.48H3V21h4zm6.32 0H9.34V21h3.92v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91z"/></svg>
+      Let&rsquo;s Connect!
+    </a>
+  </div>
+
+  <main class="doc">
+
+    <a class="back" href="projects.html">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.78 12.78a.75.75 0 0 1-1.06 0L4.47 8.53a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 1 1 1.06 1.06L6.06 8l3.72 3.72a.75.75 0 0 1 0 1.06Z"/></svg>
+      All projects
+    </a>
+
+    <article class="box readme reveal">
+      <div class="rm-bar">
+        <span class="rm-file">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"/></svg>
+          aws-openvpn / README.he.md
+        </span>
+        <span class="rm-right"><a class="rm-lang" href="openvpn.html" lang="en">English</a><a class="rm-src" href="https://github.com/elyotam/aws-openvpn" rel="noopener">View on GitHub &nearr;</a></span>
+      </div>
+      <div class="markdown-body" dir="rtl" lang="he">
+<h1 dir="auto">מודול Terraform להקמת OpenVPN Access Server ב-AWS</h1>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/elyotam/aws-openvpn/blob/main/docs/images/openvpn-access-server-aws.png"><img src="https://raw.githubusercontent.com/elyotam/aws-openvpn/main/docs/images/openvpn-access-server-aws.png" alt="OpenVPN Access Server על גבי AWS" style="max-width: 100%;"></a></p>
+<p dir="auto">זהו פרויקט Clean Room כללי שמקים שרת OpenVPN Access Server בחשבון AWS של לקוח. הוא אינו כולל קוד, כתובות, State, סודות או פרטים של חברה אחרת.</p>
+<h2 dir="auto">מה המודול מקים</h2>
+<ul dir="auto">
+<li>שרת EC2 עם Ubuntu 24.04.</li>
+<li>התקנה אוטומטית של OpenVPN Access Server מהמאגר הרשמי.</li>
+<li>Elastic IP קבוע כמשאב עצמאי.</li>
+<li>חיבור EIP נפרד לשרת.</li>
+<li>Security Group לפורטים TCP 443, UDP 1194 ו-TCP 943 לפי CIDR.</li>
+<li>IAM Role ו-SSM Session Manager לניהול בלי לפתוח SSH.</li>
+<li>דיסק gp3 מוצפן ו-IMDSv2 חובה.</li>
+<li>ביטול Source/Destination Check כדי שהשרת יוכל להעביר תעבורה.</li>
+<li>רשומת Route 53 אופציונלית.</li>
+<li>דוגמאות Terraform ו-Terragrunt.</li>
+</ul>
+<h2 dir="auto">הפרדה וקישור בין dev ל-staging</h2>
+<p dir="auto">התבנית המוכנה להתאמה נמצאת בתיקייה <a rel="noopener" href="https://github.com/elyotam/aws-openvpn/blob/main/environments/dev-staging"><code class="notranslate">environments/dev-staging</code></a>. היא מקימה שרת OpenVPN יחיד בתוך ה־VPC של <code class="notranslate">dev</code>, ומחברת את <code class="notranslate">dev</code> ל־<code class="notranslate">staging</code> באמצעות VPC Peering. לקוחות ה־VPN מקבלים נתיב לשתי סביבות ה־non-production. סביבת <code class="notranslate">production</code> מוחרגת בכוונה: אין בתבנית משתני production, תלויות, routes או peering אליה.</p>
+<pre lang="text" class="notranslate"><code class="notranslate">לקוח VPN
+    |
+OpenVPN Access Server (dev VPC)
+    |                         \
+משאבי dev          VPC peering -&gt; משאבי staging
+
+production: אין חיבור
+</code></pre>
+<p dir="auto">ה־stack יוצר:</p>
+<ul dir="auto">
+<li>OpenVPN Access Server ב־public subnet של <code class="notranslate">dev</code>.</li>
+<li>VPC Peering בין <code class="notranslate">dev</code> ל־<code class="notranslate">staging</code>, כולל DNS resolution.</li>
+<li>Routes מטבלאות הניתוב שנבחרו ב־<code class="notranslate">dev</code> אל ה־CIDR של <code class="notranslate">staging</code>.</li>
+<li>Return routes מטבלאות הניתוב שנבחרו ב־<code class="notranslate">staging</code> אל ה־CIDR של <code class="notranslate">dev</code>.</li>
+<li>OpenVPN private-network route שמפרסם ללקוחות ה־VPN את ה־CIDR של <code class="notranslate">staging</code>.</li>
+<li>נתיב Terraform State נפרד עבור קישוריות ה־non-production המשותפת.</li>
+</ul>
+<h3 dir="auto">התאמה לחברה חדשה</h3>
+<ol dir="auto">
+<li>
+<p dir="auto">העתק את קובצי הדוגמה:</p>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate"><span class="pl-c1">cd</span> environments/dev-staging
+cp terraform.tfvars.example terraform.tfvars
+cp backend.tf.example backend.tf</pre></div>
+</li>
+<li>
+<p dir="auto">החלף את כל ערכי <code class="notranslate">REPLACE_*</code> בתוך <code class="notranslate">terraform.tfvars</code> ו־<code class="notranslate">backend.tf</code>. יש להזין את מזהי ה־VPC של <code class="notranslate">dev</code> ו־<code class="notranslate">staging</code>, טווחי CIDR שאינם חופפים, public subnet של <code class="notranslate">dev</code>, מזהי route tables, כתובות מנהלים מורשות, state bucket, אזור ותגיות של החברה החדשה.</p>
+</li>
+<li>
+<p dir="auto">ודא שאף VPC, טבלת ניתוב, CIDR, אזור DNS או הרשאת AWS שסופקו אינם שייכים ל־production.</p>
+</li>
+<li>
+<p dir="auto">השתמש ב־AWS profile או role ייעודי ל־non-production של החברה החדשה ואמת אותו לפני יצירת plan:</p>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate"><span class="pl-k">export</span> AWS_PROFILE=REPLACE_CUSTOMER_NONPROD_PROFILE
+aws sts get-caller-identity
+terraform init
+terraform fmt -check -recursive
+terraform validate
+terraform plan</pre></div>
+</li>
+<li>
+<p dir="auto">בדוק את שני כיווני הניתוב ב־plan והפעל רק לאחר אישור:</p>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate">terraform apply</pre></div>
+</li>
+</ol>
+<p dir="auto">אין לבצע commit ל־<code class="notranslate">terraform.tfvars</code>, הרשאות backend, קובצי state, פרופילי VPN, סיסמאות, מפתחות פרטיים, מספרי חשבון או ערכי רשת אמיתיים של לקוחות. ה־<code class="notranslate">.gitignore</code> מחריג קבצים רגישים נפוצים, אך עדיין חובה לבדוק את ה־plan ואת ה־diff לפני פרסום.</p>
+<h2 dir="auto">דרישות מוקדמות</h2>
+<ol dir="auto">
+<li>חשבון AWS והרשאות מתאימות.</li>
+<li>VPC קיים.</li>
+<li>Public Subnet עם Route ל-Internet Gateway.</li>
+<li>Terraform 1.9 ומעלה.</li>
+<li>AWS CLI מחובר לחשבון הנכון.</li>
+<li>רישיון OpenVPN Access Server בבעלות הלקוח. ללא רישיון ניתן להשתמש בשני חיבורים בו-זמנית בהתאם למדיניות OpenVPN.</li>
+</ol>
+<h2 dir="auto">התחלה מהירה עם Terraform</h2>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate">git clone https://github.com/elyotam/aws-openvpn.git
+<span class="pl-c1">cd</span> aws-openvpn/examples/terraform
+
+cp terraform.tfvars.example terraform.tfvars
+vim terraform.tfvars</pre></div>
+<p dir="auto">החלף את כל ערכי הדוגמה, בעיקר:</p>
+<div class="highlight highlight-source-hcl" dir="auto"><pre class="notranslate"><span class="pl-v"><span class="pl-smi">vpc_id</span>    <span class="pl-k">=</span> </span><span class="pl-s"><span class="pl-pds">"</span>vpc-...<span class="pl-pds">"</span></span>
+<span class="pl-v"><span class="pl-smi">subnet_id</span> <span class="pl-k">=</span> </span><span class="pl-s"><span class="pl-pds">"</span>subnet-...<span class="pl-pds">"</span></span>
+<span class="pl-v"><span class="pl-smi">admin_cidrs</span> <span class="pl-k">=</span> </span>[<span class="pl-s"><span class="pl-pds">"</span>YOUR.PUBLIC.IP/32<span class="pl-pds">"</span></span>]</pre></div>
+<p dir="auto">בדוק קודם את החשבון:</p>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate">aws sts get-caller-identity</pre></div>
+<p dir="auto">בדיקות קוד בלבד:</p>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate">terraform fmt -check -recursive
+terraform init -backend=false
+terraform validate</pre></div>
+<p dir="auto">בדיקת תכנית ללא שינוי תשתית:</p>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate">terraform init
+terraform plan</pre></div>
+<p dir="auto">רק לאחר אישור מפורש של הלקוח:</p>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate">terraform apply</pre></div>
+<h2 dir="auto">גישה לשרת בלי SSH</h2>
+<p dir="auto">המודול מחבר IAM Role של SSM. לאחר ההקמה:</p>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate">aws ssm start-session --target i-REPLACE_ME</pre></div>
+<p dir="auto">בתוך השרת:</p>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate">sudo systemctl status openvpnas --no-pager
+sudo cat /var/log/openvpn-access-server-bootstrap.log
+sudo cat /usr/local/openvpn_as/init.log</pre></div>
+<h2 dir="auto">כתובות הממשק</h2>
+<p dir="auto">Terraform מחזיר:</p>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate">terraform output admin_url
+terraform output client_url</pre></div>
+<p dir="auto">מבנה הכתובות:</p>
+<pre lang="text" class="notranslate"><code class="notranslate">https://VPN-ADDRESS/admin/
+https://VPN-ADDRESS/
+</code></pre>
+<p dir="auto">בפעם הראשונה תופיע אזהרת תעודה מכיוון שהתעודה הראשונית היא Self-Signed. בסביבת Production יש להתקין תעודה תקינה.</p>
+<h2 dir="auto">הגדרת משתמשים וגישה לרשת</h2>
+<p dir="auto">המודול מתקין את המוצר ומקים את תשתית AWS. את הפעולות הבאות מבצעים דרך Admin UI של הלקוח:</p>
+<ol dir="auto">
+<li>שינוי סיסמת מנהל.</li>
+<li>הפעלת רישיון בבעלות הלקוח.</li>
+<li>הגדרת Authentication ו-MFA.</li>
+<li>הגדרת הרשתות הפרטיות שאליהן משתמשי VPN רשאים להגיע.</li>
+<li>יצירת משתמשים וקבוצות.</li>
+<li>התקנת תעודת SSL תקינה.</li>
+<li>בדיקות חיבור והרשאות.</li>
+</ol>
+<h2 dir="auto">שימוש אצל כמה לקוחות</h2>
+<p dir="auto">אין להשתמש באותו State או באותו קובץ משתנים לכמה לקוחות. לכל לקוח צריך להיות:</p>
+<ul dir="auto">
+<li>חשבון AWS או Role משלו.</li>
+<li>State נפרד.</li>
+<li>VPC ו-Subnet משלו.</li>
+<li>CIDR והרשאות משלו.</li>
+<li>DNS, רישיון וסודות משלו.</li>
+<li>תיקיית Deployment או Repository פרטי משלו.</li>
+</ul>
+<p dir="auto">מומלץ להשתמש בגרסה מתויגת של המודול:</p>
+<div class="highlight highlight-source-hcl" dir="auto"><pre class="notranslate"><span class="pl-en">module</span> <span class="pl-smi">"openvpn"</span> {
+  <span class="pl-v"><span class="pl-smi">source</span> <span class="pl-k">=</span> </span><span class="pl-s"><span class="pl-pds">"</span>git::https://github.com/elyotam/aws-openvpn.git?ref=v1.0.0<span class="pl-pds">"</span></span>
+}</pre></div>
+<h2 dir="auto">מה לא שומרים ב-Git או ב-Terraform</h2>
+<ul dir="auto">
+<li>Activation Key.</li>
+<li>סיסמת Admin.</li>
+<li>קובצי OVPN.</li>
+<li>Private Keys.</li>
+<li>AWS Credentials.</li>
+<li>Terraform State.</li>
+<li>כתובות פנימיות רגישות ללא צורך.</li>
+</ul>
+<h2 dir="auto">מחיקה</h2>
+<p dir="auto">הרצת הפקודה הבאה מוחקת את המשאבים שה-Deployment מנהל ועלולה להשבית את ה-VPN:</p>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate">terraform destroy</pre></div>
+<p dir="auto">אין להריץ אותה ללא אישור מפורש ותכנית גיבוי.</p>
+<h2 dir="auto">הערה חשובה</h2>
+<p dir="auto">זהו מודול Single Instance. הוא אינו מספק High Availability, Cluster, גיבוי אוטומטי או Disaster Recovery מלא. יש לתכנן את הרכיבים האלה בנפרד עבור לקוחות שדורשים זמינות גבוהה.</p>
+      </div>
+    </article>
+
+  </main>
+</div>
+
+<footer>
+  <nav>
+    <a href="./">Home</a><a href="about.html">About</a>
+    <a href="projects.html">My Projects</a><a href="contact.html">Contact</a>
+  </nav>
+  <div><span id="yr">2026</span> &copy; Created with love by
+    <a class="by" href="https://github.com/elyotam" rel="noopener">Elyotam Cohen</a></div>
+</footer>
+
+<script src="assets/site.js"></script>
+<script src="assets/cursor.js"></script>
+</body>
+</html>

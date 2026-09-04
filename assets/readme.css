@@ -19,8 +19,14 @@
 .rm-file{display:inline-flex;align-items:center;gap:9px;font-size:13.5px;
   font-weight:500;color:#d6d6d6}
 .rm-file svg{width:15px;height:15px;fill:var(--faint)}
+.rm-right{display:inline-flex;align-items:center;gap:14px}
 .rm-src{font-size:13px;color:var(--dim);white-space:nowrap;transition:.2s}
 .rm-src:hover{color:var(--fg)}
+/* the same README in the other language, on this site */
+.rm-lang{font-size:12.5px;font-weight:500;white-space:nowrap;color:#c9c9c9;
+  background:#1f1f1f;border:1px solid #303030;border-radius:999px;
+  padding:5px 13px;transition:.2s}
+.rm-lang:hover{background:#2a2a2a;border-color:#474747;color:#fff}
 
 .markdown-body{
   position:relative;z-index:2;padding:38px 46px 46px;

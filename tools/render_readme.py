@@ -30,6 +30,20 @@ PROJECTS = [
         "tagline": "A reusable, clean-room Terraform module that keeps every secret out "
                    "of Terraform state.",
         "rtl": False,
+        # the two language versions link to each other, on this site
+        "alt": ("עברית", "openvpn-he"),
+    },
+    {
+        "slug": "openvpn-he",
+        "repo": "elyotam/aws-openvpn",
+        "branch": "main",
+        "readme": "README.he.md",
+        "lang": "he",
+        "title": "OpenVPN Access Server על AWS",
+        "tagline": "מודול Terraform לשימוש חוזר שמקים OpenVPN Access Server בחשבון AWS "
+                   "בלי לשמור אף סוד ב-Terraform state.",
+        "rtl": True,
+        "alt": ("English", "openvpn"),
     },
     {
         "slug": "quakewatch",
@@ -92,6 +106,15 @@ def absolutise(html, repo, branch):
     return re.sub(r'\b(href|src|srcset)="([^"]*)"', fix, html)
 
 
+def localise(html):
+    """A README that links to another README we also publish should stay on this
+    site. Without this, the Hebrew guide link bounces the reader out to GitHub."""
+    for q in PROJECTS:
+        url = "https://github.com/%s/blob/%s/%s" % (q["repo"], q["branch"], q["readme"])
+        html = html.replace('href="%s"' % url, 'href="%s.html"' % q["slug"])
+    return html
+
+
 def harden(html):
     """Anything leaving GitHub's renderer is trusted markup, but links out of the
     site still need the usual hygiene, and headings need to survive our CSS."""
@@ -107,14 +130,14 @@ def harden(html):
 
 
 PAGE = '''<!doctype html>
-<html lang="en">
+<html lang="{lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} — Elyotam Cohen</title>
 <meta name="description" content="{desc}">
 <meta name="theme-color" content="#111111">
-<link rel="canonical" href="https://elyotam.github.io/{slug}.html">
+<link rel="canonical" href="https://elyotam.github.io/{slug}.html">{hreflang}
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Elyotam Cohen">
@@ -163,7 +186,7 @@ PAGE = '''<!doctype html>
           <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"/></svg>
           {repo_name} / {readme_name}
         </span>
-        <a class="rm-src" href="https://github.com/{repo}" rel="noopener">View on GitHub &nearr;</a>
+        <span class="rm-right">{alt}<a class="rm-src" href="https://github.com/{repo}" rel="noopener">View on GitHub &nearr;</a></span>
       </div>
       <div class="markdown-body"{dir}>
 {body}
@@ -199,12 +222,26 @@ def build(p):
     md = _raw("https://raw.githubusercontent.com/%s/%s/%s" % (repo, branch, p["readme"]))
     # never re-indent this: inside <pre>, leading spaces are content, and
     # indenting the block silently pushes every code sample and ASCII diagram
-    html = harden(absolutise(to_html(md, repo), repo, branch))
+    html = harden(localise(absolutise(to_html(md, repo), repo, branch)))
+
+    lang = p.get("lang", "en")
+    alt = hreflang = ""
+    if p.get("alt"):
+        label, slug = p["alt"]
+        other = "he" if lang == "en" else "en"
+        alt = ('<a class="rm-lang" href="%s.html" lang="%s">%s</a>'
+               % (slug, other, esc(label)))
+        # tell search engines these two pages are the same document
+        hreflang = (
+            '\n<link rel="alternate" hreflang="%s" href="https://elyotam.github.io/%s.html">'
+            '\n<link rel="alternate" hreflang="%s" href="https://elyotam.github.io/%s.html">'
+            % (lang, p["slug"], other, slug))
 
     page = PAGE.format(
         slug=p["slug"], title=esc(p["title"]), desc=esc(p["tagline"]),
+        lang=lang, hreflang=hreflang,
         repo=repo, repo_name=repo.split("/")[1], readme_name=p["readme"],
-        dir=' dir="rtl" lang="he"' if p["rtl"] else "",
+        alt=alt, dir=' dir="rtl" lang="he"' if p["rtl"] else "",
         body=html)
 
     out = os.path.join(ROOT, p["slug"] + ".html")
