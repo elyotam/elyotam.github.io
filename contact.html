@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — Elyotam Cohen</title>
+<meta name="description" content="Get in touch with Elyotam Cohen about a website, an app or an automation.">
+<meta name="theme-color" content="#111111">
+<link rel="canonical" href="https://elyotam.github.io/contact.html">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.head{padding:6px 0 30px}
+.head h1{margin:0 0 10px;font-size:clamp(32px,5vw,52px);font-weight:400;letter-spacing:-1.2px}
+.head h1 .grad{background:linear-gradient(90deg,#f472b6,#a78bfa 45%,#60a5fa);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.head p{margin:0;color:var(--dim);max-width:60ch}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);padding-bottom:var(--gap)}
+.chan{grid-column:span 4;padding:30px;display:flex;flex-direction:column;gap:14px;min-height:196px}
+.chan .ic{width:56px;height:56px;border-radius:50%;background:#141414;border:1px solid #2e2e2e;
+  display:grid;place-items:center}
+.chan .ic img{width:26px;height:26px}
+.chan .ic b{font-size:14px;color:#bdbdbd;font-weight:600}
+.chan h2{margin:auto 0 0;font-size:20px;font-weight:500}
+.chan p{margin:0;color:var(--dim);font-size:14.2px}
+.wide{grid-column:span 12;padding:36px;display:flex;flex-direction:column;gap:16px}
+.wide h2{margin:0;font-size:clamp(24px,3.6vw,34px);font-weight:400;letter-spacing:-.7px}
+.wide p{margin:0;color:var(--dim);max-width:60ch;font-size:15px}
+.row{display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:10;margin-top:6px}
+.lnk{display:inline-flex;align-items:center;gap:9px;font-size:14.5px;padding:12px 20px;
+  border-radius:12px;border:1px solid #2f2f2f;background:#161616;transition:.2s}
+.lnk:hover{border-color:#5a5a5a;background:#1d1d1d}
+.lnk.primary{background:#f4f4f4;color:#111;border-color:#f4f4f4}
+.lnk.primary:hover{background:#fff}
+@media (max-width:900px){ .chan{grid-column:span 12} }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top">
+    <a class="ghost" href="./">HELLO WORLD!</a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav">
+      <a href="./">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">My Projects</a>
+      <a class="on" href="contact.html">Contact</a>
+    </nav>
+    <a class="pill" href="#talk">
+      <svg viewBox="0 0 24 24"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002M7 8.48H3V21h4zm6.32 0H9.34V21h3.92v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91z"/></svg>
+      Let&rsquo;s Connect!
+    </a>
+  </div>
+
+  <header class="head">
+    <h1>Let&rsquo;s work <span class="grad">together.</span></h1>
+    <p>A site, an app, or a manual process that should be running itself &mdash;
+      tell me what you are trying to build.</p>
+  </header>
+
+  <main class="grid">
+
+    <a class="box chan reveal" href="https://github.com/elyotam" rel="noopener">
+      <span class="overlay" aria-hidden="true"></span>
+      <div class="ic"><img src="assets/icons/github.svg" alt=""></div>
+      <h2>GitHub</h2>
+      <p>The code, the infrastructure and this site itself.</p>
+      <span class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+    </a>
+
+    <a class="box chan reveal" href="https://elyotam.github.io/code92-website/" rel="noopener">
+      <span class="overlay" aria-hidden="true"></span>
+      <div class="ic"><b>C92</b></div>
+      <h2>CODE92</h2>
+      <p>Client work goes through the agency &mdash; sites, stores and automation.</p>
+      <span class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+    </a>
+
+    <a class="box chan reveal" href="https://elyotam.github.io/elyotam-website/" rel="noopener">
+      <span class="overlay" aria-hidden="true"></span>
+      <div class="ic"><b>EL</b></div>
+      <h2>Elyotam</h2>
+      <p>The studio site, with the full service list.</p>
+      <span class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+    </a>
+
+    <section class="box wide reveal" id="talk">
+      <h2>Start a conversation</h2>
+      <p>The quickest way to reach me right now is through CODE92 &mdash; the contact
+        form there lands with me directly. If you would rather look at code first,
+        everything public is on GitHub.</p>
+      <div class="row">
+        <a class="lnk primary" href="https://elyotam.github.io/code92-website/" rel="noopener">Contact through CODE92 &rarr;</a>
+        <a class="lnk" href="https://github.com/elyotam" rel="noopener">GitHub profile</a>
+      </div>
+      <!-- Add your direct channels here when you want them public, for example:
+           <a class="lnk" href="mailto:you@example.com">Email</a>
+           <a class="lnk" href="https://wa.me/9725XXXXXXXX">WhatsApp</a>
+           <a class="lnk" href="https://www.linkedin.com/in/USERNAME/">LinkedIn</a> -->
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <nav>
+    <a href="./">Home</a><a href="about.html">About</a>
+    <a href="projects.html">My Projects</a><a href="contact.html">Contact</a>
+  </nav>
+  <div><span id="yr">2026</span> &copy; Created with love by
+    <a class="by" href="https://github.com/elyotam" rel="noopener">Elyotam Cohen</a></div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

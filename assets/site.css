@@ -1,0 +1,93 @@
+/* Shared shell: tokens, top bar, card primitives, footer.
+   Page-specific layout lives in each page's own <style>.
+   Every value here was measured off the target design, not estimated. */
+
+:root{
+  --bg:#111111; --inner:#1e1e1e; --line:#282828;
+  --fg:#f4f4f4; --dim:#9a9a9a; --faint:#7b7b7b;
+  --blue:#4B8BBE; --yellow:#FFD43B;
+  --gap:24px; --r:30px; --ri:20px; --max:1170px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--fg);overflow-x:hidden;
+  font:16px/1.55 Inter,ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+/* the fine dot grid the whole page sits on */
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:1;
+  background-image:radial-gradient(#323232 .5px,transparent .5px);background-size:4.25px 4.25px;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--yellow);outline-offset:3px;border-radius:10px}
+.wrap{position:relative;z-index:1;max-width:var(--max);margin:0 auto;padding:0 20px}
+
+/* ------------------------------------------------------------------ top bar */
+.top{display:flex;align-items:center;gap:26px;padding:52px 0 34px}
+.ghost{
+  font-size:clamp(26px,4.4vw,46px);font-weight:400;letter-spacing:2px;white-space:nowrap;
+  color:transparent;-webkit-text-stroke:1px #3a3a3a;user-select:none;line-height:1;
+}
+.top nav{margin-left:auto;display:flex;gap:38px;font-size:17px;color:var(--dim)}
+.top nav a.on,.top nav a:hover{color:var(--fg)}
+.pill{
+  display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:13px;
+  border:1px solid #2f2f2f;background:#151515;font-size:16px;white-space:nowrap;transition:.2s;
+}
+.pill:hover{border-color:#4a4a4a;background:#1b1b1b}
+.pill svg{width:19px;height:19px;fill:currentColor;opacity:.9}
+.burger{display:none;margin-left:auto;background:#151515;border:1px solid #2f2f2f;color:var(--fg);
+  border-radius:11px;padding:10px 14px;cursor:pointer;font-size:15px}
+
+/* --------------------------------------------------------------- card shell */
+.box{
+  position:relative;border-radius:var(--r);padding:24px;overflow:hidden;
+  background:linear-gradient(145deg,#1a1a1a 0%,#151515 52%,#111111 100%);
+  border:1px solid #1d1d1d;transition:border-color .25s,transform .25s;
+}
+.box:hover{border-color:#333;transform:translateY(-2px)}
+.box::after{content:"";position:absolute;inset:0;opacity:0;transition:opacity .3s;pointer-events:none;
+  background:radial-gradient(360px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.045),transparent 60%)}
+.box:hover::after{opacity:1}
+.kicker{font-size:12px;letter-spacing:.4px;color:var(--faint);margin:0 0 3px;text-transform:uppercase}
+.title{margin:0;font-size:21px;font-weight:400;letter-spacing:-.2px;color:var(--fg)}
+/* an invisible anchor over the whole card, so the pointer cursor and the click
+   target cover it end to end */
+.overlay{position:absolute;inset:0;z-index:9;border-radius:inherit;opacity:0}
+.plus{
+  position:absolute;right:30px;bottom:35px;width:40px;height:40px;border-radius:50%;
+  border:1px solid #3a3a3a;display:grid;place-items:center;color:#8d8d8d;z-index:10;
+  opacity:.28;transition:opacity .3s,border-color .25s,color .25s,transform .25s;
+}
+.plus svg{width:17px;height:17px;stroke:currentColor;stroke-width:1.6;fill:none}
+.box:hover .plus{opacity:1;border-color:#666;color:#e8e8e8;transform:rotate(90deg)}
+
+/* ------------------------------------------------------------------- footer */
+footer{position:relative;z-index:1;padding:26px 0 44px;text-align:center;color:#8a8a8a;font-size:14.5px}
+footer nav{display:flex;gap:38px;justify-content:center;margin-bottom:14px;
+  font-size:12.5px;letter-spacing:.6px;text-transform:uppercase;color:#9a9a9a;flex-wrap:wrap}
+footer a:hover{color:var(--fg)}
+footer .by{color:var(--blue)}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s,transform .55s}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:680px){
+  .top{padding:30px 0 22px;gap:14px}
+  .top nav{display:none;position:absolute;top:76px;left:20px;right:20px;z-index:30;
+    flex-direction:column;gap:0;background:#141414;border:1px solid var(--line);
+    border-radius:14px;padding:4px 18px}
+  .top nav.open{display:flex}
+  .top nav a{padding:12px 0;border-bottom:1px solid #222}
+  .top nav a:last-child{border-bottom:0}
+  .burger{display:block}
+  .top .pill{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .box:hover{transform:none}
+}

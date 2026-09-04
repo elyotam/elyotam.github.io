@@ -15,76 +15,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
 <style>
-:root{
-  --bg:#111111; --inner:#1e1e1e; --line:#282828;
-  --fg:#f4f4f4; --dim:#9a9a9a; --faint:#7b7b7b;
-  --blue:#4B8BBE; --yellow:#FFD43B;
-  --gap:24px; --r:30px; --ri:20px; --max:1170px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;background:var(--bg);color:var(--fg);overflow-x:hidden;
-  font:16px/1.55 Inter,ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  -webkit-font-smoothing:antialiased;
-}
-/* the faint pinhole texture the whole page sits on */
-body::before{
-  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:1;
-  background-image:radial-gradient(#323232 .5px,transparent .5px);background-size:4.25px 4.25px;
-}
-img{max-width:100%;display:block}
-a{color:inherit;text-decoration:none}
-:focus-visible{outline:2px solid var(--yellow);outline-offset:3px;border-radius:10px}
-.wrap{position:relative;z-index:1;max-width:var(--max);margin:0 auto;padding:0 20px}
-
-/* -------------------------------------------------------------- top bar */
-.top{display:flex;align-items:center;gap:26px;padding:52px 0 34px}
-.ghost{
-  font-size:clamp(26px,4.4vw,46px);font-weight:400;letter-spacing:2px;white-space:nowrap;
-  color:transparent;-webkit-text-stroke:1px #3a3a3a;user-select:none;line-height:1;
-}
-.top nav{margin-left:auto;display:flex;gap:38px;font-size:17px;color:var(--dim)}
-.top nav a.on,.top nav a:hover{color:var(--fg)}
-.pill{
-  display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:13px;
-  border:1px solid #2f2f2f;background:#151515;font-size:16px;white-space:nowrap;transition:.2s;
-}
-.pill:hover{border-color:#4a4a4a;background:#1b1b1b}
-.pill svg{width:19px;height:19px;fill:currentColor;opacity:.9}
-.burger{display:none;margin-left:auto;background:#151515;border:1px solid #2f2f2f;color:var(--fg);
-  border-radius:11px;padding:10px 14px;cursor:pointer;font-size:15px}
-
-/* ---------------------------------------------------------- bento grid */
+/* home page only: the bento arrangement */
 .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);padding-bottom:var(--gap)}
-.box{
-  position:relative;border-radius:var(--r);padding:24px;overflow:hidden;
-  background:linear-gradient(145deg,#1a1a1a 0%,#151515 52%,#111111 100%);
-  border:1px solid #1d1d1d;transition:border-color .25s,transform .25s;
-}
-.box:hover{border-color:#333;transform:translateY(-2px)}
-.box::after{content:"";position:absolute;inset:0;opacity:0;transition:opacity .3s;pointer-events:none;
-  background:radial-gradient(360px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.045),transparent 60%)}
-.box:hover::after{opacity:1}
-.kicker{font-size:12px;letter-spacing:.4px;color:var(--faint);margin:0 0 3px;text-transform:uppercase}
-.title{margin:0;font-size:21px;font-weight:400;letter-spacing:-.2px;color:var(--fg)}
-.overlay{position:absolute;inset:0;z-index:9;border-radius:inherit;opacity:0}
-.plus{
-  position:absolute;right:30px;bottom:35px;width:40px;height:40px;border-radius:50%;
-  border:1px solid #3a3a3a;display:grid;place-items:center;color:#8d8d8d;
-  opacity:.28;transition:opacity .3s,border-color .25s,color .25s,transform .25s;
-}
-.plus{z-index:10}
-.plus svg{width:17px;height:17px;stroke:currentColor;stroke-width:1.6;fill:none}
-.box:hover .plus{opacity:1;border-color:#666;color:#e8e8e8;transform:rotate(90deg)}
 
-/* row 1 ------------------------------------------------------------------ */
 .id{grid-column:span 6;grid-row:span 2;display:flex;gap:30px;align-items:center;padding:34px}
-.mark{
-  flex:0 0 196px;height:214px;border-radius:11px;overflow:hidden;position:relative;
-  background:radial-gradient(circle at 42% 26%,#1d2732,#0c0f13);display:grid;place-items:center;
-}
+.mark{flex:0 0 196px;height:214px;border-radius:11px;overflow:hidden;position:relative;
+  background:radial-gradient(circle at 42% 26%,#1d2732,#0c0f13);display:grid;place-items:center}
 .mark b{font-size:86px;font-weight:800;color:var(--yellow);text-shadow:0 0 34px rgba(255,212,59,.4);line-height:1}
 .mark::after{content:"";position:absolute;inset:0;
   background:repeating-linear-gradient(0deg,rgba(75,139,190,.13) 0 1px,transparent 1px 4px)}
@@ -108,15 +46,13 @@ a{color:inherit;text-decoration:none}
 .showcase{grid-column:span 3;min-height:246px;display:flex;flex-direction:column;justify-content:flex-end}
 .shot{position:absolute;left:26px;right:26px;top:38px;border-radius:10px;overflow:hidden;
   border:1px solid #303030;box-shadow:0 16px 38px rgba(0,0,0,.65);background:#1c1c1c}
-.shot::before{content:'';display:block;height:15px;background:#242424;
-  border-bottom:1px solid #2e2e2e}
+.shot::before{content:'';display:block;height:15px;background:#242424;border-bottom:1px solid #2e2e2e}
 .shot i{position:absolute;top:5px;left:9px;width:5px;height:5px;border-radius:50%;
   background:#3d3d3d;box-shadow:8px 0 0 #3d3d3d,16px 0 0 #3d3d3d}
 .shot img{width:100%;height:100px;object-fit:cover;object-position:top}
 .ghostword{position:absolute;left:0;right:0;top:16px;text-align:center;font-size:34px;
   font-weight:800;letter-spacing:1px;color:#232323;user-select:none}
 
-/* row 2 ------------------------------------------------------------------ */
 .hobby{grid-column:span 3;min-height:270px;display:flex;flex-direction:column;justify-content:flex-end}
 .hobby .badge{position:absolute;left:26px;right:26px;top:40px;height:104px;border-radius:24px;
   background:linear-gradient(160deg,#232323,#171717);border:1px solid #2c2c2c;
@@ -129,13 +65,12 @@ a{color:inherit;text-decoration:none}
 .social{grid-column:span 4;min-height:270px;display:flex;flex-direction:column;justify-content:flex-end}
 .orbwrap{position:absolute;left:24px;right:24px;top:24px;background:var(--inner);border:1px solid var(--line);
   border-radius:var(--ri);padding:22px;display:flex;gap:16px;justify-content:center}
-.orb{position:relative;z-index:10;width:80px;height:80px;border-radius:50%;background:#141414;border:1px solid #2e2e2e;
-  display:grid;place-items:center;transition:.2s}
+.orb{position:relative;z-index:10;width:80px;height:80px;border-radius:50%;background:#141414;
+  border:1px solid #2e2e2e;display:grid;place-items:center;transition:.2s}
 .orb:hover{border-color:#606060;transform:translateY(-3px)}
 .orb img{width:34px;height:34px}
 .orb b{font-size:15px;font-weight:600;color:#bdbdbd;letter-spacing:.5px}
 
-/* row 3 ------------------------------------------------------------------ */
 .stats{grid-column:span 6;padding:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .cell{background:#202020;border:1px solid #282828;border-radius:var(--ri);padding:26px 12px;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center}
@@ -149,15 +84,6 @@ a{color:inherit;text-decoration:none}
 .grad{background:linear-gradient(90deg,#f472b6,#a78bfa 45%,#60a5fa);
   -webkit-background-clip:text;background-clip:text;color:transparent}
 
-footer{position:relative;z-index:1;padding:26px 0 44px;text-align:center;color:#8a8a8a;font-size:14.5px}
-footer nav{display:flex;gap:38px;justify-content:center;margin-bottom:14px;
-  font-size:12.5px;letter-spacing:.6px;text-transform:uppercase;color:#9a9a9a;flex-wrap:wrap}
-footer a:hover{color:var(--fg)}
-footer .by{color:var(--blue)}
-
-.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s,transform .55s}
-.reveal.in{opacity:1;transform:none}
-
 @media (max-width:980px){
   .id,.cta,.stats,.ticker{grid-column:span 12}
   .id{grid-row:auto}
@@ -165,23 +91,12 @@ footer .by{color:var(--blue)}
   .hobby{grid-column:span 4}.blob{grid-column:span 8}.social{grid-column:span 12}
 }
 @media (max-width:680px){
-  .top{padding:30px 0 22px;gap:14px}
-  .top nav{display:none;position:absolute;top:76px;left:20px;right:20px;z-index:30;
-    flex-direction:column;gap:0;background:#141414;border:1px solid var(--line);border-radius:14px;padding:4px 18px}
-  .top nav.open{display:flex}
-  .top nav a{padding:12px 0;border-bottom:1px solid #222}
-  .top nav a:last-child{border-bottom:0}
-  .burger{display:block}.top .pill{display:none}
   .about,.showcase,.hobby,.blob,.social{grid-column:span 12}
   .id{flex-direction:column;align-items:flex-start;padding:26px}
   .mark{width:100%;flex:0 0 auto;height:190px}
   .stats{grid-template-columns:1fr}
 }
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .reveal{opacity:1;transform:none;transition:none}
-  .track{animation:none}.box:hover{transform:none}
-}
+@media (prefers-reduced-motion:reduce){ .track{animation:none} }
 </style>
 </head>
 <body>
@@ -192,11 +107,11 @@ footer .by{color:var(--blue)}
     <button class="burger" id="burger" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav id="nav">
       <a class="on" href="#top">Home</a>
-      <a href="#about">About</a>
-      <a href="#work">My Projects</a>
-      <a href="#contact">Contact</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">My Projects</a>
+      <a href="contact.html">Contact</a>
     </nav>
-    <a class="pill" href="#contact">
+    <a class="pill" href="contact.html">
       <svg viewBox="0 0 24 24"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002M7 8.48H3V21h4zm6.32 0H9.34V21h3.92v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91z"/></svg>
       Let&rsquo;s Connect!
     </a>
@@ -205,7 +120,7 @@ footer .by{color:var(--blue)}
   <main class="bento" id="top">
 
     <section class="box id reveal">
-      <a class="overlay" href="#about" aria-label="More about me"></a>
+      <a class="overlay" href="about.html" aria-label="More about me"></a>
       <div class="mark"><b>E</b></div>
       <div>
         <h1>Elyotam<br>Cohen</h1>
@@ -218,11 +133,11 @@ footer .by{color:var(--blue)}
     </section>
 
     <section class="box ticker reveal" aria-label="Tools">
-      <a class="overlay" href="#stackfull" aria-label="The full stack"></a>
+      <a class="overlay" href="about.html#stack" aria-label="The full stack"></a>
       <div class="track" id="track"></div>
     </section>
 
-    <a class="box about reveal" href="#about" id="about">
+    <a class="box about reveal" href="about.html">
       <div class="sig" aria-hidden="true">
         <svg viewBox="0 0 240 70"><path d="M8 52c22-6 36-30 44-40 4-5 7-4 6 3-2 13-10 30-14 40-1 3 1 4 3 2 10-9 18-22 24-30 3-4 6-3 5 2-1 7-5 15-6 20 0 3 2 4 4 2 8-7 14-16 20-22 3-3 6-2 5 2-1 5-4 10-4 14 0 3 3 4 6 2 9-6 16-14 22-19M96 62c18-4 40-14 56-24"/></svg>
       </div>
@@ -231,7 +146,7 @@ footer .by{color:var(--blue)}
       <span class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
     </a>
 
-    <a class="box showcase reveal" href="#work">
+    <a class="box showcase reveal" href="projects.html">
       <div class="ghostword" aria-hidden="true">PROJECTS</div>
       <div class="shot"><i></i><img src="assets/work/code92-website.jpg" alt="" loading="lazy"></div>
       <p class="kicker">Showcase</p>
@@ -286,58 +201,29 @@ footer .by{color:var(--blue)}
 
 <footer>
   <nav>
-    <a href="#top">Home</a><a href="#about">About</a>
-    <a href="#work">My Projects</a><a href="#contact">Contact</a>
+    <a href="#top">Home</a><a href="about.html">About</a>
+    <a href="projects.html">My Projects</a><a href="contact.html">Contact</a>
   </nav>
   <div><span id="yr">2026</span> &copy; Created with love by
     <a class="by" href="https://github.com/elyotam" rel="noopener">Elyotam Cohen</a></div>
 </footer>
 
+<script src="assets/site.js"></script>
 <script>
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-document.getElementById('yr').textContent = new Date().getFullYear();
-
-const burger = document.getElementById('burger'), nav = document.getElementById('nav');
-burger.addEventListener('click', () => {
-  const open = nav.classList.toggle('open');
-  burger.setAttribute('aria-expanded', open);
-});
-nav.addEventListener('click', e => { if (e.target.tagName === 'A') nav.classList.remove('open'); });
-
-/* Icon + label pairs separated by a small glyph, doubled so the
-   translate(-50%) loop has no visible seam. */
-const TICK = [['aws','AWS'],['kubernetes','Kubernetes'],['terraform','Terraform'],
+/* home-page extras: the ticker contents and the one live figure */
+var TICK = [['aws','AWS'],['kubernetes','Kubernetes'],['terraform','Terraform'],
   ['docker','Docker'],['py','Python'],['linux','Linux'],['ansible','Ansible'],
   ['githubactions','GH Actions'],['grafana','Grafana'],['figma','Figma'],['git','Git']];
-const half = TICK.map(([s, n]) =>
-  `<i><img src="assets/icons/${s}.svg" alt="" loading="lazy">${n}</i><s>&#10038;</s>`).join('');
+var half = TICK.map(function (p) {
+  return '<i><img src="assets/icons/' + p[0] + '.svg" alt="" loading="lazy">' +
+         p[1] + '</i><s>&#10038;</s>';
+}).join('');
 document.getElementById('track').innerHTML = half + half;
 
-const boxes = document.querySelectorAll('.reveal');
-if (reduce) boxes.forEach(b => b.classList.add('in'));
-else {
-  const io = new IntersectionObserver(es => es.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-  }), { threshold: .08 });
-  boxes.forEach((b, i) => { b.style.transitionDelay = Math.min(i * 50, 400) + 'ms'; io.observe(b); });
-}
-
-if (!reduce && matchMedia('(hover:hover)').matches) {
-  document.querySelectorAll('.box').forEach(b => b.addEventListener('pointermove', e => {
-    const r = b.getBoundingClientRect();
-    b.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-    b.style.setProperty('--my', (e.clientY - r.top) + 'px');
-  }));
-}
-
-/* The repo count is the one figure that moves on its own. */
-(async function () {
-  try {
-    const u = await fetch('https://api.github.com/users/elyotam')
-      .then(r => r.ok ? r.json() : Promise.reject());
-    document.getElementById('sRepos').textContent = u.public_repos;
-  } catch (e) { /* rate limited: the seeded figure stays */ }
-})();
+fetch('https://api.github.com/users/elyotam')
+  .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+  .then(function (u) { document.getElementById('sRepos').textContent = u.public_repos; })
+  .catch(function () { /* rate limited: the seeded figure stays */ });
 </script>
 </body>
 </html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects — Elyotam Cohen</title>
+<meta name="description" content="Websites, apps and automation built by Elyotam Cohen — every one of them live.">
+<meta name="theme-color" content="#111111">
+<link rel="canonical" href="https://elyotam.github.io/projects.html">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+/* page-specific: the work grid */
+.head{padding:6px 0 30px}
+.head h1{margin:0 0 10px;font-size:clamp(32px,5vw,52px);font-weight:400;letter-spacing:-1.2px}
+.head p{margin:0;color:var(--dim);max-width:60ch}
+.works{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);padding-bottom:var(--gap)}
+.work{grid-column:span 6;padding:0;display:flex;flex-direction:column;overflow:hidden}
+.work.lg{grid-column:span 12}
+.work .canvas{position:relative;background:#0d0d0d;border-bottom:1px solid #1d1d1d;overflow:hidden}
+.work .canvas img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top;
+  transition:transform .5s ease}
+.work:hover .canvas img{transform:scale(1.03)}
+.work.lg .canvas img{aspect-ratio:21/9}
+.work .body{padding:26px 28px 30px;position:relative}
+.work h2{margin:0 0 8px;font-size:23px;font-weight:500;letter-spacing:-.3px}
+.work p{margin:0 0 16px;color:var(--dim);font-size:14.6px;max-width:62ch}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.tag{font-size:11.5px;letter-spacing:.5px;text-transform:uppercase;color:#b9b9b9;
+  border:1px solid #2c2c2c;background:#191919;border-radius:999px;padding:5px 13px}
+.links{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:10}
+.lnk{display:inline-flex;align-items:center;gap:8px;font-size:14px;padding:10px 18px;
+  border-radius:11px;border:1px solid #2f2f2f;background:#161616;transition:.2s}
+.lnk:hover{border-color:#5a5a5a;background:#1d1d1d}
+.lnk.primary{background:#f4f4f4;color:#111;border-color:#f4f4f4}
+.lnk.primary:hover{background:#fff}
+.note{grid-column:span 12;padding:26px 28px;color:var(--dim);font-size:14.4px}
+.note b{color:var(--fg);font-weight:500}
+@media (max-width:900px){ .work{grid-column:span 12} }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top">
+    <a class="ghost" href="./">HELLO WORLD!</a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav">
+      <a href="./">Home</a>
+      <a href="about.html">About</a>
+      <a class="on" href="projects.html">My Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="pill" href="contact.html">
+      <svg viewBox="0 0 24 24"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002M7 8.48H3V21h4zm6.32 0H9.34V21h3.92v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91z"/></svg>
+      Let&rsquo;s Connect!
+    </a>
+  </div>
+
+  <header class="head">
+    <h1>Selected work</h1>
+    <p>Sites and systems I designed, built and shipped. Every one of these is live
+      right now &mdash; open any of them and you are looking at the real thing.</p>
+  </header>
+
+  <main class="works">
+
+    <article class="box work lg reveal">
+      <a class="overlay" href="https://elyotam.github.io/code92-website/" rel="noopener" aria-label="Open CODE92"></a>
+      <div class="canvas"><img src="assets/work/code92-website.jpg" alt="CODE92 agency site" loading="lazy"></div>
+      <div class="body">
+        <h2>CODE92 &mdash; digital agency</h2>
+        <p>The agency site: websites, apps, online stores and AI automation for
+          businesses. Dark, motion-led and fully right-to-left, with the hero
+          built around a live product shot rather than stock art.</p>
+        <div class="tags">
+          <span class="tag">JavaScript</span><span class="tag">RTL</span>
+          <span class="tag">Motion</span><span class="tag">Agency site</span>
+        </div>
+        <div class="links">
+          <a class="lnk primary" href="https://elyotam.github.io/code92-website/" rel="noopener">Visit site &rarr;</a>
+          <a class="lnk" href="https://github.com/elyotam/code92-website" rel="noopener">Source</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="box work reveal">
+      <a class="overlay" href="https://elyotam.github.io/elyotam-website/" rel="noopener" aria-label="Open Elyotam"></a>
+      <div class="canvas"><img src="assets/work/elyotam-website.jpg" alt="Elyotam agency site" loading="lazy"></div>
+      <div class="body">
+        <h2>Elyotam</h2>
+        <p>A premium agency site with a cinematic, scroll-driven opening &mdash;
+          the page reveals itself as you move rather than loading all at once.</p>
+        <div class="tags">
+          <span class="tag">HTML</span><span class="tag">Scroll UX</span><span class="tag">RTL</span>
+        </div>
+        <div class="links">
+          <a class="lnk primary" href="https://elyotam.github.io/elyotam-website/" rel="noopener">Visit site &rarr;</a>
+          <a class="lnk" href="https://github.com/elyotam/elyotam-website" rel="noopener">Source</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="box work reveal">
+      <a class="overlay" href="https://elyotam.github.io/ahuvit-website/" rel="noopener" aria-label="Open Ahuvit Mor"></a>
+      <div class="canvas"><img src="assets/work/ahuvit-website.jpg" alt="Ahuvit Mor boutique cakes site" loading="lazy"></div>
+      <div class="body">
+        <h2>Ahuvit Mor &mdash; cake atelier</h2>
+        <p>Client work for a boutique cake studio. Warm and image-led, built so the
+          product carries the page and the ordering path stays one tap away.</p>
+        <div class="tags">
+          <span class="tag">HTML</span><span class="tag">Client work</span><span class="tag">RTL</span>
+        </div>
+        <div class="links">
+          <a class="lnk primary" href="https://elyotam.github.io/ahuvit-website/" rel="noopener">Visit site &rarr;</a>
+          <a class="lnk" href="https://github.com/elyotam/ahuvit-website" rel="noopener">Source</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="box note reveal">
+      <b>More work is not public.</b> Client projects and infrastructure work live
+      in private repositories &mdash; happy to walk through any of it on a call.
+    </article>
+
+  </main>
+</div>
+
+<footer>
+  <nav>
+    <a href="./">Home</a><a href="about.html">About</a>
+    <a href="projects.html">My Projects</a><a href="contact.html">Contact</a>
+  </nav>
+  <div><span id="yr">2026</span> &copy; Created with love by
+    <a class="by" href="https://github.com/elyotam" rel="noopener">Elyotam Cohen</a></div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>
