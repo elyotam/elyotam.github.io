@@ -31,11 +31,12 @@ a{color:inherit;text-decoration:none}
   font-size:clamp(26px,4.4vw,46px);font-weight:400;letter-spacing:2px;white-space:nowrap;
   color:transparent;-webkit-text-stroke:1px #3a3a3a;user-select:none;line-height:1;
 }
-.top nav{margin-left:auto;display:flex;gap:38px;font-size:17px;color:var(--dim)}
+.top nav{margin-left:auto;display:flex;gap:38px;font-size:20px;color:var(--dim)}
 .top nav a.on,.top nav a:hover{color:var(--fg)}
 .pill{
   display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:13px;
-  border:1px solid #2f2f2f;background:#151515;font-size:16px;white-space:nowrap;transition:.2s;
+  border:1px solid #2f2f2f;background:#151515;font-size:16px;font-weight:500;
+  white-space:nowrap;transition:.2s;
 }
 .pill:hover{border-color:#4a4a4a;background:#1b1b1b}
 .pill svg{width:19px;height:19px;fill:currentColor;opacity:.9}
@@ -56,8 +57,9 @@ a{color:inherit;text-decoration:none}
   background:radial-gradient(360px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.045),transparent 60%)}
 .box:hover::after{opacity:1}
 .box > *{position:relative;z-index:2}
-.kicker{font-size:12px;letter-spacing:.4px;color:var(--faint);margin:0 0 3px;text-transform:uppercase}
-.title{margin:0;font-size:21px;font-weight:400;letter-spacing:-.2px;color:var(--fg)}
+.kicker{font-size:12px;font-weight:500;letter-spacing:.4px;color:var(--faint);
+  margin:0 0 3px;text-transform:uppercase}
+.title{margin:0;font-size:20px;font-weight:500;letter-spacing:-.2px;color:var(--fg)}
 /* an invisible anchor over the whole card, so the pointer cursor and the click
    target cover it end to end */
 .overlay{position:absolute;inset:0;z-index:9;border-radius:inherit;opacity:0}
