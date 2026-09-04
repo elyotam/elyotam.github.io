@@ -57,10 +57,13 @@
   background:linear-gradient(160deg,#232323,#171717);border:1px solid #2c2c2c;
   display:grid;place-items:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
 .hobby .badge img{width:66px;height:66px}
-.blob{grid-column:span 5;min-height:270px;padding:0;background:
+.blob{grid-column:span 5;min-height:270px;padding:0;display:grid;place-items:center;background:
     radial-gradient(58% 62% at 12% 16%,#33063a 0%,transparent 68%),
     radial-gradient(52% 58% at 70% 60%,#3d0811 0%,transparent 72%),
     #110a0c}
+.blob .neon{width:78%;max-width:400px;height:auto;opacity:.95;
+  transition:transform .5s ease,opacity .4s ease}
+.blob:hover .neon{transform:scale(1.04);opacity:1}
 .social{grid-column:span 4;min-height:270px;display:flex;flex-direction:column;justify-content:flex-end}
 .orbwrap{position:absolute;left:24px;right:24px;top:24px;background:var(--inner);border:1px solid var(--line);
   border-radius:var(--ri);padding:22px;display:flex;gap:16px;justify-content:center}
@@ -186,7 +189,8 @@
     </a>
 
     <section class="box blob reveal">
-      <a class="overlay" href="https://elyotam.github.io/ahuvit-website/" rel="noopener" aria-label="Ahuvit Mor site"></a>
+      <a class="overlay" href="about.html" aria-label="More about me"></a>
+      <img class="neon" src="assets/neon.svg" alt="Automate everything">
     </section>
 
     <section class="box social reveal" id="contact">
@@ -233,6 +237,7 @@
 </footer>
 
 <script src="assets/site.js"></script>
+<script src="assets/cursor.js"></script>
 <script>
 /* home-page extras: the ticker contents and the one live figure */
 var TICK = [['aws','AWS'],['kubernetes','Kubernetes'],['terraform','Terraform'],

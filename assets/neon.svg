@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 330" width="600" height="330"
+     font-family="Inter,Helvetica,Arial,sans-serif">
+  <defs>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="9" result="far"/>
+      <feGaussianBlur stdDeviation="3" in="SourceGraphic" result="near"/>
+      <feMerge>
+        <feMergeNode in="far"/><feMergeNode in="far"/>
+        <feMergeNode in="near"/><feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="tube" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff5ce1"/>
+      <stop offset="55%" stop-color="#ff2fb2"/>
+      <stop offset="100%" stop-color="#c026d3"/>
+    </linearGradient>
+    <style>
+      .neon{fill:none;stroke:url(#tube);stroke-width:3.2;stroke-linejoin:round;
+            font-size:78px;font-weight:800;letter-spacing:5px;text-anchor:middle}
+      .flicker{animation:fl 5.5s infinite}
+      @keyframes fl{
+        0%,96%,100%{opacity:1}
+        96.5%{opacity:.35}
+        97%{opacity:1}
+        97.6%{opacity:.5}
+        98.2%{opacity:1}
+      }
+      @media (prefers-reduced-motion:reduce){ .flicker{animation:none} }
+    </style>
+  </defs>
+
+  <g filter="url(#glow)" class="flicker">
+    <text class="neon" x="300" y="140">AUTOMATE</text>
+    <text class="neon" x="300" y="240">EVERYTHING</text>
+  </g>
+</svg>
