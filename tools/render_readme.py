@@ -115,6 +115,20 @@ def localise(html):
     return html
 
 
+def unwrap_images(html):
+    """GitHub wraps every README image in a link -- diagrams point at the file's
+    page on GitHub, badges point at the proxied image. Both turn a picture into a
+    trapdoor out of this site, so the wrapper is thrown away and the picture kept.
+    A badge that links somewhere real (a homepage, a build) keeps its link."""
+    self_ref = (r'https://(?:github\.com/[^"]*/blob/|raw\.githubusercontent\.com/'
+                r'|camo\.githubusercontent\.com/)')
+    return re.sub(
+        r'<a\b[^>]*href="' + self_ref + r'[^"]*"[^>]*>\s*'
+        r'((?:<themed-picture[^>]*>)?(?:<picture>)?.*?<img\b[^>]*>'
+        r'(?:</picture>)?(?:</themed-picture>)?)\s*</a>',
+        lambda m: m.group(1), html, flags=re.S)
+
+
 def harden(html):
     """Anything leaving GitHub's renderer is trusted markup, but links out of the
     site still need the usual hygiene, and headings need to survive our CSS."""
@@ -222,7 +236,7 @@ def build(p):
     md = _raw("https://raw.githubusercontent.com/%s/%s/%s" % (repo, branch, p["readme"]))
     # never re-indent this: inside <pre>, leading spaces are content, and
     # indenting the block silently pushes every code sample and ASCII diagram
-    html = harden(localise(absolutise(to_html(md, repo), repo, branch)))
+    html = harden(unwrap_images(localise(absolutise(to_html(md, repo), repo, branch))))
 
     lang = p.get("lang", "en")
     alt = hreflang = ""
