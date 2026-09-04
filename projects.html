@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Projects — Elyotam Cohen</title>
-<meta name="description" content="Websites, apps and automation built by Elyotam Cohen — every one of them live.">
+<meta name="description" content="Websites, infrastructure and automation built by Elyotam Cohen — with live demos and open source.">
 <meta name="theme-color" content="#111111">
 <link rel="canonical" href="https://elyotam.github.io/projects.html">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -13,39 +13,50 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-/* page-specific: the work grid */
-.head{padding:6px 0 34px;text-align:center}
+.head{padding:6px 0 26px;text-align:center}
 .bigtitle{margin:0 0 12px;font-size:clamp(30px,5vw,50px);font-weight:800;letter-spacing:-1px;
   display:flex;align-items:center;justify-content:center;gap:18px}
 .bigtitle span{background:linear-gradient(92deg,#e8e8e8,#a9a9a9 45%,#f0c8dd);
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .bigtitle i{font-style:normal;color:#cfcfcf;font-size:.55em;opacity:.8}
-.head p{margin:0 auto;color:var(--dim);max-width:60ch}
-.works{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);padding-bottom:var(--gap)}
-.work{grid-column:span 6;padding:0;display:flex;flex-direction:column;overflow:hidden}
+.head p{margin:0 auto;color:var(--dim);max-width:62ch}
+
+.filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:0 0 34px}
+.filters button{font:inherit;font-size:13.5px;font-weight:500;letter-spacing:.3px;cursor:pointer;
+  padding:9px 18px;border-radius:999px;color:var(--dim);background:#171717;
+  border:1px solid #262626;transition:.2s}
+.filters button:hover{color:var(--fg);border-color:#3a3a3a}
+.filters button[aria-pressed="true"]{background:#f4f4f4;color:#111;border-color:#f4f4f4}
+
+.works{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);padding-bottom:10px}
+.work{grid-column:span 6;padding:16px;display:flex;flex-direction:column}
 .work.lg{grid-column:span 12}
-.work{padding:16px}
-.work .canvas{position:relative;border-radius:18px;overflow:hidden;background:#0d0d0d}
-.work .canvas img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;
-  transition:transform .5s ease}
-.work:hover .canvas img{transform:scale(1.04)}
-.work.lg .canvas img{aspect-ratio:21/9}
-.work .body{padding:18px 12px 6px;position:relative}
-.work .body .kicker{margin-bottom:5px}
-.work h2{margin:0 0 8px;font-size:23px;font-weight:400;letter-spacing:-.3px}
-.work p{margin:0 0 16px;color:var(--dim);font-size:14.6px;max-width:62ch}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
-.tag{font-size:11.5px;letter-spacing:.5px;text-transform:uppercase;color:#b9b9b9;
-  border:1px solid #2c2c2c;background:#191919;border-radius:999px;padding:5px 13px}
+.canvas{position:relative;border-radius:18px;overflow:hidden;background:#0d0d0d}
+.canvas img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;
+  transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.work.lg .canvas img{aspect-ratio:24/9}
+.work:hover .canvas img{transform:scale(1.045)}
+.glyph{display:grid;place-items:center;aspect-ratio:16/10}
+.glyph img{width:96px !important;height:96px !important;aspect-ratio:auto !important;
+  border-radius:22px;object-fit:contain}
+.badge{position:absolute;top:14px;left:14px;display:flex;gap:7px;z-index:3}
+.badge span{font-size:10.5px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;
+  padding:5px 11px;border-radius:999px;
+  background:rgba(10,10,10,.66);border:1px solid rgba(255,255,255,.16);color:#e9e9e9}
+.badge .live{background:rgba(18,58,30,.78);border-color:rgba(80,220,120,.4);color:#7ee89a}
+.body{padding:20px 12px 4px;position:relative}
+.work h2{margin:0 0 8px;font-size:23px;font-weight:500;letter-spacing:-.3px}
+.sum{margin:0 0 16px;color:var(--dim);font-size:14.4px;line-height:1.66;max-width:64ch}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
+.tag{font-size:11px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;color:#a8a8a8;
+  border:1px solid #2c2c2c;background:#191919;border-radius:999px;padding:5px 12px}
 .links{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:10}
-.lnk{display:inline-flex;align-items:center;gap:8px;font-size:14px;padding:10px 18px;
-  border-radius:11px;border:1px solid #2f2f2f;background:#161616;transition:.2s}
+.lnk{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;
+  padding:10px 18px;border-radius:11px;border:1px solid #2f2f2f;background:#161616;transition:.2s}
 .lnk:hover{border-color:#5a5a5a;background:#1d1d1d}
 .lnk.primary{background:#f4f4f4;color:#111;border-color:#f4f4f4}
 .lnk.primary:hover{background:#fff}
-.note{grid-column:span 12;padding:26px 28px;color:var(--dim);font-size:14.4px}
-.note b{color:var(--fg);font-weight:500}
-@media (max-width:900px){ .work{grid-column:span 12} }
+@media (max-width:900px){ .work,.work.lg{grid-column:span 12} }
 </style>
 </head>
 <body>
@@ -55,10 +66,8 @@
     <a class="ghost" href="./">HELLO WORLD!</a>
     <button class="burger" id="burger" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav id="nav">
-      <a href="./">Home</a>
-      <a href="about.html">About</a>
-      <a class="on" href="projects.html">My Projects</a>
-      <a href="contact.html">Contact</a>
+      <a href="./">Home</a><a href="about.html">About</a>
+      <a class="on" href="projects.html">My Projects</a><a href="contact.html">Contact</a>
     </nav>
     <a class="pill" href="contact.html">
       <svg viewBox="0 0 24 24"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002M7 8.48H3V21h4zm6.32 0H9.34V21h3.92v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91z"/></svg>
@@ -68,70 +77,187 @@
 
   <header class="head">
     <h1 class="bigtitle"><i>&#10038;</i><span>ALL PROJECTS</span><i>&#10038;</i></h1>
-    <p>Sites and systems I designed, built and shipped &mdash; every one of them live
-      right now.</p>
+    <p>Sites, infrastructure and a shop. Every one of these has the source open, and
+      the sites have a live link you can click.</p>
   </header>
 
-  <main class="works">
+  <div class="filters" role="group" aria-label="Filter projects">
+    <button data-f="all" aria-pressed="true">All</button>
+    <button data-f="web" aria-pressed="false">Websites</button>
+    <button data-f="infra" aria-pressed="false">Infrastructure</button>
+    <button data-f="shop" aria-pressed="false">Shop</button>
+  </div>
 
-    <article class="box work lg reveal">
-      <a class="overlay" href="https://elyotam.github.io/code92-website/" rel="noopener" aria-label="Open CODE92"></a>
-      <div class="canvas"><img src="assets/work/code92-website.jpg" alt="CODE92 agency site" loading="lazy"></div>
+  <main class="works" id="works">
+
+    <article class="box work lg reveal" data-cat="web">
+      <a class="overlay" href="https://github.com/elyotam/cpa-ms" rel="noopener" aria-label="Moshe Stern CPA source"></a>
+      <div class="canvas">
+        <div class="badge"><span>Client work</span><span>11 pages</span></div>
+        <img src="assets/work/cpa-ms.jpg" alt="Moshe Stern CPA website" loading="lazy">
+      </div>
       <div class="body">
-        <p class="kicker">Website build &middot; JavaScript</p>
-        <h2>CODE92</h2>
-        <p>A dark, motion-led marketing site, fully right-to-left, with the hero
-          built around a live product shot rather than stock art.</p>
+        <h2>Moshe Stern &mdash; Certified Public Accountant</h2>
+        <p class="sum">A full content site for an accountancy practice: eleven pages,
+          four working tax calculators, internal search and a light/dark switch.
+          Entirely static &mdash; plain HTML, CSS and JavaScript. No framework, no
+          database, no hosting bill, and nothing that breaks when a library moves on.</p>
         <div class="tags">
-          <span class="tag">JavaScript</span><span class="tag">RTL</span>
-          <span class="tag">Motion</span><span class="tag">Agency site</span>
+          <span class="tag">HTML</span><span class="tag">JavaScript</span>
+          <span class="tag">RTL</span><span class="tag">Tax calculators</span>
+          <span class="tag">Static</span>
         </div>
         <div class="links">
-          <a class="lnk primary" href="https://elyotam.github.io/code92-website/" rel="noopener">Visit site &rarr;</a>
+          <a class="lnk primary" href="https://github.com/elyotam/cpa-ms" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="box work reveal" data-cat="web">
+      <a class="overlay" href="https://elyotam.github.io/code92-website/" rel="noopener" aria-label="Open CODE92"></a>
+      <div class="canvas">
+        <div class="badge"><span class="live">Live</span></div>
+        <img src="assets/work/code92-website.jpg" alt="CODE92 website" loading="lazy">
+      </div>
+      <div class="body">
+        <h2>CODE92</h2>
+        <p class="sum">A dark, motion-led marketing site, fully right-to-left, with the
+          hero built around a live product shot rather than stock art.</p>
+        <div class="tags">
+          <span class="tag">JavaScript</span><span class="tag">Motion</span><span class="tag">RTL</span>
+        </div>
+        <div class="links">
+          <a class="lnk primary" href="https://elyotam.github.io/code92-website/" rel="noopener">Visit &rarr;</a>
           <a class="lnk" href="https://github.com/elyotam/code92-website" rel="noopener">Source</a>
         </div>
       </div>
     </article>
 
-    <article class="box work reveal">
-      <a class="overlay" href="https://elyotam.github.io/elyotam-website/" rel="noopener" aria-label="Open Elyotam"></a>
-      <div class="canvas"><img src="assets/work/elyotam-website.jpg" alt="Elyotam site" loading="lazy"></div>
-      <div class="body">
-        <p class="kicker">Website build &middot; Scroll UX</p>
-        <h2>Elyotam</h2>
-        <p>A cinematic, scroll-driven opening &mdash; the page reveals itself as you
-          move rather than loading all at once.</p>
-        <div class="tags">
-          <span class="tag">HTML</span><span class="tag">Scroll UX</span><span class="tag">RTL</span>
-        </div>
-        <div class="links">
-          <a class="lnk primary" href="https://elyotam.github.io/elyotam-website/" rel="noopener">Visit site &rarr;</a>
-          <a class="lnk" href="https://github.com/elyotam/elyotam-website" rel="noopener">Source</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="box work reveal">
+    <article class="box work reveal" data-cat="web">
       <a class="overlay" href="https://elyotam.github.io/ahuvit-website/" rel="noopener" aria-label="Open Ahuvit Mor"></a>
-      <div class="canvas"><img src="assets/work/ahuvit-website.jpg" alt="Ahuvit Mor boutique cakes site" loading="lazy"></div>
+      <div class="canvas">
+        <div class="badge"><span class="live">Live</span><span>Client work</span></div>
+        <img src="assets/work/ahuvit-website.jpg" alt="Ahuvit Mor cake atelier" loading="lazy">
+      </div>
       <div class="body">
-        <p class="kicker">Client work &middot; Boutique</p>
-        <h2>Ahuvit Mor</h2>
-        <p>Client work for a boutique cake studio. Warm and image-led, built so the
-          product carries the page and the ordering path stays one tap away.</p>
+        <h2>Ahuvit Mor &mdash; cake atelier</h2>
+        <p class="sum">A boutique cake studio. Warm and image-led, built so the product
+          carries the page and the ordering path stays one tap away.</p>
         <div class="tags">
-          <span class="tag">HTML</span><span class="tag">Client work</span><span class="tag">RTL</span>
+          <span class="tag">HTML</span><span class="tag">RTL</span><span class="tag">Boutique</span>
         </div>
         <div class="links">
-          <a class="lnk primary" href="https://elyotam.github.io/ahuvit-website/" rel="noopener">Visit site &rarr;</a>
+          <a class="lnk primary" href="https://elyotam.github.io/ahuvit-website/" rel="noopener">Visit &rarr;</a>
           <a class="lnk" href="https://github.com/elyotam/ahuvit-website" rel="noopener">Source</a>
         </div>
       </div>
     </article>
 
-    <article class="box note reveal">
-      <b>More work is not public.</b> Client projects and infrastructure work live
-      in private repositories &mdash; happy to walk through any of it on a call.
+    <article class="box work reveal" data-cat="web">
+      <a class="overlay" href="https://elyotam.github.io/elyotam-website/" rel="noopener" aria-label="Open Elyotam"></a>
+      <div class="canvas">
+        <div class="badge"><span class="live">Live</span></div>
+        <img src="assets/work/elyotam-website.jpg" alt="Elyotam website" loading="lazy">
+      </div>
+      <div class="body">
+        <h2>Elyotam</h2>
+        <p class="sum">A cinematic, scroll-driven opening &mdash; the page reveals itself
+          as you move rather than loading everything at once.</p>
+        <div class="tags">
+          <span class="tag">HTML</span><span class="tag">Scroll UX</span><span class="tag">RTL</span>
+        </div>
+        <div class="links">
+          <a class="lnk primary" href="https://elyotam.github.io/elyotam-website/" rel="noopener">Visit &rarr;</a>
+          <a class="lnk" href="https://github.com/elyotam/elyotam-website" rel="noopener">Source</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="box work reveal" data-cat="infra">
+      <a class="overlay" href="https://github.com/elyotam/aws-openvpn" rel="noopener" aria-label="OpenVPN Terraform module"></a>
+      <div class="canvas glyph" style="background:radial-gradient(120% 120% at 30% 20%,#2a1f3d,#141019 60%,#0d0d0d)">
+        <div class="badge"><span>Terraform module</span></div>
+        <img src="assets/icons/terraform.svg" alt="">
+      </div>
+      <div class="body">
+        <h2>OpenVPN Access Server on AWS</h2>
+        <p class="sum">A reusable, clean-room Terraform module. It builds the AWS side
+          and installs Access Server <em>without</em> ever putting admin passwords,
+          activation keys or client profiles into Terraform state &mdash; the part most
+          modules get wrong. Documented in English and Hebrew.</p>
+        <div class="tags">
+          <span class="tag">Terraform</span><span class="tag">AWS</span>
+          <span class="tag">EC2</span><span class="tag">Networking</span>
+          <span class="tag">Secrets hygiene</span>
+        </div>
+        <div class="links">
+          <a class="lnk primary" href="https://github.com/elyotam/aws-openvpn" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="box work reveal" data-cat="infra">
+      <a class="overlay" href="https://github.com/elyotam/quakewatch-final-project" rel="noopener" aria-label="QuakeWatch"></a>
+      <div class="canvas glyph" style="background:radial-gradient(120% 120% at 70% 25%,#123040,#0f2027 55%,#0d0d0d)">
+        <div class="badge"><span>Flask + Kubernetes</span></div>
+        <img src="assets/icons/kubernetes.svg" alt="">
+      </div>
+      <div class="body">
+        <h2>QuakeWatch</h2>
+        <p class="sum">A Flask app that pulls live and historical earthquake data from
+          the USGS API and charts it. Shipped the whole way down: Docker image, Helm
+          chart, Kubernetes manifests and Argo CD for GitOps delivery.</p>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Flask</span>
+          <span class="tag">Docker</span><span class="tag">Kubernetes</span>
+          <span class="tag">Helm</span><span class="tag">Argo CD</span>
+        </div>
+        <div class="links">
+          <a class="lnk primary" href="https://github.com/elyotam/quakewatch-final-project" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="box work reveal" data-cat="infra">
+      <a class="overlay" href="https://github.com/elyotam/devops-experts" rel="noopener" aria-label="DevOps course archive"></a>
+      <div class="canvas glyph" style="background:radial-gradient(120% 120% at 40% 25%,#2b2410,#1a1608 55%,#0d0d0d)">
+        <div class="badge"><span>14 lessons</span></div>
+        <img src="assets/icons/docker.svg" alt="">
+      </div>
+      <div class="body">
+        <h2>DevOps course archive</h2>
+        <p class="sum">Everything from the DevOps Experts programme, one script per
+          lesson: Linux, Docker, Kubernetes, Helm, Argo CD, Prometheus, Grafana, AWS,
+          Terraform and Ansible &mdash; plus six deliberately broken troubleshooting
+          exercises.</p>
+        <div class="tags">
+          <span class="tag">Bash</span><span class="tag">Kubernetes</span>
+          <span class="tag">Terraform</span><span class="tag">Ansible</span>
+          <span class="tag">Monitoring</span>
+        </div>
+        <div class="links">
+          <a class="lnk primary" href="https://github.com/elyotam/devops-experts" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="box work reveal" data-cat="shop">
+      <a class="overlay" href="https://www.etsy.com/shop/ColorCatt" rel="noopener" aria-label="ColorCatt on Etsy"></a>
+      <div class="canvas">
+        <div class="badge"><span class="live">Open</span><span>Etsy</span></div>
+        <img src="assets/work/etsy.svg" alt="ColorCatt on Etsy" loading="lazy">
+      </div>
+      <div class="body">
+        <h2>ColorCatt</h2>
+        <p class="sum">My shop on Etsy &mdash; the artwork, the listings and the
+          storefront, run end to end.</p>
+        <div class="tags">
+          <span class="tag">Etsy</span><span class="tag">E-commerce</span><span class="tag">Design</span>
+        </div>
+        <div class="links">
+          <a class="lnk primary" href="https://www.etsy.com/shop/ColorCatt" rel="noopener">Visit the shop &rarr;</a>
+        </div>
+      </div>
     </article>
 
   </main>
@@ -148,5 +274,6 @@
 
 <script src="assets/site.js"></script>
 <script src="assets/cursor.js"></script>
+<script src="assets/projects.js"></script>
 </body>
 </html>
