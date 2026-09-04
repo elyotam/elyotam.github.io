@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenVPN Access Server on AWS — Elyotam Cohen</title>
+<meta name="description" content="A reusable, clean-room Terraform module that keeps every secret out of Terraform state.">
+<meta name="theme-color" content="#111111">
+<link rel="canonical" href="https://elyotam.github.io/openvpn.html">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Elyotam Cohen">
+<meta property="og:title" content="OpenVPN Access Server on AWS — Elyotam Cohen">
+<meta property="og:description" content="A reusable, clean-room Terraform module that keeps every secret out of Terraform state.">
+<meta property="og:url" content="https://elyotam.github.io/openvpn.html">
+<meta property="og:image" content="https://elyotam.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OpenVPN Access Server on AWS — Elyotam Cohen">
+<meta name="twitter:description" content="A reusable, clean-room Terraform module that keeps every secret out of Terraform state.">
+<meta name="twitter:image" content="https://elyotam.github.io/assets/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/case.css">
+<link rel="stylesheet" href="assets/readme.css">
+<style>.hero{--tint:rgba(124,92,224,.20)}</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top">
+    <a class="ghost" href="./">HELLO WORLD!</a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav">
+      <a href="./">Home</a><a href="about.html">About</a>
+      <a class="on" href="projects.html">My Projects</a><a href="contact.html">Contact</a>
+    </nav>
+    <a class="pill" href="contact.html">
+      <svg viewBox="0 0 24 24"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002M7 8.48H3V21h4zm6.32 0H9.34V21h3.92v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91z"/></svg>
+      Let&rsquo;s Connect!
+    </a>
+  </div>
+
+  <main class="case">
+
+    <header class="box hero reveal">
+      <p class="crumbs"><a href="projects.html">My Projects</a><span>/</span>Infrastructure</p>
+      <h1>OpenVPN Access Server on AWS</h1>
+      <p class="lede">A reusable, clean-room Terraform module that keeps every secret out of Terraform state.</p>
+      <div class="chips"><span class="chip hot">Terraform module</span><span class="chip">HCL</span><span class="chip">AWS</span><span class="chip">EC2</span><span class="chip">Secrets hygiene</span></div>
+      <div class="acts">
+        <a class="btn key" href="https://github.com/elyotam/aws-openvpn" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+          View on GitHub
+        </a>
+        <a class="btn" href="https://github.com/elyotam/aws-openvpn/blob/main/README.he.md" rel="noopener">מדריך בעברית</a>
+        <a class="btn" href="projects.html">All projects</a>
+      </div>
+    </header>
+
+    <dl class="facts reveal"><div class="box fact"><dt>Language</dt><dd>HCL</dd></div><div class="box fact"><dt>Files</dt><dd>31 tracked</dd></div><div class="box fact"><dt>Last push</dt><dd>2026-08-07</dd></div><div class="box fact"><dt>Licence</dt><dd>Public repository</dd></div></dl>
+
+    <article class="box readme reveal">
+      <div class="rm-bar">
+        <span class="rm-file">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"/></svg>
+          README.md
+        </span>
+        <a class="rm-src" href="https://github.com/elyotam/aws-openvpn/blob/main/README.md" rel="noopener">Read it on GitHub &nearr;</a>
+      </div>
+      <div class="markdown-body">
+<h1 dir="auto">Terraform AWS OpenVPN Access Server</h1>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/elyotam/aws-openvpn/blob/main/docs/images/openvpn-access-server-aws.png"><img src="https://raw.githubusercontent.com/elyotam/aws-openvpn/main/docs/images/openvpn-access-server-aws.png" alt="OpenVPN Access Server on AWS" style="max-width: 100%;"></a></p>
+<p dir="auto">Reusable clean-room Terraform module for deploying OpenVPN Access Server on AWS. The module creates the AWS infrastructure and installs Access Server without storing administrator passwords, activation keys, customer VPN profiles, or other secrets in Terraform state.</p>
+<p dir="auto"><a rel="noopener" href="https://github.com/elyotam/aws-openvpn/blob/main/README.he.md">מדריך מלא בעברית</a></p>
+<h2 dir="auto">Features</h2>
+<ul dir="auto">
+<li>Ubuntu 24.04 from Canonical's public SSM AMI parameter.</li>
+<li>OpenVPN Access Server installed from the official package repository.</li>
+<li>Independent Elastic IP and explicit EIP association.</li>
+<li>EC2 source/destination check disabled for VPN forwarding.</li>
+<li>IMDSv2 required and encrypted gp3 root volume.</li>
+<li>SSM Session Manager enabled by default; SSH is optional and disabled by default.</li>
+<li>Restricted administrator CIDRs for TCP 943.</li>
+<li>TCP 443 and UDP 1194 VPN ingress.</li>
+<li>Optional Route 53 A record.</li>
+<li>Terraform and Terragrunt examples.</li>
+<li>GitHub Actions formatting and validation.</li>
+</ul>
+<h2 dir="auto">Architecture</h2>
+<pre lang="text" class="notranslate"><code class="notranslate">Internet
+   |
+Elastic IP / optional vpn.example.com
+   |
+Security Group
+   |
+EC2 Ubuntu 24.04 + OpenVPN Access Server
+   |
+Customer VPC private resources
+</code></pre>
+<p dir="auto">This is a single-instance design. It does not provide high availability or automatic Access Server configuration backups.</p>
+<h2 dir="auto">Dev and staging environment separation</h2>
+<p dir="auto">The ready-to-customize template in <a rel="noopener" href="https://github.com/elyotam/aws-openvpn/blob/main/environments/dev-staging"><code class="notranslate">environments/dev-staging</code></a> deploys one OpenVPN Access Server in the development VPC and connects development to staging with VPC peering. VPN clients are given routes to both non-production VPCs. Production is deliberately excluded: the template has no production variables, dependencies, routes, or peer connection.</p>
+<pre lang="text" class="notranslate"><code class="notranslate">VPN client
+    |
+OpenVPN Access Server (dev VPC)
+    |                         \
+dev resources        VPC peering -&gt; staging resources
+
+production: no connection
+</code></pre>
+<p dir="auto">The stack creates:</p>
+<ul dir="auto">
+<li>OpenVPN Access Server in the development public subnet.</li>
+<li>A dev-to-staging VPC peering connection with DNS resolution enabled.</li>
+<li>Routes from selected development route tables to the staging CIDR.</li>
+<li>Return routes from selected staging route tables to the development CIDR.</li>
+<li>An OpenVPN private-network route that advertises the staging CIDR to VPN clients.</li>
+<li>A separate Terraform state path for this shared non-production connectivity stack.</li>
+</ul>
+<h3 dir="auto">Configure a new company</h3>
+<ol dir="auto">
+<li>
+<p dir="auto">Copy the example values and backend files:</p>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate"><span class="pl-c1">cd</span> environments/dev-staging
+cp terraform.tfvars.example terraform.tfvars
+cp backend.tf.example backend.tf</pre></div>
+</li>
+<li>
+<p dir="auto">Replace every <code class="notranslate">REPLACE_*</code> value in <code class="notranslate">terraform.tfvars</code> and <code class="notranslate">backend.tf</code>. Set the new company's development and staging VPC IDs, non-overlapping CIDRs, development public subnet, route table IDs, trusted administrator CIDRs, state bucket, Region, and tags.</p>
+</li>
+<li>
+<p dir="auto">Confirm that none of the supplied VPCs, route tables, CIDRs, DNS zones, or AWS credentials belong to production.</p>
+</li>
+<li>
+<p dir="auto">Use a dedicated AWS profile or role for the new customer and verify it before planning:</p>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate"><span class="pl-k">export</span> AWS_PROFILE=REPLACE_CUSTOMER_NONPROD_PROFILE
+aws sts get-caller-identity
+terraform init
+terraform fmt -check -recursive
+terraform validate
+terraform plan</pre></div>
+</li>
+<li>
+<p dir="auto">Review both directions of every proposed route and apply only after approval:</p>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate">terraform apply</pre></div>
+</li>
+</ol>
+<p dir="auto">Do not commit <code class="notranslate">terraform.tfvars</code>, backend credentials, state files, VPN profiles, passwords, private keys, account IDs, or real customer network values. The repository ignores common sensitive Terraform and VPN files, but the plan must still be reviewed before publication.</p>
+<h2 dir="auto">Requirements</h2>
+<ul dir="auto">
+<li>Terraform 1.9 or newer.</li>
+<li>AWS provider 5.x or 6.x.</li>
+<li>An existing VPC.</li>
+<li>An existing public subnet with a route to an Internet Gateway.</li>
+<li>AWS permissions for EC2, EIP, IAM, SSM, Security Groups, and optionally Route 53.</li>
+<li>A customer-owned OpenVPN Access Server subscription when more than the included free connection allowance is required.</li>
+</ul>
+<h2 dir="auto">Quick start</h2>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate">git clone https://github.com/elyotam/aws-openvpn.git
+<span class="pl-c1">cd</span> aws-openvpn/examples/terraform
+cp terraform.tfvars.example terraform.tfvars
+vim terraform.tfvars</pre></div>
+<p dir="auto">Verify the active AWS identity:</p>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate">aws sts get-caller-identity</pre></div>
+<p dir="auto">Validate without changing AWS resources:</p>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate">terraform fmt -check -recursive
+terraform init -backend=false
+terraform validate</pre></div>
+<p dir="auto">Create and review a plan:</p>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate">terraform init
+terraform plan</pre></div>
+<p dir="auto">Apply only after the account, Region, values, costs, and plan have been approved:</p>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate">terraform apply</pre></div>
+<h2 dir="auto">Example</h2>
+<div class="highlight highlight-source-hcl" dir="auto"><pre class="notranslate"><span class="pl-en">provider</span> <span class="pl-smi">"aws"</span> {
+  <span class="pl-v"><span class="pl-smi">region</span> <span class="pl-k">=</span> </span><span class="pl-s"><span class="pl-pds">"</span>eu-west-1<span class="pl-pds">"</span></span>
+}
+
+<span class="pl-en">module</span> <span class="pl-smi">"openvpn"</span> {
+  <span class="pl-v"><span class="pl-smi">source</span> <span class="pl-k">=</span> </span><span class="pl-s"><span class="pl-pds">"</span>git::https://github.com/elyotam/aws-openvpn.git?ref=v1.0.0<span class="pl-pds">"</span></span>
+
+  <span class="pl-v"><span class="pl-smi">name</span>      <span class="pl-k">=</span> </span><span class="pl-s"><span class="pl-pds">"</span>acme-openvpn<span class="pl-pds">"</span></span>
+  <span class="pl-v"><span class="pl-smi">vpc_id</span>    <span class="pl-k">=</span> </span><span class="pl-s"><span class="pl-pds">"</span>vpc-0123456789abcdef0<span class="pl-pds">"</span></span>
+  <span class="pl-v"><span class="pl-smi">subnet_id</span> <span class="pl-k">=</span> </span><span class="pl-s"><span class="pl-pds">"</span>subnet-0123456789abcdef0<span class="pl-pds">"</span></span>
+
+  <span class="pl-v"><span class="pl-smi">hostname</span>        <span class="pl-k">=</span> </span><span class="pl-s"><span class="pl-pds">"</span>vpn.example.com<span class="pl-pds">"</span></span>
+  <span class="pl-v"><span class="pl-smi">route53_zone_id</span> <span class="pl-k">=</span> </span><span class="pl-s"><span class="pl-pds">"</span>Z0123456789ABCDEFG<span class="pl-pds">"</span></span>
+
+  <span class="pl-v"><span class="pl-smi">vpn_client_cidrs</span> <span class="pl-k">=</span> </span>[<span class="pl-s"><span class="pl-pds">"</span>0.0.0.0/0<span class="pl-pds">"</span></span>]
+  <span class="pl-v"><span class="pl-smi">admin_cidrs</span>      <span class="pl-k">=</span> </span>[<span class="pl-s"><span class="pl-pds">"</span>203.0.113.10/32<span class="pl-pds">"</span></span>]
+
+  <span class="pl-v"><span class="pl-smi">tags</span> <span class="pl-k">=</span> </span>{
+    Customer    <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Acme<span class="pl-pds">"</span></span>
+    Environment <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>production<span class="pl-pds">"</span></span>
+  }
+}</pre></div>
+<h2 dir="auto">First login and administration</h2>
+<p dir="auto">Use the module output to start an SSM session:</p>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate">terraform output -raw ssm_session_command</pre></div>
+<p dir="auto">Then run:</p>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate">sudo systemctl status openvpnas --no-pager
+sudo cat /var/log/openvpn-access-server-bootstrap.log
+sudo cat /usr/local/openvpn_as/init.log</pre></div>
+<p dir="auto">The web interfaces are returned as Terraform outputs:</p>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate">terraform output admin_url
+terraform output client_url</pre></div>
+<p dir="auto">After the first login:</p>
+<ol dir="auto">
+<li>Change the administrator password immediately.</li>
+<li>Accept the OpenVPN EULA.</li>
+<li>Activate a license owned by the customer.</li>
+<li>Configure authentication and MFA.</li>
+<li>Configure the private networks users may access.</li>
+<li>Create users and groups.</li>
+<li>Replace the self-signed certificate with a trusted certificate.</li>
+<li>Test connectivity and least-privilege access.</li>
+</ol>
+<h2 dir="auto">Customer isolation</h2>
+<p dir="auto">Use a separate state and deployment configuration for every customer and environment. Never reuse another customer's:</p>
+<ul dir="auto">
+<li>Terraform state.</li>
+<li>AWS credentials or account details.</li>
+<li>Activation key.</li>
+<li>Administrator password.</li>
+<li>VPN profiles or private keys.</li>
+<li>Internal CIDRs or DNS values.</li>
+</ul>
+<p dir="auto">See <a rel="noopener" href="https://github.com/elyotam/aws-openvpn/blob/main/docs/CUSTOMER-DEPLOYMENT-CHECKLIST.md">Customer deployment checklist</a>.</p>
+<h2 dir="auto">Security notes</h2>
+<ul dir="auto">
+<li>SSM Session Manager is preferred over SSH.</li>
+<li><code class="notranslate">admin_cidrs</code> should contain only trusted administrator public IPs.</li>
+<li>Do not pass secrets through <code class="notranslate">additional_user_data</code>.</li>
+<li>Terraform user data and state are not secret stores.</li>
+<li>Review every plan before apply.</li>
+<li>TCP 443 can also expose the authenticated web portal, so protect administrator accounts with strong authentication and MFA.</li>
+</ul>
+<h2 dir="auto">Cost considerations</h2>
+<p dir="auto">This module can create charges for EC2, EBS, public IPv4/Elastic IP, data transfer, Route 53, detailed monitoring, and OpenVPN licensing. Check current AWS and OpenVPN pricing before every customer deployment.</p>
+<h2 dir="auto">Inputs</h2>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="notranslate">name</code></td>
+<td>Resource name prefix</td>
+<td><code class="notranslate">openvpn-as</code></td>
+</tr>
+<tr>
+<td><code class="notranslate">vpc_id</code></td>
+<td>Existing VPC ID</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code class="notranslate">subnet_id</code></td>
+<td>Existing public subnet ID</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code class="notranslate">instance_type</code></td>
+<td>EC2 instance type</td>
+<td><code class="notranslate">t3.small</code></td>
+</tr>
+<tr>
+<td><code class="notranslate">ami_id</code></td>
+<td>Optional AMI override</td>
+<td><code class="notranslate">null</code></td>
+</tr>
+<tr>
+<td><code class="notranslate">hostname</code></td>
+<td>Optional public DNS hostname</td>
+<td><code class="notranslate">null</code></td>
+</tr>
+<tr>
+<td><code class="notranslate">route53_zone_id</code></td>
+<td>Optional Route 53 hosted zone</td>
+<td><code class="notranslate">null</code></td>
+</tr>
+<tr>
+<td><code class="notranslate">vpn_client_cidrs</code></td>
+<td>Allowed TCP 443 and UDP 1194 CIDRs</td>
+<td><code class="notranslate">0.0.0.0/0</code></td>
+</tr>
+<tr>
+<td><code class="notranslate">admin_cidrs</code></td>
+<td>Trusted TCP 943 CIDRs</td>
+<td>empty</td>
+</tr>
+<tr>
+<td><code class="notranslate">enable_ssh</code></td>
+<td>Enable TCP 22</td>
+<td><code class="notranslate">false</code></td>
+</tr>
+<tr>
+<td><code class="notranslate">root_volume_size</code></td>
+<td>Root disk size in GiB</td>
+<td><code class="notranslate">20</code></td>
+</tr>
+<tr>
+<td><code class="notranslate">tags</code></td>
+<td>Extra AWS tags</td>
+<td>empty</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p dir="auto">Refer to <code class="notranslate">variables.tf</code> for every available setting.</p>
+<h2 dir="auto">Outputs</h2>
+<ul dir="auto">
+<li><code class="notranslate">instance_id</code></li>
+<li><code class="notranslate">private_ip</code></li>
+<li><code class="notranslate">elastic_ip</code></li>
+<li><code class="notranslate">server_address</code></li>
+<li><code class="notranslate">admin_url</code></li>
+<li><code class="notranslate">client_url</code></li>
+<li><code class="notranslate">security_group_id</code></li>
+<li><code class="notranslate">iam_role_name</code></li>
+<li><code class="notranslate">ssm_session_command</code></li>
+</ul>
+<h2 dir="auto">Validation</h2>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate">./scripts/validate.sh</pre></div>
+<p dir="auto">The validation script runs formatting checks, initializes without a backend, and validates both the module and the Terraform example. It does not run <code class="notranslate">apply</code>.</p>
+<h2 dir="auto">Destruction warning</h2>
+<p dir="auto"><code class="notranslate">terraform destroy</code> deletes managed infrastructure and can immediately interrupt VPN access. Run it only with explicit approval, verified backups, and a recovery plan.</p>
+      </div>
+    </article>
+
+    <section class="box next reveal">
+      <div>
+        <h2>Questions about this one?</h2>
+        <p>Happy to walk through any of it.</p>
+      </div>
+      <div class="acts">
+        <a class="btn key" href="contact.html">Get in touch</a>
+        <a class="btn" href="projects.html">Back to projects</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <nav>
+    <a href="./">Home</a><a href="about.html">About</a>
+    <a href="projects.html">My Projects</a><a href="contact.html">Contact</a>
+  </nav>
+  <div><span id="yr">2026</span> &copy; Created with love by
+    <a class="by" href="https://github.com/elyotam" rel="noopener">Elyotam Cohen</a></div>
+</footer>
+
+<script src="assets/site.js"></script>
+<script src="assets/cursor.js"></script>
+</body>
+</html>

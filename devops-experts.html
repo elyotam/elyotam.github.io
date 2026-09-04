@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DevOps course archive — Elyotam Cohen</title>
+<meta name="description" content="Fourteen lessons from the DevOps Experts programme — one runnable script per lesson, plus six deliberately broken builds.">
+<meta name="theme-color" content="#111111">
+<link rel="canonical" href="https://elyotam.github.io/devops-experts.html">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Elyotam Cohen">
+<meta property="og:title" content="DevOps course archive — Elyotam Cohen">
+<meta property="og:description" content="Fourteen lessons from the DevOps Experts programme — one runnable script per lesson, plus six deliberately broken builds.">
+<meta property="og:url" content="https://elyotam.github.io/devops-experts.html">
+<meta property="og:image" content="https://elyotam.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DevOps course archive — Elyotam Cohen">
+<meta name="twitter:description" content="Fourteen lessons from the DevOps Experts programme — one runnable script per lesson, plus six deliberately broken builds.">
+<meta name="twitter:image" content="https://elyotam.github.io/assets/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/case.css">
+<link rel="stylesheet" href="assets/readme.css">
+<style>.hero{--tint:rgba(255,212,59,.14)}</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top">
+    <a class="ghost" href="./">HELLO WORLD!</a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav">
+      <a href="./">Home</a><a href="about.html">About</a>
+      <a class="on" href="projects.html">My Projects</a><a href="contact.html">Contact</a>
+    </nav>
+    <a class="pill" href="contact.html">
+      <svg viewBox="0 0 24 24"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002M7 8.48H3V21h4zm6.32 0H9.34V21h3.92v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91z"/></svg>
+      Let&rsquo;s Connect!
+    </a>
+  </div>
+
+  <main class="case">
+
+    <header class="box hero reveal">
+      <p class="crumbs"><a href="projects.html">My Projects</a><span>/</span>Infrastructure</p>
+      <h1>DevOps course archive</h1>
+      <p class="lede">Fourteen lessons from the DevOps Experts programme — one runnable script per lesson, plus six deliberately broken builds.</p>
+      <div class="chips"><span class="chip hot">14 lessons</span><span class="chip">Bash</span><span class="chip">Kubernetes</span><span class="chip">Terraform</span><span class="chip">Ansible</span></div>
+      <div class="acts">
+        <a class="btn key" href="https://github.com/elyotam/devops-experts" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+          View on GitHub
+        </a>
+        <a class="btn" href="quakewatch.html">The final project →</a>
+        <a class="btn" href="projects.html">All projects</a>
+      </div>
+    </header>
+
+    <dl class="facts reveal"><div class="box fact"><dt>Language</dt><dd>Shell</dd></div><div class="box fact"><dt>Files</dt><dd>118 tracked</dd></div><div class="box fact"><dt>Last push</dt><dd>2026-09-04</dd></div><div class="box fact"><dt>Licence</dt><dd>Public repository</dd></div></dl>
+
+    <article class="box readme reveal">
+      <div class="rm-bar">
+        <span class="rm-file">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"/></svg>
+          README.md
+        </span>
+        <a class="rm-src" href="https://github.com/elyotam/devops-experts/blob/main/README.md" rel="noopener">Read it on GitHub &nearr;</a>
+      </div>
+      <div class="markdown-body" dir="rtl" lang="he">
+<p align="center" dir="auto">
+  <themed-picture data-catalyst-inline="true"><picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/elyotam/devops-experts/main/assets/devops-experts-logo-dark.svg">
+    <img alt="DevOps Experts" src="https://raw.githubusercontent.com/elyotam/devops-experts/main/assets/devops-experts-logo.svg" width="340">
+  </picture></themed-picture>
+</p>
+<h1 align="center" dir="auto">חומרי הלימוד שלי — קורס DevOps</h1>
+<p align="center" dir="auto">
+  <a href="https://devopsexperts.co.il/" rel="nofollow"><img alt="מכללה" src="https://camo.githubusercontent.com/306bd444a172c36c16879275d7dc22b84ada6bc7e8462e95fb5319accd87128b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2544372539452544372539422544372539432544372539432544372539342d4465764f7073253230457870657274732d663437343235" data-canonical-src="https://img.shields.io/badge/%D7%9E%D7%9B%D7%9C%D7%9C%D7%94-DevOps%20Experts-f47425" style="max-width: 100%;"></a>
+  <a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/f4068c71ed3eb002ec357aeec8fcd02793629588ad3a83bfee81fe09dadc0d31/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2544372539452544372539372544372539362544372539352544372541382d313132352d333333"><img alt="מחזור" src="https://camo.githubusercontent.com/f4068c71ed3eb002ec357aeec8fcd02793629588ad3a83bfee81fe09dadc0d31/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2544372539452544372539372544372539362544372539352544372541382d313132352d333333" data-canonical-src="https://img.shields.io/badge/%D7%9E%D7%97%D7%96%D7%95%D7%A8-1125-333" style="max-width: 100%;"></a>
+  <a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/06498ced3720311046f4b7a757861295dfa3aed07a8937ed3adfa0ef5d5a5b0a/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2544372541392544372539392544372541322544372539352544372541382544372539392544372539442d31342d333333"><img alt="שיעורים" src="https://camo.githubusercontent.com/06498ced3720311046f4b7a757861295dfa3aed07a8937ed3adfa0ef5d5a5b0a/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2544372541392544372539392544372541322544372539352544372541382544372539392544372539442d31342d333333" data-canonical-src="https://img.shields.io/badge/%D7%A9%D7%99%D7%A2%D7%95%D7%A8%D7%99%D7%9D-14-333" style="max-width: 100%;"></a>
+  <a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/5696283035f337b7254ff9be0f26940062c5c3515451b10aede4f9bcd50d23b8/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2544372541382544372539392544372541342544372539352d2544372541342544372541382544372539382544372539392d353535"><img alt="ריפו פרטי" src="https://camo.githubusercontent.com/5696283035f337b7254ff9be0f26940062c5c3515451b10aede4f9bcd50d23b8/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2544372541382544372539392544372541342544372539352d2544372541342544372541382544372539382544372539392d353535" data-canonical-src="https://img.shields.io/badge/%D7%A8%D7%99%D7%A4%D7%95-%D7%A4%D7%A8%D7%98%D7%99-555" style="max-width: 100%;"></a>
+</p>
+<div dir="rtl">
+<h2 dir="auto">על הריפו הזה</h2>
+<p dir="auto">הריפו הזה מרכז את <strong>כל חומר הלימוד מקורס ה‑DevOps שאני עושה במכללת <a href="https://devopsexperts.co.il/" rel="nofollow">DevOps Experts</a></strong>, מחזור <strong>1125</strong>. זה ארכיון אישי ופרטי — הכל במקום אחד כדי שאוכל לחזור לכל שיעור, להריץ מחדש כל תרגיל ולהיזכר בפקודה שכבר עשיתי פעם.</p>
+<p dir="auto">המכללה מתמחה בהכשרות מעשיות ואינטנסיביות בתחומי DevOps, ארכיטקטורת תוכנה, הנדסת AI ו‑Python, עם דגש על תרגול מעשי בכיתות קטנות. הקורס עצמו רץ מנובמבר 2025 עד אוגוסט 2026 וכיסה את כל שרשרת ה‑DevOps: מיסודות Linux, דרך קונטיינרים, Kubernetes, Helm, CI/CD ו‑GitOps, ועד ניטור, AWS, Terraform ו‑Ansible.</p>
+<h2 dir="auto">איך זה בנוי — מספר הסקריפט = מספר השיעור</h2>
+<p dir="auto">הלב של הריפו הוא תיקיית <a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/scripts/"><code class="notranslate">scripts/</code></a>. <strong>כל סקריפט מתאים לשיעור אחד, לפי המספר שלו</strong> — <code class="notranslate">1.sh</code> זה שיעור 1, <code class="notranslate">2.sh</code> זה שיעור 2, וכן הלאה. הסקריפטים הם לא סקריפטים להרצה אוטומטית אלא <strong>יומן פקודות של השיעור</strong>: הפקודות שהועברו בכיתה לפי הסדר, עם הערות, קישורים ותרגילי הכיתה שניתנו בסוף.</p>
+<p dir="auto">שאר התיקיות הן קבצי העזר שהסקריפטים מפנים אליהם — מניפסטים של Kubernetes, צ'ארטים של Helm, וורקפלואים, פלייבוקים וקוד Terraform.</p>
+<h2 dir="auto">מפת השיעורים</h2>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>#</th>
+<th>סקריפט</th>
+<th>נושא השיעור</th>
+<th>קבצים נלווים</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/scripts/1.sh"><code class="notranslate">scripts/1.sh</code></a></td>
+<td>יסודות Linux בתוך קונטיינר</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/scripts/2.sh"><code class="notranslate">scripts/2.sh</code></a></td>
+<td>Docker לעומק</td>
+<td>—</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/scripts/3.sh"><code class="notranslate">scripts/3.sh</code></a></td>
+<td>Kubernetes — יסודות</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/k8s/"><code class="notranslate">k8s/</code></a></td>
+</tr>
+<tr>
+<td>4</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/scripts/4.sh"><code class="notranslate">scripts/4.sh</code></a></td>
+<td>Kubernetes — אחסון, קונפיגורציה ו‑Workloads</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/k8s/volumes/"><code class="notranslate">k8s/volumes/</code></a></td>
+</tr>
+<tr>
+<td>5</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/scripts/5.sh"><code class="notranslate">scripts/5.sh</code></a></td>
+<td>Helm</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/argocd/ex2/mychart/"><code class="notranslate">argocd/ex2/mychart/</code></a></td>
+</tr>
+<tr>
+<td>6</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/scripts/6.sh"><code class="notranslate">scripts/6.sh</code></a></td>
+<td>Git ו‑GitHub</td>
+<td>—</td>
+</tr>
+<tr>
+<td>7</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/scripts/7.sh"><code class="notranslate">scripts/7.sh</code></a></td>
+<td>GitHub Actions</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/github-workflows/"><code class="notranslate">github-workflows/</code></a></td>
+</tr>
+<tr>
+<td>8</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/scripts/8.sh"><code class="notranslate">scripts/8.sh</code></a></td>
+<td>ArgoCD ו‑GitOps</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/argocd/"><code class="notranslate">argocd/</code></a></td>
+</tr>
+<tr>
+<td>9</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/scripts/9.sh"><code class="notranslate">scripts/9.sh</code></a></td>
+<td>ניטור — Prometheus ו‑Grafana</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/monitoring/"><code class="notranslate">monitoring/</code></a></td>
+</tr>
+<tr>
+<td>10</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/scripts/10.sh"><code class="notranslate">scripts/10.sh</code></a></td>
+<td>AWS ראשוני + Terraform ראשוני</td>
+<td>—</td>
+</tr>
+<tr>
+<td>11</td>
+<td><em>(אין סקריפט)</em></td>
+<td>Terraform מתקדם</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/terraform/"><code class="notranslate">terraform/</code></a></td>
+</tr>
+<tr>
+<td>12</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/scripts/12.sh"><code class="notranslate">scripts/12.sh</code></a></td>
+<td>Serverless — Lambda, SQS, DynamoDB</td>
+<td>—</td>
+</tr>
+<tr>
+<td>13</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/scripts/13.sh"><code class="notranslate">scripts/13.sh</code></a></td>
+<td>שירותי AWS מנוהלים — סודות, פרמטרים, RDS</td>
+<td>—</td>
+</tr>
+<tr>
+<td>14</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/scripts/14.sh"><code class="notranslate">scripts/14.sh</code></a></td>
+<td>Ansible</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/ansible-demo/"><code class="notranslate">ansible-demo/</code></a></td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<blockquote>
+<p dir="auto"><strong>לגבי שיעור 11:</strong> אין קובץ <code class="notranslate">11.sh</code> בריפו. תיקיית <a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/terraform/"><code class="notranslate">terraform/</code></a> מכילה ארבעה תרגילים ברמה גבוהה בהרבה ממה שהופיע בשיעור 10, אז סביר מאוד שהם שייכים לשיעור הזה — אבל זו הסקה שלי מהתוכן, לא משהו שכתוב במפורש.</p>
+</blockquote>
+<hr>
+<h2 dir="auto">פירוט מלא — שיעור אחרי שיעור</h2>
+<h3 dir="auto">שיעור 1 — יסודות Linux בתוך קונטיינר</h3>
+<p dir="auto">הקמת סביבת עבודה בטוחה (<code class="notranslate">docker run --name devops-sandbox ubuntu</code>) ואז כל הבסיס של שורת הפקודה: ניווט בין תיקיות, יצירה והעברה של קבצים, קלט/פלט והפניות (<code class="notranslate">&gt;</code> מול <code class="notranslate">&gt;&gt;</code>), משתני סביבה ו‑<code class="notranslate">export</code>, קודי יציאה (<code class="notranslate">$?</code>) והתקנת חבילות עם <code class="notranslate">apt</code>.</p>
+<p dir="auto">הסיום הוא החלק שהכי שימושי בפועל — <strong>עיבוד לוגים בשרשרת pipe</strong>: לוקחים את <code class="notranslate">/var/log/dpkg.log</code>, מסננים ב‑<code class="notranslate">grep</code>, שולפים שדה ב‑<code class="notranslate">awk</code> וחותכים אותו ב‑<code class="notranslate">cut</code>. זו התבנית שחוזרת בכל עבודת DevOps אמיתית.</p>
+<h3 dir="auto">שיעור 2 — Docker לעומק</h3>
+<p dir="auto">ארבעה בלוקים נפרדים בשיעור אחד:</p>
+<ol dir="auto">
+<li><strong>מחזור חיים של קונטיינר</strong> — <code class="notranslate">run</code>, <code class="notranslate">exec</code>, <code class="notranslate">ps</code>, <code class="notranslate">stop</code>, <code class="notranslate">start</code>, <code class="notranslate">rm -vf</code>, ומיפוי פורטים.</li>
+<li><strong>בניית אימג' משלך</strong> — אפליקציית Flask קטנה שקוראת משתנה סביבה, <code class="notranslate">Dockerfile</code> שמתקין את התלויות, ואז <code class="notranslate">build</code> ו‑<code class="notranslate">run</code>.</li>
+<li><strong>רשתות ו‑Compose</strong> — יצירת רשת ייעודית והוכחה שקונטיינרים מוצאים זה את זה <strong>לפי שם</strong> (<code class="notranslate">curl http://container2</code>), ואז אותו רעיון בצורה מוצהרת ב‑<code class="notranslate">docker-compose.yaml</code>. בסוף: <code class="notranslate">tag</code> ו‑<code class="notranslate">push</code> ל‑Docker Hub.</li>
+<li><strong>Multi-stage build</strong> — אותה אפליקציית Go נבנית פעמיים, פעם ב‑<code class="notranslate">Dockerfile.heavy</code> (תמונת golang מלאה) ופעם ב‑<code class="notranslate">Dockerfile.slim</code> (שלב build נפרד ואז העתקה ל‑alpine). ההשוואה בין הגדלים היא כל הפואנטה.</li>
+</ol>
+<h3 dir="auto">שיעור 3 — Kubernetes, יסודות</h3>
+<p dir="auto">מ‑<code class="notranslate">kubectl config use-context</code> ועד אפליקציה שרצה:</p>
+<ul dir="auto">
+<li><strong>התמצאות</strong> — namespaces, <code class="notranslate">get pods --all-namespaces</code>, <code class="notranslate">describe node</code></li>
+<li><strong>Pod בודד</strong> לעומת <strong>Deployment</strong> — ומה ה‑ReplicaSet עושה באמצע</li>
+<li><strong>שינויים חיים</strong> — <code class="notranslate">scale</code> ל‑20 רפליקות, <code class="notranslate">set image</code>, וצפייה ב‑rollout דרך <code class="notranslate">watch kubectl get pods</code></li>
+<li><strong>רשת</strong> — ClusterIP מול NodePort מול <code class="notranslate">port-forward</code>, ומתי משתמשים בכל אחד</li>
+<li><strong>מעבר ל‑YAML</strong> — מניפסט שמגדיר Service עם שני פורטים בשם + שני Pods, ואז <a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/k8s/examples.yaml"><code class="notranslate">k8s/examples.yaml</code></a> ו‑<a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/k8s/crontab.yaml"><code class="notranslate">k8s/crontab.yaml</code></a></li>
+</ul>
+<h3 dir="auto">שיעור 4 — Kubernetes: אחסון, קונפיגורציה ו‑Workloads</h3>
+<p dir="auto">השיעור הזה כולו נשען על <a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/k8s/volumes/"><code class="notranslate">k8s/volumes/</code></a>, וכל קובץ שם הוא שלב בסיפור:</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>נושא</th>
+<th>קבצים</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>אחסון מתמיד</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/k8s/volumes/pv.yaml"><code class="notranslate">pv.yaml</code></a>, <a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/k8s/volumes/pvc.yaml"><code class="notranslate">pvc.yaml</code></a>, <a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/k8s/volumes/pod-with-pvc.yaml"><code class="notranslate">pod-with-pvc.yaml</code></a></td>
+</tr>
+<tr>
+<td>אחסון זמני</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/k8s/volumes/pod-empty-dir.yaml"><code class="notranslate">pod-empty-dir.yaml</code></a></td>
+</tr>
+<tr>
+<td>קונפיגורציה</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/k8s/volumes/config-map.yaml"><code class="notranslate">config-map.yaml</code></a>, <a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/k8s/volumes/game-config.yaml"><code class="notranslate">game-config.yaml</code></a>, <a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/k8s/volumes/pod-with-config-map.yaml"><code class="notranslate">pod-with-config-map.yaml</code></a></td>
+</tr>
+<tr>
+<td>סודות</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/k8s/volumes/secret.yaml"><code class="notranslate">secret.yaml</code></a>, <a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/k8s/volumes/pod-with-secret.yaml"><code class="notranslate">pod-with-secret.yaml</code></a></td>
+</tr>
+<tr>
+<td>Workloads נוספים</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/k8s/volumes/statefulset.yaml"><code class="notranslate">statefulset.yaml</code></a>, <a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/k8s/volumes/daemonset.yaml"><code class="notranslate">daemonset.yaml</code></a>, <a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/k8s/volumes/cronjob.yaml"><code class="notranslate">cronjob.yaml</code></a></td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p dir="auto">הרגע החשוב בשיעור: כותבים <code class="notranslate">index.html</code> לתוך ה‑volume מתוך ה‑Pod, מוחקים את ה‑Pod, ומוכיחים שהקובץ עדיין שם. בסוף נזכרים גם PodDisruptionBudget, PriorityClass ו‑ResourceQuota.</p>
+<h3 dir="auto">שיעור 5 — Helm</h3>
+<p dir="auto">מ‑<code class="notranslate">helm create</code> ועד צ'ארט שמפורסם ל‑registry:</p>
+<ul dir="auto">
+<li><strong>אנטומיה של צ'ארט</strong> — <code class="notranslate">values.yaml</code>, <code class="notranslate">templates/_helpers.tpl</code>, ההבדל בין <code class="notranslate">version</code> ל‑<code class="notranslate">appVersion</code> ב‑<code class="notranslate">Chart.yaml</code>, ו‑<code class="notranslate">NOTES.txt</code></li>
+<li><strong>לראות לפני שמריצים</strong> — <code class="notranslate">helm template</code>, <code class="notranslate">--debug</code>, <code class="notranslate">helm lint</code>, <code class="notranslate">--dry-run</code>, והפלאגין <a rel="noopener" href="https://github.com/databus23/helm-diff">helm-diff</a></li>
+<li><strong>גרסאות ו‑rollback</strong> — <code class="notranslate">helm history</code>, <code class="notranslate">helm rollback</code>, <code class="notranslate">--atomic</code>, וההצצה מאחורי הקלעים: Helm שומר כל revision כ‑Secret ב‑Kubernetes (<code class="notranslate">kubectl get secrets</code>)</li>
+<li><strong>ערכים חיצוניים</strong> — <code class="notranslate">values-prod.yaml</code> דרך <code class="notranslate">-f</code>, והכלל ש‑<code class="notranslate">--set</code> תמיד גובר על <code class="notranslate">-f</code></li>
+<li><strong>פרסום וצריכה</strong> — <code class="notranslate">helm package</code>, התחברות ל‑OCI registry ו‑<code class="notranslate">helm push</code>, ואז משיכת צ'ארטים של אחרים מ‑<a href="https://artifacthub.io/" rel="nofollow">ArtifactHub</a> ו‑dependencies/subcharts</li>
+</ul>
+<p dir="auto"><strong>תרגיל כיתה:</strong> לבנות צ'ארט עם 5 רפליקות של <code class="notranslate">nginx:alpine</code>, לארוז, לדחוף ל‑Docker Hub, למחוק את ההתקנה המקומית ולהתקין מחדש מה‑registry.</p>
+<h3 dir="auto">שיעור 6 — Git ו‑GitHub</h3>
+<p dir="auto">הזרימה המלאה: <code class="notranslate">init</code>, <code class="notranslate">status</code>, <code class="notranslate">add</code>, <code class="notranslate">commit</code>, <code class="notranslate">log</code>, <code class="notranslate">diff</code>, ואז ענפים, <code class="notranslate">merge</code> ו‑<code class="notranslate">.gitignore</code>.</p>
+<p dir="auto">החלק החזק בשיעור הוא <strong>ההשוואה בין שלושת ה‑reset</strong>, כשכל אחד מודגם על אותו קומיט זבל:</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>פקודה</th>
+<th>הקומיט</th>
+<th>הקובץ בדיסק</th>
+<th>הסטטוס</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="notranslate">reset --soft</code></td>
+<td>בוטל</td>
+<td>נשאר</td>
+<td><strong>staged</strong></td>
+</tr>
+<tr>
+<td><code class="notranslate">reset --mixed</code> (ברירת מחדל)</td>
+<td>בוטל</td>
+<td>נשאר</td>
+<td><strong>unstaged</strong></td>
+</tr>
+<tr>
+<td><code class="notranslate">reset --hard</code></td>
+<td>בוטל</td>
+<td><strong>נמחק</strong> <g-emoji class="g-emoji" alias="warning">⚠️</g-emoji></td>
+<td>נקי</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p dir="auto">ואז חיבור ל‑GitHub: יצירת מפתח SSH <code class="notranslate">ed25519</code>, <code class="notranslate">ssh-agent</code>, <code class="notranslate">ssh -T git@github.com</code>, <code class="notranslate">remote add</code> ו‑<code class="notranslate">push -u</code>. הסיום הוא תגיות — ההבדל בין תגית קלה לתגית מוערת (<code class="notranslate">-a</code>), והמלכודת ש‑<code class="notranslate">git push</code> לבדו <strong>לא</strong> דוחף תגיות.</p>
+<h3 dir="auto">שיעור 7 — GitHub Actions</h3>
+<p dir="auto">השיעור מפנה לתיקיית <a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/github-workflows/"><code class="notranslate">github-workflows/</code></a>, שבה שבע דוגמאות בסדר עולה של מורכבות:</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>קובץ</th>
+<th>מה הוא מדגים</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/github-workflows/01-init.yaml"><code class="notranslate">01-init.yaml</code></a></td>
+<td>וורקפלו ראשון, <code class="notranslate">workflow_dispatch</code> עם inputs, ריצה בתוך container</td>
+</tr>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/github-workflows/02-seq-and-para.yaml"><code class="notranslate">02-seq-and-para.yaml</code></a></td>
+<td>jobs במקביל מול jobs בטור עם <code class="notranslate">needs</code></td>
+</tr>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/github-workflows/03-matrix.yaml"><code class="notranslate">03-matrix.yaml</code></a></td>
+<td>matrix build</td>
+</tr>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/github-workflows/04-build-and-push.yaml"><code class="notranslate">04-build-and-push.yaml</code></a></td>
+<td>בנייה ודחיפה של אימג' Docker</td>
+</tr>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/github-workflows/05-pr-comment.yaml"><code class="notranslate">05-pr-comment.yaml</code></a></td>
+<td>תגובה אוטומטית על Pull Request</td>
+</tr>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/github-workflows/06-reusable-deploy.yaml"><code class="notranslate">06-reusable-deploy.yaml</code></a> + <a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/github-workflows/06-call-reusable-deploy.yaml"><code class="notranslate">06-call-reusable-deploy.yaml</code></a></td>
+<td>וורקפלו לשימוש חוזר והקריאה אליו</td>
+</tr>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/github-workflows/07-upload-download.yaml"><code class="notranslate">07-upload-download.yaml</code></a></td>
+<td>העלאה והורדה של artifacts</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p dir="auto">התיקייה <a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/github-workflows/build-and-push/"><code class="notranslate">github-workflows/build-and-push/</code></a> מכילה את אפליקציית ה‑Python הקטנה (<code class="notranslate">app.py</code>, <code class="notranslate">requirements.txt</code>, <code class="notranslate">Dockerfile</code>) שהוורקפלו הרביעי בונה.</p>
+<p dir="auto"><strong>תרגיל כיתה:</strong> וורקפלו עם שלושה jobs — הראשון משווה תוכן קובץ למשתנה מאגר, השני משווה קובץ אחר ל‑secret, והשלישי רץ רק אם שניהם הצליחו ומדפיס את הערכים <strong>בלי לחשוף את ה‑secret</strong>.</p>
+<h3 dir="auto">שיעור 8 — ArgoCD ו‑GitOps</h3>
+<p dir="auto">מתקינים ArgoCD בקלאסטר, שולפים את סיסמת האדמין הראשונית מ‑Secret, ואז ארבעה תרגילים מדורגים בתיקיית <a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/argocd/"><code class="notranslate">argocd/</code></a>:</p>
+<ol dir="auto">
+<li><strong><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/argocd/ex1/"><code class="notranslate">ex1/</code></a></strong> — Application ידני דרך ה‑UI שמצביע על <code class="notranslate">deployment.yaml</code> ו‑<code class="notranslate">svc.yaml</code>. משנים <code class="notranslate">replicas</code> בגיט ורואים את ArgoCD מסנכרן.</li>
+<li><strong><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/argocd/ex2/mychart/"><code class="notranslate">ex2/mychart/</code></a></strong> — פריסת צ'ארט Helm שלם דרך ArgoCD, כולל <code class="notranslate">values-dev.yaml</code> ו‑<code class="notranslate">values-prod.yaml</code>.</li>
+<li><strong><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/argocd/ex3/sync-wave.yaml"><code class="notranslate">ex3/sync-wave.yaml</code></a></strong> — Hooks ו‑Sync Waves: שליטה בסדר שבו המשאבים נוצרים.</li>
+<li><strong><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/argocd/ex4/apps/"><code class="notranslate">ex4/apps/</code></a></strong> — תבנית <strong>App of Apps</strong>: אפליקציית <code class="notranslate">root-app</code> אחת שמנהלת אפליקציות ילדים, עם <code class="notranslate">finalizers</code> שמבטיחים מחיקה מדורגת.</li>
+</ol>
+<p dir="auto"><strong>תרגיל כיתה:</strong> לכתוב אפליקציית Kubernetes שמציגה דף HTML מותאם (ConfigMap + Service + Deployment), לפרוס אותה דרך ArgoCD, ואז <strong>לעדכן את האתר רק דרך Git</strong> — בלי לגעת בקלאסטר. זה בדיוק הרעיון של GitOps.</p>
+<h3 dir="auto">שיעור 9 — ניטור: Prometheus ו‑Grafana</h3>
+<p dir="auto">התקנת מחסנית הניטור המלאה עם Helm, לפי <a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/monitoring/prometheus/values.yaml"><code class="notranslate">monitoring/prometheus/values.yaml</code></a>, ואז סיור בכל רכיב דרך <code class="notranslate">port-forward</code>:</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>רכיב</th>
+<th>פורט</th>
+<th>תפקיד</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node Exporter</td>
+<td>9100</td>
+<td>מטריקות ברמת המכונה</td>
+</tr>
+<tr>
+<td>Prometheus Server</td>
+<td>9090</td>
+<td>איסוף ושאילתות</td>
+</tr>
+<tr>
+<td>Pushgateway</td>
+<td>9091</td>
+<td>מטריקות מ‑jobs קצרי חיים</td>
+</tr>
+<tr>
+<td>Alertmanager</td>
+<td>9093</td>
+<td>ניתוב התראות</td>
+</tr>
+<tr>
+<td>Grafana</td>
+<td>3000</td>
+<td>דשבורדים</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p dir="auto">השיעור כולל <strong>11 שאילתות PromQL</strong> לדוגמה — מ‑<code class="notranslate">up == 1</code> הפשוטה, דרך חישוב אחוז CPU וזיכרון, ועד <code class="notranslate">topk</code>, <code class="notranslate">bottomk</code>, <code class="notranslate">avg_over_time</code> ו‑<code class="notranslate">changes</code>. בסוף מחברים את Grafana ל‑Prometheus כ‑data source ומייבאים דשבורדים מוכנים (<code class="notranslate">6417</code> ל‑kube-state-metrics, <code class="notranslate">16677</code> ל‑nginx ingress).</p>
+<h3 dir="auto">שיעור 10 — AWS ראשוני + Terraform ראשוני</h3>
+<p dir="auto">חצי ידני, חצי כקוד — וזו הנקודה:</p>
+<ul dir="auto">
+<li><strong>ידנית בקונסולה</strong> — הקמת EC2, התקנת Docker, הרצת NGINX, ואז הגילוי שצריך לפתוח Security Group ל‑IP שלך. בנוסף: <a href="http://calculator.aws/" rel="nofollow">מחשבון העלויות</a>, הקמת משתמש IAM ו‑<a href="https://aws.permissions.cloud" rel="nofollow">permissions.cloud</a> לבדיקת הרשאות.</li>
+<li><strong>כקוד</strong> — בלוק <code class="notranslate">terraform</code> ראשון עם <code class="notranslate">required_providers</code> ו‑backend מקומי, <code class="notranslate">provider "aws"</code>, <code class="notranslate">locals</code>, resource של <code class="notranslate">aws_instance</code> ו‑<code class="notranslate">output</code> של ה‑IP הציבורי.</li>
+</ul>
+<h3 dir="auto">שיעור 11 — Terraform מתקדם</h3>
+<p dir="auto">אין סקריפט לשיעור הזה, אבל תיקיית <a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/terraform/"><code class="notranslate">terraform/</code></a> מכילה ארבעה תרגילים שממשיכים בדיוק מאיפה ששיעור 10 נעצר:</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>קובץ</th>
+<th>מה נלמד בו</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/terraform/1.tf"><code class="notranslate">1.tf</code></a></td>
+<td><code class="notranslate">variables.tf</code> / <code class="notranslate">outputs.tf</code> / <code class="notranslate">locals</code>, <code class="notranslate">random_string</code> לשמות ייחודיים, ו‑S3 bucket עם versioning — הבאקט שישמש כ‑backend בהמשך</td>
+</tr>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/terraform/2.tf"><code class="notranslate">2.tf</code></a></td>
+<td><code class="notranslate">data</code> sources (VPC ו‑subnets קיימים), <code class="notranslate">count</code> כתנאי (<code class="notranslate">? 1 : 0</code>), <code class="notranslate">for_each</code> על map, <code class="notranslate">null_resource</code> עם <code class="notranslate">local-exec</code>, ו‑<code class="notranslate">for</code> expressions שמייצרים list מול map</td>
+</tr>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/terraform/3.tf"><code class="notranslate">3.tf</code></a></td>
+<td>כתיבת <strong>מודול משלך</strong> (<code class="notranslate">modules/ec2_with_ping/</code>) והפעלתו פעמיים — <code class="notranslate">dev_server</code> עם ping ו‑<code class="notranslate">prod_server</code> בלעדיו</td>
+</tr>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/terraform/4.tf"><code class="notranslate">4.tf</code></a></td>
+<td><strong>backend מרוחק ב‑S3</strong> עם <code class="notranslate">use_lockfile</code>, שימוש במודול קהילתי (<code class="notranslate">terraform-aws-modules/vpc</code>), ו‑<code class="notranslate">validation</code> blocks — כולל כלל שאוסר סביבת prod בלי NAT gateway</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p dir="auto"><strong>תרגיל כיתה:</strong> ליצור שני באקטים ב‑S3 בלולאה עם השם שלך וסיומת אקראית, להקים EC2 ו‑<code class="notranslate">null_resource</code> שכותב את ה‑IP הציבורי לקובץ, ולהעלות את הקובץ לשני הבאקטים.</p>
+<h3 dir="auto">שיעור 12 — Serverless: Lambda, SQS ו‑DynamoDB</h3>
+<p dir="auto">ארבע פונקציות Lambda בפייתון, כל אחת צעד אחד קדימה:</p>
+<ol dir="auto">
+<li><strong>handler בסיסי</strong> — הדפסת ה‑<code class="notranslate">event</code> וה‑<code class="notranslate">environ</code> כדי להבין מה Lambda בכלל מקבלת</li>
+<li><strong>Lambda + SQS</strong> — מעבר על <code class="notranslate">event['Records']</code>, עיבוד ההודעה, ומחיקה מפורשת מהתור עם <code class="notranslate">receipt_handle</code></li>
+<li><strong>Lambda + Secrets Manager</strong> — שליפת סוד עם <code class="notranslate">boto3</code> וטיפול נכון ב‑<code class="notranslate">ClientError</code></li>
+<li><strong>SQS ← Lambda ← DynamoDB</strong> — הצינור המלא: קוראים JSON מהתור וכותבים ל‑DynamoDB, עם <code class="notranslate">messageId</code> כמפתח ראשי ואתחול ה‑resource <strong>מחוץ</strong> ל‑handler כדי לעשות שימוש חוזר בחיבור</li>
+</ol>
+<h3 dir="auto">שיעור 13 — שירותי AWS מנוהלים</h3>
+<p dir="auto">השיעור הכי ארוך בקורס, ובצדק:</p>
+<ul dir="auto">
+<li><strong>CloudWatch ו‑CloudTrail</strong> — alarms, metrics ודשבורדים, וההבדל בין event history לבין trail</li>
+<li><strong>SSM Parameter Store</strong> — שלושת הסוגים: <code class="notranslate">String</code>, <code class="notranslate">StringList</code> (כולל קריאה ב‑boto3 ופיצול ל‑list) ו‑<code class="notranslate">SecureString</code> עם <code class="notranslate">--with-decryption</code></li>
+<li><strong>Secrets Manager, מקצה לקצה</strong> — יצירה, דריסה, והבנת מנגנון הגרסאות: הערך הישן שורד תחת <code class="notranslate">AWSPREVIOUS</code>, ואפשר לגלגל אחורה עם <code class="notranslate">update-secret-version-stage</code></li>
+<li><strong>סבב סודות אוטומטי</strong> — פונקציית Lambda שמממשת את שלבי <code class="notranslate">createSecret</code> ו‑<code class="notranslate">finishSecret</code>, חיבור ההרשאות, ו‑<code class="notranslate">rotate-secret</code> בתזמון של 30 יום</li>
+<li><strong>שכפול בין אזורים</strong> — replication ל‑<code class="notranslate">eu-west-1</code>, וההוכחה שהעותק <strong>קריאה בלבד</strong></li>
+<li><strong>מחיקה ושחזור</strong> — כולל התקלה שכל תלמיד נופל בה: אחרי <code class="notranslate">delete-secret</code> השם עדיין תפוס, ו‑<code class="notranslate">create-secret</code> נכשל עד ש‑<code class="notranslate">restore-secret</code> או <code class="notranslate">--force-delete-without-recovery</code></li>
+<li><strong>RDS PostgreSQL</strong> — הקמת מסד, <code class="notranslate">CREATE DATABASE</code>, טבלה עם <code class="notranslate">SERIAL PRIMARY KEY</code>, והכנסת רשומות</li>
+<li><strong>Lambda Layers</strong> — אריזת <code class="notranslate">psycopg2</code> ל‑layer עם ה‑platform וה‑ABI הנכונים, פרסום, וחיבור לפונקציה שמתחברת ל‑RDS</li>
+</ul>
+<h3 dir="auto">שיעור 14 — Ansible</h3>
+<p dir="auto">מעבדה מלאה שרצה על Docker, מ‑<a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/ansible-demo/docker/"><code class="notranslate">ansible-demo/docker/</code></a>: קונטיינר master ושני nodes, עם <code class="notranslate">ssh-copy-id</code> להתחברות בלי סיסמה. אחרי ההקמה עוברים על כל היכולות:</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>נושא</th>
+<th>קובץ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inventory ו‑config</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/ansible-demo/config/hosts"><code class="notranslate">config/hosts</code></a>, <a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/ansible-demo/config/ansible.cfg"><code class="notranslate">config/ansible.cfg</code></a></td>
+</tr>
+<tr>
+<td>Playbook ראשון</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/ansible-demo/playbook.yml"><code class="notranslate">playbook.yml</code></a></td>
+</tr>
+<tr>
+<td>משתנים ו‑tags</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/ansible-demo/vars.yml"><code class="notranslate">vars.yml</code></a>, <a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/ansible-demo/vars_file.yml"><code class="notranslate">vars_file.yml</code></a></td>
+</tr>
+<tr>
+<td>Handlers, register ותנאים</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/ansible-demo/demo.yml"><code class="notranslate">demo.yml</code></a></td>
+</tr>
+<tr>
+<td>Roles</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/ansible-demo/common.yml"><code class="notranslate">common.yml</code></a>, <a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/ansible-demo/roles/common/"><code class="notranslate">roles/common/</code></a></td>
+</tr>
+<tr>
+<td>תבניות Jinja2</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/ansible-demo/template.yml"><code class="notranslate">template.yml</code></a>, <a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/ansible-demo/my_hostname.j2"><code class="notranslate">my_hostname.j2</code></a></td>
+</tr>
+<tr>
+<td>Ansible Galaxy</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/ansible-demo/galaxy-role.yml"><code class="notranslate">galaxy-role.yml</code></a></td>
+</tr>
+<tr>
+<td>דוגמה מלאה</td>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/ansible-demo/examples/ex1/"><code class="notranslate">examples/ex1/</code></a></td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p dir="auto">לפני הכתיבה המסודרת עוברים על <strong>פקודות Ad-Hoc</strong> (<code class="notranslate">ansible servers -m ping</code>, <code class="notranslate">-m setup</code>, <code class="notranslate">-a "df -h"</code>, <code class="notranslate">-m apt</code>, <code class="notranslate">-m service</code>, <code class="notranslate">-m fetch</code>) — כי לפעמים לא צריך playbook בכלל.</p>
+<p dir="auto">השיעור מסתיים בשלושה נושאים מעשיים: <strong><code class="notranslate">ansible-vault</code></strong> להצפנת סודות ושימוש בהם דרך <code class="notranslate">--ask-vault-pass</code>, <strong><code class="notranslate">group_vars</code></strong> וההדגמה מה קורה כשמשנים את שם הקובץ (המשתנה פשוט מפסיק להיטען), ומודולים שימושיים כמו <strong><code class="notranslate">lineinfile</code></strong>.</p>
+<hr>
+<h2 dir="auto">תרגילי Troubleshooting</h2>
+<p dir="auto">תיקיית <a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/troubleshooting/"><code class="notranslate">troubleshooting/</code></a> היא סוג אחר של חומר — <strong>שישה תרגילים שבורים בכוונה</strong>. בכל אחד יש קוד שלא עובד, וצריך להריץ, לקרוא את השגיאה ולתקן:</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>תרגיל</th>
+<th>המשימה</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/troubleshooting/00-docker/"><code class="notranslate">00-docker/</code></a></td>
+<td>לבנות את האימג' ולוודא שהאפליקציה בפנים באמת רצה</td>
+</tr>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/troubleshooting/01-github-actions/"><code class="notranslate">01-github-actions/</code></a></td>
+<td>להריץ את <code class="notranslate">bad-action.yaml</code> שוב ושוב עד שהוא עובר</td>
+</tr>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/troubleshooting/02-kubernetes/"><code class="notranslate">02-kubernetes/</code></a></td>
+<td><code class="notranslate">kubectl apply -f deploy.yaml</code> ולהבין למה ה‑Pods לא עולים</td>
+</tr>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/troubleshooting/03-helm/"><code class="notranslate">03-helm/</code></a></td>
+<td><code class="notranslate">helm upgrade -i myapp ./</code> ולתקן את הצ'ארט</td>
+</tr>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/troubleshooting/04-terraform/"><code class="notranslate">04-terraform/</code></a></td>
+<td><code class="notranslate">init</code> → <code class="notranslate">plan</code> → <code class="notranslate">apply</code> ולתקן את הקוד וה‑<code class="notranslate">tfvars</code></td>
+</tr>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/troubleshooting/05-ansible/"><code class="notranslate">05-ansible/</code></a></td>
+<td>להקים את מעבדת ה‑Docker ולהריץ את <code class="notranslate">common.yml</code></td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h2 dir="auto">מפת התיקיות</h2>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>תיקייה</th>
+<th>תוכן</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/scripts/"><code class="notranslate">scripts/</code></a></td>
+<td>יומני הפקודות של השיעורים — קובץ לכל שיעור</td>
+</tr>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/k8s/"><code class="notranslate">k8s/</code></a></td>
+<td>מניפסטים של Kubernetes, כולל <code class="notranslate">volumes/</code> עם 12 דוגמאות</td>
+</tr>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/argocd/"><code class="notranslate">argocd/</code></a></td>
+<td>ארבעת תרגילי ה‑GitOps + צ'ארט Helm מלא ב‑<code class="notranslate">ex2/mychart/</code></td>
+</tr>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/github-workflows/"><code class="notranslate">github-workflows/</code></a></td>
+<td>7 וורקפלואים לדוגמה + אפליקציית הדגמה לבנייה</td>
+</tr>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/terraform/"><code class="notranslate">terraform/</code></a></td>
+<td>4 תרגילי Terraform, מ‑resource בודד עד מודולים ו‑backend מרוחק</td>
+</tr>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/ansible-demo/"><code class="notranslate">ansible-demo/</code></a></td>
+<td>מעבדת Ansible מלאה — inventory, playbooks, roles ותבניות</td>
+</tr>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/monitoring/"><code class="notranslate">monitoring/</code></a></td>
+<td>קובץ ה‑values של Prometheus לשיעור הניטור</td>
+</tr>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/troubleshooting/"><code class="notranslate">troubleshooting/</code></a></td>
+<td>6 תרגילי איתור ותיקון תקלות</td>
+</tr>
+<tr>
+<td><a rel="noopener" href="https://github.com/elyotam/devops-experts/blob/main/github/workflows/"><code class="notranslate">.github/workflows/</code></a></td>
+<td>הוורקפלו הפעיל של הריפו עצמו</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<hr>
+<h2 dir="auto">הערות</h2>
+<ul dir="auto">
+<li><strong>הריפו פרטי.</strong> חלק מהסקריפטים מפנים לקישורי <code class="notranslate">raw.githubusercontent.com</code> של מאגר הקורס המקורי — הם ממשיכים לעבוד כי המאגר ההוא ציבורי. אם תעתיק אותם לכתובות של הריפו הזה הם <strong>יישברו</strong>, כי אי אפשר למשוך קבצים ממאגר פרטי בלי אימות.</li>
+<li><strong>הסקריפטים הם רפרנס, לא אוטומציה.</strong> חלקם מכילים גם פלט צפוי, קטעי YAML והערות באמצע — הם נועדו לקריאה ולהעתקה שורה‑שורה, לא ל‑<code class="notranslate">bash 13.sh</code>.</li>
+<li><strong>מפתחות וסודות</strong> בקבצים הם placeholders (<code class="notranslate">XXXXX</code>, <code class="notranslate">SuperSecret123!</code>) — חומר לימוד בלבד, לא להשתמש בשום מקום אמיתי.</li>
+</ul>
+<p dir="auto"><sub>הלוגו שייך למכללת DevOps Experts ומופיע כאן לצורכי זיהוי בלבד. הריפו הוא ארכיון לימודי אישי.</sub></p>
+</div>
+      </div>
+    </article>
+
+    <section class="box next reveal">
+      <div>
+        <h2>Questions about this one?</h2>
+        <p>Happy to walk through any of it.</p>
+      </div>
+      <div class="acts">
+        <a class="btn key" href="contact.html">Get in touch</a>
+        <a class="btn" href="projects.html">Back to projects</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <nav>
+    <a href="./">Home</a><a href="about.html">About</a>
+    <a href="projects.html">My Projects</a><a href="contact.html">Contact</a>
+  </nav>
+  <div><span id="yr">2026</span> &copy; Created with love by
+    <a class="by" href="https://github.com/elyotam" rel="noopener">Elyotam Cohen</a></div>
+</footer>
+
+<script src="assets/site.js"></script>
+<script src="assets/cursor.js"></script>
+</body>
+</html>

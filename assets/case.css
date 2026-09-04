@@ -1,0 +1,54 @@
+/* The frame around a project README: the header that says what you are looking
+   at, the repository facts, and the closing call to action. The README itself
+   is styled by readme.css. Loaded after site.css, which owns the tokens. */
+
+.case{display:flex;flex-direction:column;gap:var(--gap);padding-bottom:var(--gap)}
+
+/* ------------------------------------------------------------------- hero */
+.hero{padding:46px 48px 42px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;z-index:0;opacity:.55;
+  background:radial-gradient(760px circle at 88% -10%,var(--tint,rgba(75,139,190,.22)),transparent 62%)}
+.crumbs{display:flex;align-items:center;gap:9px;font-size:12px;letter-spacing:.5px;
+  text-transform:uppercase;color:var(--faint);margin:0 0 20px}
+.crumbs a:hover{color:var(--fg)}
+.crumbs span{opacity:.5}
+.hero h1{margin:0;font-size:clamp(30px,4.8vw,52px);font-weight:400;line-height:1.08;
+  letter-spacing:-1.6px;max-width:19ch}
+.hero .lede{margin:20px 0 0;font-size:17px;line-height:1.78;color:#bcbcbc;max-width:64ch}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+.chip{font-size:11.5px;letter-spacing:.5px;text-transform:uppercase;color:#c9c9c9;
+  background:#1d1d1d;border:1px solid #2c2c2c;border-radius:999px;padding:7px 13px}
+.chip.hot{background:rgba(75,139,190,.14);border-color:rgba(75,139,190,.45);color:#a9cdea}
+
+.acts{display:flex;flex-wrap:wrap;gap:11px;margin:30px 0 0}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:13px;
+  border:1px solid #2f2f2f;background:#151515;font-size:14.5px;font-weight:500;transition:.2s}
+.btn:hover{border-color:#4a4a4a;background:#1c1c1c;transform:translateY(-2px)}
+.btn.key{background:#f0f0f0;border-color:#f0f0f0;color:#111}
+.btn.key:hover{background:#fff;border-color:#fff}
+.btn svg{width:16px;height:16px;fill:currentColor}
+
+/* --------------------------------------------------------------- fact row */
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap);margin:0}
+.fact{padding:22px 24px}
+.fact dt{font-size:11.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--faint);margin:0 0 7px}
+.fact dd{margin:0;font-size:15.5px;font-weight:500;line-height:1.45}
+.fact dd small{display:block;font-size:13px;font-weight:400;color:var(--dim);margin-top:3px}
+
+/* ------------------------------------------------------------------ end cta */
+.next{padding:40px 44px;display:flex;align-items:center;justify-content:space-between;
+  gap:26px;flex-wrap:wrap}
+.next h2{margin:0 0 6px;font-size:clamp(22px,3.2vw,30px);font-weight:400;letter-spacing:-.8px}
+.next p{margin:0;color:var(--dim);font-size:14.6px}
+.next .acts{margin:0}
+
+@media (max-width:980px){
+  .facts{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:680px){
+  .hero{padding:30px 24px 30px}
+  .next{padding:28px 24px}
+  .facts{grid-template-columns:1fr}
+  .fact{padding:18px 20px}
+}

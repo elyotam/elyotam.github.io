@@ -1,0 +1,129 @@
+/* GitHub's own renderer produces the markup; this gives it the site's dark
+   palette instead of GitHub's. Structure follows .markdown-body so the class
+   names GitHub emits keep working. */
+
+.readme{padding:0;overflow:hidden}
+
+/* the file bar across the top, the way a repo shows a README */
+.rm-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:14px 22px;background:#161616;border-bottom:1px solid var(--line);
+  position:relative;z-index:3}
+.rm-file{display:inline-flex;align-items:center;gap:9px;font-size:13.5px;
+  font-weight:500;color:#d6d6d6}
+.rm-file svg{width:15px;height:15px;fill:var(--faint)}
+.rm-src{font-size:13px;color:var(--dim);white-space:nowrap;transition:.2s}
+.rm-src:hover{color:var(--fg)}
+
+.markdown-body{
+  position:relative;z-index:2;padding:38px 46px 46px;
+  font-size:15.4px;line-height:1.72;color:#c2c2c2;word-wrap:break-word;
+}
+.markdown-body[dir="rtl"]{text-align:right}
+
+/* ----------------------------------------------------------------- spacing */
+.markdown-body > *:first-child{margin-top:0!important}
+.markdown-body > *:last-child{margin-bottom:0!important}
+.markdown-body p,.markdown-body ul,.markdown-body ol,
+.markdown-body blockquote,.markdown-body dl,.markdown-body table,
+.markdown-body pre,.markdown-body details{margin:0 0 16px}
+
+/* --------------------------------------------------------------- headings */
+.markdown-body h1,.markdown-body h2,.markdown-body h3,
+.markdown-body h4,.markdown-body h5,.markdown-body h6{
+  margin:30px 0 16px;font-weight:600;line-height:1.3;color:var(--fg);
+  letter-spacing:-.3px;scroll-margin-top:24px}
+.markdown-body h1{font-size:30px;font-weight:500;letter-spacing:-1px;
+  padding-bottom:12px;border-bottom:1px solid #262626}
+.markdown-body h2{font-size:22px;font-weight:500;letter-spacing:-.5px;
+  padding-bottom:10px;border-bottom:1px solid #232323;margin-top:38px}
+.markdown-body h3{font-size:17.5px}
+.markdown-body h4{font-size:15.6px}
+.markdown-body h5,.markdown-body h6{font-size:14px;color:var(--dim)}
+/* GitHub wraps every heading in an anchor; show it only on hover */
+.markdown-body .anchor{float:left;margin-left:-22px;padding-right:6px;opacity:0;
+  transition:opacity .2s}
+.markdown-body[dir="rtl"] .anchor{float:right;margin:0 -22px 0 0;padding:0 0 0 6px}
+.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,
+.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor{opacity:.5}
+.markdown-body .anchor::before{content:"#";color:var(--blue);font-weight:400}
+
+/* ------------------------------------------------------------------ links */
+.markdown-body a{color:#6aa6d8;text-decoration:none;
+  border-bottom:1px solid rgba(106,166,216,.28);transition:.15s}
+.markdown-body a:hover{color:#9cc8ea;border-bottom-color:rgba(156,200,234,.6)}
+.markdown-body a.anchor{border:0}
+.markdown-body a:has(> img),.markdown-body a:has(> picture){border:0}
+
+/* ------------------------------------------------------------------ lists */
+.markdown-body ul,.markdown-body ol{padding-left:26px}
+.markdown-body[dir="rtl"] ul,.markdown-body[dir="rtl"] ol{padding:0 26px 0 0}
+.markdown-body li{margin:.35em 0}
+.markdown-body li::marker{color:#6d6d6d}
+.markdown-body li > ul,.markdown-body li > ol{margin:.35em 0}
+.markdown-body .task-list-item{list-style:none}
+.markdown-body .task-list-item input{margin:0 8px 0 -22px;vertical-align:middle;
+  accent-color:var(--blue)}
+
+/* ------------------------------------------------------------------- code */
+.markdown-body code,.markdown-body tt{
+  font:13.2px/1.6 ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  background:#1b2129;border:1px solid #262f39;border-radius:6px;
+  padding:.14em .42em;color:#cbd9e6;white-space:break-spaces}
+.markdown-body pre{background:#131820;border:1px solid #202832;border-radius:14px;
+  padding:18px 20px;overflow-x:auto;direction:ltr;text-align:left}
+.markdown-body pre code{background:none;border:0;padding:0;font-size:13.2px;
+  line-height:1.75;color:#c8d6e4;white-space:pre}
+.markdown-body pre + p{margin-top:16px}
+
+/* ----------------------------------------------------------------- tables */
+.markdown-body table{border-collapse:collapse;display:block;overflow-x:auto;
+  width:max-content;max-width:100%;font-size:14.3px}
+.markdown-body th,.markdown-body td{
+  border:1px solid #262626;padding:10px 15px;text-align:inherit;vertical-align:top}
+.markdown-body th{background:#191919;font-weight:600;color:var(--fg);white-space:nowrap}
+.markdown-body tbody tr:nth-child(even) td{background:#151515}
+
+/* ------------------------------------------------------------- quote/rule */
+.markdown-body blockquote{border-left:3px solid #2f3d4a;background:#151a20;
+  border-radius:0 12px 12px 0;padding:12px 20px;color:#a5a5a5}
+.markdown-body[dir="rtl"] blockquote{border-left:0;border-right:3px solid #2f3d4a;
+  border-radius:12px 0 0 12px}
+.markdown-body blockquote > *:last-child{margin-bottom:0}
+.markdown-body hr{border:0;border-top:1px solid #242424;margin:30px 0}
+
+/* GitHub alert callouts (> [!NOTE] and friends) */
+.markdown-body .markdown-alert{border-left:3px solid #2f3d4a;background:#151a20;
+  border-radius:0 12px 12px 0;padding:12px 20px;margin:0 0 16px}
+.markdown-body .markdown-alert-title{font-weight:600;display:flex;align-items:center;
+  gap:8px;margin-bottom:6px}
+.markdown-body .markdown-alert-title svg{width:15px;height:15px;fill:currentColor}
+.markdown-body .markdown-alert-warning{border-color:#6d5a2a;background:#1b1710}
+.markdown-body .markdown-alert-caution{border-color:#6b3030;background:#1b1414}
+.markdown-body .markdown-alert-tip{border-color:#2c5c3f;background:#131a16}
+
+/* ----------------------------------------------------------------- images */
+.markdown-body img{max-width:100%;height:auto;border-radius:12px;
+  background:#171717;display:inline-block;vertical-align:middle}
+/* badge rows (shields.io and friends) should stay inline and un-rounded */
+.markdown-body img[src*="shields.io"],.markdown-body img[src*="badge"],
+.markdown-body img[height]{border-radius:4px;background:none}
+.markdown-body p > img:only-child{display:block;margin:6px auto}
+
+/* --------------------------------------------------------------- details */
+.markdown-body details{background:#161616;border:1px solid #242424;
+  border-radius:14px;padding:14px 18px}
+.markdown-body summary{cursor:pointer;font-weight:500;color:var(--fg)}
+.markdown-body summary::marker{color:var(--blue)}
+
+.markdown-body kbd{background:#1d1d1d;border:1px solid #333;border-bottom-width:2px;
+  border-radius:6px;padding:2px 6px;font-size:12.5px}
+
+@media (max-width:680px){
+  .rm-bar{padding:12px 16px}
+  .rm-src{font-size:12px}
+  .markdown-body{padding:24px 18px 30px;font-size:14.8px}
+  .markdown-body h1{font-size:25px}
+  .markdown-body h2{font-size:19.5px}
+  .markdown-body .anchor{display:none}
+  .markdown-body pre{padding:14px;border-radius:11px}
+}
