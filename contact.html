@@ -80,11 +80,13 @@
     <aside class="rail">
       <h3>Say hi &#128075;</h3>
       <p>I read every message. A site, an app, an automation you keep doing by hand,
-        or just a hello &mdash; drop a line.</p>
+        or just a hello &mdash; it goes straight to my WhatsApp.</p>
       <h3>Social info</h3>
       <div class="orbs">
         <a class="orb" href="https://github.com/elyotam" rel="noopener" aria-label="GitHub">
           <img src="assets/icons/github.svg" alt=""></a>
+        <a class="orb" href="https://wa.me/972522057074" rel="noopener" aria-label="WhatsApp">
+          <img src="assets/icons/whatsapp.svg" alt=""></a>
         <a class="orb" href="projects.html" aria-label="My projects"><b>&#9679;&#9679;</b></a>
       </div>
     </aside>
@@ -94,10 +96,9 @@
         <svg viewBox="0 0 40 52"><path d="M20 0c.7 14 3 20 12 24-9 4-11.3 10-12 24-.7-14-3-20-12-24 9-4 11.3-10 12-24z"/></svg>
       </div>
       <h1>Let&rsquo;s get in <span class="accent">touch.</span></h1>
-      <p class="notice" id="notice" hidden></p>
       <form class="f" id="contactForm" novalidate>
         <input type="text" name="name" placeholder="Name *" required autocomplete="name">
-        <input type="email" name="email" placeholder="Email *" required autocomplete="email">
+        <input type="email" name="email" placeholder="Email (optional)" autocomplete="email">
         <input type="text" name="subject" placeholder="Your Subject *" required>
         <textarea name="message" placeholder="Your Message *" required></textarea>
         <input type="text" name="company" tabindex="-1" autocomplete="off"
@@ -121,94 +122,6 @@
 
 <script src="assets/site.js"></script>
 <script src="assets/cursor.js"></script>
-<script>
-/* ---------------------------------------------------------------------------
-   Web3Forms delivers the message to your inbox without any server of our own,
-   which matters because GitHub Pages only serves static files.
-
-   To switch it on: go to https://web3forms.com, type your email, and they send
-   you an access key. Paste it below. No account, no password, free.
-
-   While the key is empty the form does not pretend to work - it says so and
-   points at GitHub instead.
---------------------------------------------------------------------------- */
-var ACCESS_KEY   = '';
-var FALLBACK_URL = 'https://github.com/elyotam';
-
-var form = document.getElementById('contactForm');
-var hint = document.getElementById('hint');
-var btn  = form.querySelector('button');
-
-function say(msg, tone) {
-  hint.innerHTML = msg;
-  hint.style.color = tone === 'ok' ? '#5fce7a' : tone === 'bad' ? '#e8736b' : '';
-}
-
-if (!ACCESS_KEY) {
-  // Say it before anyone types, not after they press send.
-  var notice = document.getElementById('notice');
-  notice.hidden = false;
-  notice.innerHTML = 'This form is not connected to an inbox yet, so it cannot ' +
-    'deliver a message. Reach me on <a href="' + FALLBACK_URL +
-    '" rel="noopener">GitHub</a> in the meantime.';
-  form.querySelectorAll('input,textarea').forEach(function (el) { el.disabled = true; });
-  btn.textContent = 'Message me on GitHub';
-  say('');
-} else {
-  say('Straight to my inbox. I read every message.');
-}
-
-form.addEventListener('submit', function (e) {
-  e.preventDefault();
-
-  var f = new FormData(form);
-  if ((f.get('company') || '').trim()) return;          // honeypot: a bot filled it
-
-  var name = (f.get('name') || '').trim();
-  var mail = (f.get('email') || '').trim();
-  var subj = (f.get('subject') || '').trim();
-  var body = (f.get('message') || '').trim();
-
-  if (!name || !mail || !subj || !body) {
-    say('Please fill in every field before sending.', 'bad');
-    return;
-  }
-  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)) {
-    say('That email address does not look right.', 'bad');
-    return;
-  }
-  if (!ACCESS_KEY) { location.href = FALLBACK_URL; return; }
-
-  btn.disabled = true;
-  var label = btn.textContent;
-  btn.textContent = 'Sending...';
-  say('');
-
-  fetch('https://api.web3forms.com/submit', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    body: JSON.stringify({
-      access_key: ACCESS_KEY,
-      name: name, email: mail, subject: subj, message: body,
-      from_name: 'elyotam.github.io'
-    })
-  })
-    .then(function (r) { return r.json(); })
-    .then(function (d) {
-      if (d && d.success) {
-        form.reset();
-        say('Thanks &mdash; your message is with me. I will reply to ' + mail + '.', 'ok');
-      } else {
-        say('That did not send. Please try ' +
-            '<a href="' + FALLBACK_URL + '" rel="noopener">GitHub</a> instead.', 'bad');
-      }
-    })
-    .catch(function () {
-      say('No connection. Please try ' +
-          '<a href="' + FALLBACK_URL + '" rel="noopener">GitHub</a> instead.', 'bad');
-    })
-    .finally(function () { btn.disabled = false; btn.textContent = label; });
-});
-</script>
+<script src="assets/contact.js"></script>
 </body>
 </html>
