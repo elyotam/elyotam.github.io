@@ -81,8 +81,7 @@
       <div class="orbs">
         <a class="orb" href="https://github.com/elyotam" rel="noopener" aria-label="GitHub">
           <img src="assets/icons/github.svg" alt=""></a>
-        <a class="orb" href="https://elyotam.github.io/code92-website/" rel="noopener"><b>C92</b></a>
-        <a class="orb" href="https://elyotam.github.io/elyotam-website/" rel="noopener"><b>EL</b></a>
+        <a class="orb" href="projects.html" aria-label="My projects"><b>&#9679;&#9679;</b></a>
       </div>
     </aside>
 
@@ -126,10 +125,10 @@
    you an access key. Paste it below. No account, no password, free.
 
    While the key is empty the form does not pretend to work - it says so and
-   points at CODE92 instead.
+   points at GitHub instead.
 --------------------------------------------------------------------------- */
 var ACCESS_KEY   = '';
-var FALLBACK_URL = 'https://elyotam.github.io/code92-website/';
+var FALLBACK_URL = 'https://github.com/elyotam';
 
 var form = document.getElementById('contactForm');
 var hint = document.getElementById('hint');
@@ -142,7 +141,7 @@ function say(msg, tone) {
 
 if (!ACCESS_KEY) {
   say('The form is not connected yet &mdash; use ' +
-      '<a href="' + FALLBACK_URL + '" rel="noopener">CODE92</a> to reach me.');
+      '<a href="' + FALLBACK_URL + '" rel="noopener">GitHub</a> to reach me.');
 } else {
   say('Straight to my inbox. I read every message.');
 }
@@ -189,12 +188,12 @@ form.addEventListener('submit', function (e) {
         say('Thanks &mdash; your message is with me. I will reply to ' + mail + '.', 'ok');
       } else {
         say('That did not send. Please try ' +
-            '<a href="' + FALLBACK_URL + '" rel="noopener">CODE92</a> instead.', 'bad');
+            '<a href="' + FALLBACK_URL + '" rel="noopener">GitHub</a> instead.', 'bad');
       }
     })
     .catch(function () {
       say('No connection. Please try ' +
-          '<a href="' + FALLBACK_URL + '" rel="noopener">CODE92</a> instead.', 'bad');
+          '<a href="' + FALLBACK_URL + '" rel="noopener">GitHub</a> instead.', 'bad');
     })
     .finally(function () { btn.disabled = false; btn.textContent = label; });
 });
