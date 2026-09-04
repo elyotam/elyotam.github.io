@@ -83,6 +83,29 @@
 .grad{background:linear-gradient(90deg,#f472b6,#a78bfa 45%,#60a5fa);
   -webkit-background-clip:text;background-clip:text;color:transparent}
 
+
+/* hover states lifted from the reference: the cards recolour, they do not move */
+.id:hover{background:linear-gradient(109.6deg,#242d39 11.2%,#10253c 51.2%,#000 98.6%) padding-box,
+  linear-gradient(120deg,rgba(255,255,255,.13),rgba(255,255,255,.02)) border-box}
+.cta:hover{background:linear-gradient(122.3deg,#6f4785 14.6%,#e881a6 29.6%,#ededb7 42.1%,
+  #f4a6d7 56.7%,#9adbe8 68.7%,#eee29f 84.8%) padding-box,
+  linear-gradient(120deg,rgba(255,255,255,.2),rgba(255,255,255,.05)) border-box}
+.cta:hover h2{color:#1b1b1b}
+.cta:hover .grad{background:radial-gradient(523px at 7.1% 19.3%,#930fff 2%,#0531ff 100.7%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.cta:hover .spark svg{fill:#1b1b1b}
+.cta:hover .plus{border-color:#1b1b1b;color:#1b1b1b}
+/* the blob warms to red slowly, the way his does */
+.blob{transition:background 4s ease}
+.blob:hover{background:radial-gradient(circle at 50.4% 50.5%,#ff5858 0%,#870202 90%)}
+/* the social orbs flip to white */
+.orb:hover{background:#fff;border-color:#fff;transform:none}
+.orb:hover img{filter:invert(1)}
+.orb:hover b{color:#111}
+/* nav items lift, which is the one place he does move something */
+.top nav a{transition:.2s;border-radius:9px;padding:4px 2px}
+.top nav a:hover{transform:translateY(-2px)}
+
 @media (max-width:980px){
   .id,.cta,.stats,.ticker{grid-column:span 12}
   .id{grid-row:auto}
