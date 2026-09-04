@@ -13,20 +13,55 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-.head{padding:6px 0 30px}
-.head h1{margin:0 0 10px;font-size:clamp(32px,5vw,52px);font-weight:400;letter-spacing:-1.2px}
-.head p{margin:0;color:var(--dim);max-width:60ch}
 .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);padding-bottom:var(--gap)}
-.bio{grid-column:span 7;padding:34px}
-.bio h2{margin:0 0 14px;font-size:22px;font-weight:500}
-.bio p{margin:0 0 14px;color:#c2c2c2;font-size:15.4px;line-height:1.72}
-.bio p:last-child{margin-bottom:0}
-.side{grid-column:span 5;display:flex;flex-direction:column;gap:var(--gap)}
-.panel{padding:28px}
-.panel h3{margin:0 0 16px;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--faint);font-weight:600}
-.list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px}
-.list li{display:flex;gap:11px;align-items:flex-start;font-size:14.6px;color:#c8c8c8}
-.list em{font-style:normal;color:var(--yellow);line-height:1.5}
+
+/* row 1: portrait beside the summary */
+.shotcard{grid-column:span 3;padding:16px}
+.shotcard img{width:100%;aspect-ratio:1/1.06;object-fit:cover;object-position:center 20%;border-radius:18px}
+.summary{grid-column:span 9;display:flex;flex-direction:column;gap:18px;background:none;border:0;padding:0}
+.summary:hover{transform:none}
+.summary::after{display:none}
+.bigtitle{margin:0;text-align:center;font-size:clamp(30px,5vw,50px);font-weight:800;letter-spacing:-1px;
+  display:flex;align-items:center;justify-content:center;gap:18px}
+.bigtitle span{background:linear-gradient(92deg,#e8e8e8,#a9a9a9 45%,#f0c8dd);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.bigtitle i{font-style:normal;color:#cfcfcf;font-size:.55em;opacity:.8}
+.summary .card{flex:1;padding:66px 32px 30px}
+.summary h2{margin:0 0 10px;font-size:26px;font-weight:500;
+  background:linear-gradient(92deg,#f472b6,#a78bfa 48%,#60a5fa);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.summary p{margin:0;color:#bdbdbd;font-size:15px;line-height:1.75;max-width:66ch}
+.spark{position:absolute;left:30px;top:20px;width:34px;height:42px;opacity:.85}
+.spark svg{width:100%;height:100%;fill:#e9e9e9}
+
+/* row 2: experience and education */
+.cv{grid-column:span 6;padding:30px 32px}
+.cv h3{margin:0 0 22px;font-size:13px;letter-spacing:1.1px;text-transform:uppercase;color:#cfcfcf;font-weight:500}
+.entry{margin-bottom:22px}
+.entry:last-child{margin-bottom:0}
+.entry .when{font-size:12.5px;color:var(--faint);margin:0 0 5px}
+.entry .what{font-size:16px;color:var(--fg);margin:0 0 3px;font-weight:400}
+.entry .where{font-size:13.6px;color:var(--blue);margin:0}
+
+/* row 3 */
+.social{grid-column:span 3;min-height:200px;display:flex;flex-direction:column;justify-content:flex-end}
+.orbwrap{position:absolute;left:24px;right:24px;top:24px;display:flex;gap:14px}
+.orb{position:relative;z-index:10;width:58px;height:58px;border-radius:50%;background:#141414;
+  border:1px solid #2e2e2e;display:grid;place-items:center;transition:.2s}
+.orb:hover{background:#fff;border-color:#fff}
+.orb:hover img{filter:invert(1)}
+.orb:hover b{color:#111}
+.orb img{width:25px;height:25px}
+.orb b{font-size:13px;font-weight:600;color:#bdbdbd}
+.cta{grid-column:span 5;min-height:200px;display:flex;flex-direction:column;justify-content:center;padding:32px}
+.cta h2{margin:30px 0 0;font-size:clamp(26px,3.6vw,38px);font-weight:400;line-height:1.16;letter-spacing:-.8px}
+.grad{background:linear-gradient(90deg,#f472b6,#a78bfa 45%,#60a5fa);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.stacklink{grid-column:span 4;min-height:200px;display:flex;flex-direction:column;justify-content:flex-end}
+.stacklink .row{position:absolute;left:26px;right:26px;top:30px;display:flex;flex-wrap:wrap;gap:8px}
+.stacklink .row img{width:34px;height:34px;border-radius:9px}
+
+/* the stack itself */
 .stackwrap{grid-column:span 12;padding:32px}
 .stackwrap h3{margin:0 0 6px;font-size:22px;font-weight:500}
 .stackwrap p{margin:0 0 22px;color:var(--dim);font-size:14.6px}
@@ -36,7 +71,13 @@
 .tiles a:hover{border-color:var(--line);background:var(--inner)}
 .tiles img{width:46px;height:46px;border-radius:11px}
 .tiles span{font-size:11.5px;color:var(--dim);text-align:center;line-height:1.3}
-@media (max-width:900px){ .bio,.side{grid-column:span 12} }
+
+@media (max-width:980px){
+  .shotcard{grid-column:span 4}.summary{grid-column:span 8}
+  .cv{grid-column:span 12}
+  .social,.stacklink{grid-column:span 6}.cta{grid-column:span 12}
+}
+@media (max-width:680px){ .shotcard,.summary,.social,.cta,.stacklink{grid-column:span 12} }
 </style>
 </head>
 <body>
@@ -46,10 +87,8 @@
     <a class="ghost" href="./">HELLO WORLD!</a>
     <button class="burger" id="burger" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav id="nav">
-      <a href="./">Home</a>
-      <a class="on" href="about.html">About</a>
-      <a href="projects.html">My Projects</a>
-      <a href="contact.html">Contact</a>
+      <a href="./">Home</a><a class="on" href="about.html">About</a>
+      <a href="projects.html">My Projects</a><a href="contact.html">Contact</a>
     </nav>
     <a class="pill" href="contact.html">
       <svg viewBox="0 0 24 24"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002M7 8.48H3V21h4zm6.32 0H9.34V21h3.92v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91z"/></svg>
@@ -57,51 +96,85 @@
     </a>
   </div>
 
-  <header class="head">
-    <h1>About me</h1>
-    <p>I build the thing and I run the thing &mdash; front end, back end, and the
-      infrastructure underneath it.</p>
-  </header>
-
   <main class="grid">
 
-    <article class="box bio reveal">
-      <h2>Elyotam Cohen</h2>
-      <p>I build websites, web apps and online stores, and I automate the parts of a
-        business that should not need a person sitting in front of them. Most of that
-        work goes out through <a href="https://elyotam.github.io/code92-website/" rel="noopener" style="color:var(--yellow)">CODE92</a>,
-        where the brief is usually the same: something that loads fast, reads well in
-        Hebrew, and does not fall over.</p>
-      <p>The other half of what I do is infrastructure. Containers, orchestration and
-        infrastructure as code &mdash; Docker, Kubernetes, Helm, Terraform, Ansible and
-        Argo CD on AWS, with Prometheus and Grafana watching it. I like the part of the
-        job where a deploy stops being a ceremony and becomes a push.</p>
-      <p>Lately most of my time goes into AI automation: wiring models into real
-        workflows so that content, data handling and the glue between tools happens on
-        its own. The AI coding tools in the stack below are not decoration &mdash;
-        they are how the work actually gets done now.</p>
-    </article>
+    <section class="box shotcard reveal">
+      <img src="assets/portrait.jpg" srcset="assets/portrait.jpg 1x, assets/portrait@2x.jpg 2x"
+           alt="Elyotam Cohen">
+    </section>
 
-    <div class="side">
-      <section class="box panel reveal">
-        <h3>What I do</h3>
-        <ul class="list">
-          <li><em>&#9670;</em>Websites and online stores, built to load fast</li>
-          <li><em>&#9670;</em>Web apps and internal tools</li>
-          <li><em>&#9670;</em>AI automation and AI-assisted workflows</li>
-          <li><em>&#9670;</em>Cloud infrastructure, CI/CD and monitoring</li>
-        </ul>
-      </section>
-      <section class="box panel reveal">
-        <h3>How I work</h3>
-        <ul class="list">
-          <li><em>&#9670;</em>Hand-written code, no page builders</li>
-          <li><em>&#9670;</em>Right-to-left treated as a first-class layout, not a patch</li>
-          <li><em>&#9670;</em>Everything in version control, deploys automated</li>
-          <li><em>&#9670;</em>Measured, not guessed &mdash; then measured again</li>
-        </ul>
-      </section>
+    <div class="summary">
+      <h1 class="bigtitle"><i>&#10038;</i><span>SELF-SUMMARY</span><i>&#10038;</i></h1>
+      <div class="box card reveal">
+        <div class="spark" aria-hidden="true">
+          <svg viewBox="0 0 40 52"><path d="M20 0c.7 14 3 20 12 24-9 4-11.3 10-12 24-.7-14-3-20-12-24 9-4 11.3-10 12-24z"/></svg>
+        </div>
+        <h2>Elyotam Cohen</h2>
+        <p>I build websites, web apps and online stores, and I automate the parts of a
+          business that should not need a person in front of them. Most of that work
+          ships through CODE92. The other half of what I do is infrastructure &mdash;
+          containers, orchestration and infrastructure as code on AWS &mdash; so the
+          thing I built is also the thing I can keep running. Lately most of my time
+          goes into AI automation.</p>
+      </div>
     </div>
+
+    <section class="box cv reveal">
+      <h3>Experience</h3>
+      <div class="entry">
+        <p class="when">Present</p>
+        <p class="what">Founder &amp; Developer</p>
+        <p class="where">CODE92 &mdash; websites, apps and AI automation</p>
+      </div>
+      <div class="entry">
+        <p class="when">Present</p>
+        <p class="what">DevOps &amp; Cloud Infrastructure</p>
+        <p class="where">AWS, Kubernetes, Terraform, CI/CD</p>
+      </div>
+    </section>
+
+    <section class="box cv reveal">
+      <h3>Education</h3>
+      <div class="entry">
+        <p class="when">11/2025 &ndash; 08/2026</p>
+        <p class="what">DevOps Engineering</p>
+        <p class="where">DevOps Experts &mdash; cohort 1125</p>
+      </div>
+      <div class="entry">
+        <p class="when">Ongoing</p>
+        <p class="what">Self-taught web &amp; AI engineering</p>
+        <p class="where">Shipping is the syllabus</p>
+      </div>
+    </section>
+
+    <section class="box social reveal">
+      <a class="overlay" href="contact.html" aria-label="Contact"></a>
+      <div class="orbwrap">
+        <a class="orb" href="https://github.com/elyotam" rel="noopener" aria-label="GitHub">
+          <img src="assets/icons/github.svg" alt=""></a>
+        <a class="orb" href="https://elyotam.github.io/code92-website/" rel="noopener"><b>C92</b></a>
+        <a class="orb" href="https://elyotam.github.io/elyotam-website/" rel="noopener"><b>EL</b></a>
+      </div>
+      <p class="kicker">Let&rsquo;s connect</p>
+      <h2 class="title">My Social Profiles</h2>
+      <span class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+    </section>
+
+    <section class="box cta reveal">
+      <a class="overlay" href="contact.html" aria-label="Get in touch"></a>
+      <div class="spark" aria-hidden="true" style="left:32px;top:24px">
+        <svg viewBox="0 0 40 52"><path d="M20 0c.7 14 3 20 12 24-9 4-11.3 10-12 24-.7-14-3-20-12-24 9-4 11.3-10 12-24z"/></svg>
+      </div>
+      <h2>Let&rsquo;s<br>work <span class="grad">together.</span></h2>
+      <span class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+    </section>
+
+    <a class="box stacklink reveal" href="#stack">
+      <div class="row" id="peek"></div>
+      <p class="kicker">Everything I use</p>
+      <h2 class="title">The Stack</h2>
+      <span class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+    </a>
 
     <section class="box stackwrap reveal" id="stack">
       <h3>The stack</h3>
@@ -139,6 +212,9 @@ var STACK = [
 document.getElementById('tiles').innerHTML = STACK.map(function (t) {
   return '<a title="' + t[1] + '"><img src="assets/icons/' + t[0] +
          '.svg" alt="" loading="lazy"><span>' + t[1] + '</span></a>';
+}).join('');
+document.getElementById('peek').innerHTML = STACK.slice(0, 12).map(function (t) {
+  return '<img src="assets/icons/' + t[0] + '.svg" alt="" title="' + t[1] + '" loading="lazy">';
 }).join('');
 </script>
 </body>
