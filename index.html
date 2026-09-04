@@ -66,12 +66,15 @@ a{color:inherit;text-decoration:none}
 .box:hover::after{opacity:1}
 .kicker{font-size:12px;letter-spacing:.4px;color:var(--faint);margin:0 0 3px;text-transform:uppercase}
 .title{margin:0;font-size:21px;font-weight:400;letter-spacing:-.2px;color:var(--fg)}
+.overlay{position:absolute;inset:0;z-index:9;border-radius:inherit;opacity:0}
 .plus{
-  position:absolute;right:22px;bottom:22px;width:40px;height:40px;border-radius:50%;
-  border:1px solid #3a3a3a;display:grid;place-items:center;color:#8d8d8d;transition:.25s;
+  position:absolute;right:26px;bottom:26px;width:40px;height:40px;border-radius:50%;
+  border:1px solid #3a3a3a;display:grid;place-items:center;color:#8d8d8d;
+  opacity:.28;transition:opacity .3s,border-color .25s,color .25s,transform .25s;
 }
+.plus{z-index:10}
 .plus svg{width:17px;height:17px;stroke:currentColor;stroke-width:1.6;fill:none}
-.box:hover .plus{border-color:#666;color:#e8e8e8;transform:rotate(90deg)}
+.box:hover .plus{opacity:1;border-color:#666;color:#e8e8e8;transform:rotate(90deg)}
 
 /* row 1 ------------------------------------------------------------------ */
 .id{grid-column:span 6;grid-row:span 2;display:flex;gap:30px;align-items:center;padding:34px}
@@ -118,7 +121,7 @@ a{color:inherit;text-decoration:none}
 .social{grid-column:span 4;min-height:270px;display:flex;flex-direction:column;justify-content:flex-end}
 .orbwrap{position:absolute;left:22px;right:22px;top:22px;background:var(--inner);border:1px solid var(--line);
   border-radius:var(--ri);padding:22px;display:flex;gap:16px;justify-content:center}
-.orb{width:78px;height:78px;border-radius:50%;background:#141414;border:1px solid #2e2e2e;
+.orb{position:relative;z-index:10;width:78px;height:78px;border-radius:50%;background:#141414;border:1px solid #2e2e2e;
   display:grid;place-items:center;transition:.2s}
 .orb:hover{border-color:#606060;transform:translateY(-3px)}
 .orb img{width:34px;height:34px}
@@ -194,6 +197,7 @@ footer .by{color:var(--blue)}
   <main class="bento" id="top">
 
     <section class="box id reveal">
+      <a class="overlay" href="#about" aria-label="More about me"></a>
       <div class="mark"><b>E</b></div>
       <div>
         <h1>Elyotam<br>Cohen</h1>
@@ -206,6 +210,7 @@ footer .by{color:var(--blue)}
     </section>
 
     <section class="box ticker reveal" aria-label="Tools">
+      <a class="overlay" href="#stackfull" aria-label="The full stack"></a>
       <div class="track" id="track"></div>
     </section>
 
@@ -233,9 +238,12 @@ footer .by{color:var(--blue)}
       <span class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
     </a>
 
-    <section class="box blob reveal" aria-hidden="true"></section>
+    <section class="box blob reveal">
+      <a class="overlay" href="https://elyotam.github.io/ahuvit-website/" rel="noopener" aria-label="Ahuvit Mor site"></a>
+    </section>
 
     <section class="box social reveal" id="contact">
+      <a class="overlay" href="https://github.com/elyotam" rel="noopener" aria-label="GitHub profile"></a>
       <div class="orbwrap">
         <a class="orb" href="https://github.com/elyotam" rel="noopener" aria-label="GitHub">
           <img src="assets/icons/github.svg" alt=""></a>
@@ -250,12 +258,14 @@ footer .by{color:var(--blue)}
     </section>
 
     <section class="box stats reveal">
+      <a class="overlay" href="https://github.com/elyotam" rel="noopener" aria-label="GitHub profile"></a>
       <div class="cell"><b id="sRepos">5</b><small>Public<br>repositories</small></div>
       <div class="cell"><span class="heart">&#10084;</span><small>Made<br>with love</small></div>
       <div class="cell"><b>34</b><small>Tools<br>in the stack</small></div>
     </section>
 
     <section class="box cta reveal">
+      <a class="overlay" href="https://github.com/elyotam" rel="noopener" aria-label="Get in touch"></a>
       <div class="spark" aria-hidden="true">
         <svg viewBox="0 0 40 52"><path d="M20 0c.7 14 3 20 12 24-9 4-11.3 10-12 24-.7-14-3-20-12-24 9-4 11.3-10 12-24z"/></svg>
       </div>
