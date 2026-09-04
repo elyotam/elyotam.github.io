@@ -29,10 +29,6 @@ PROJECTS = [
         "title": "OpenVPN Access Server on AWS",
         "tagline": "A reusable, clean-room Terraform module that keeps every secret out "
                    "of Terraform state.",
-        "chips": ["Terraform module", "HCL", "AWS", "EC2", "Secrets hygiene"],
-        "tint": "rgba(124,92,224,.20)",
-        "extra": [("מדריך בעברית",
-                   "https://github.com/elyotam/aws-openvpn/blob/main/README.he.md")],
         "rtl": False,
     },
     {
@@ -43,10 +39,6 @@ PROJECTS = [
         "title": "QuakeWatch",
         "tagline": "Live USGS earthquake data in Flask, shipped the whole way down: "
                    "Docker, Helm, Kubernetes and Argo CD.",
-        "chips": ["Flask + Kubernetes", "Python", "Docker", "Helm", "Argo CD"],
-        "tint": "rgba(50,108,229,.22)",
-        "extra": [("Docker Hub image",
-                   "https://hub.docker.com/r/cohenelyotam/quakewatch")],
         "rtl": False,
     },
     {
@@ -57,9 +49,6 @@ PROJECTS = [
         "title": "DevOps course archive",
         "tagline": "Fourteen lessons from the DevOps Experts programme — one runnable "
                    "script per lesson, plus six deliberately broken builds.",
-        "chips": ["14 lessons", "Bash", "Kubernetes", "Terraform", "Ansible"],
-        "tint": "rgba(255,212,59,.14)",
-        "extra": [("The final project →", "quakewatch.html")],
         "rtl": True,
     },
 ]
@@ -72,11 +61,6 @@ def gh(*args, stdin=None):
     if p.returncode != 0:
         raise RuntimeError("gh %s failed: %s" % (" ".join(args), p.stderr.strip()))
     return p.stdout
-
-
-def fetch_markdown(repo, branch, path):
-    url = "https://raw.githubusercontent.com/%s/%s/%s" % (repo, branch, path)
-    return gh("api", "--method", "GET", url) if False else _raw(url)
 
 
 def _raw(url):
@@ -148,9 +132,7 @@ PAGE = '''<!doctype html>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
-<link rel="stylesheet" href="assets/case.css">
 <link rel="stylesheet" href="assets/readme.css">
-<style>.hero{{--tint:{tint}}}</style>
 </head>
 <body>
 
@@ -168,48 +150,25 @@ PAGE = '''<!doctype html>
     </a>
   </div>
 
-  <main class="case">
+  <main class="doc">
 
-    <header class="box hero reveal">
-      <p class="crumbs"><a href="projects.html">My Projects</a><span>/</span>{crumb}</p>
-      <h1>{title}</h1>
-      <p class="lede">{tagline}</p>
-      <div class="chips">{chips}</div>
-      <div class="acts">
-        <a class="btn key" href="https://github.com/{repo}" rel="noopener">
-          <svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
-          View on GitHub
-        </a>
-        {extra}
-        <a class="btn" href="projects.html">All projects</a>
-      </div>
-    </header>
-
-    <dl class="facts reveal">{facts}</dl>
+    <a class="back" href="projects.html">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.78 12.78a.75.75 0 0 1-1.06 0L4.47 8.53a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 1 1 1.06 1.06L6.06 8l3.72 3.72a.75.75 0 0 1 0 1.06Z"/></svg>
+      All projects
+    </a>
 
     <article class="box readme reveal">
       <div class="rm-bar">
         <span class="rm-file">
           <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"/></svg>
-          {readme_name}
+          {repo_name} / {readme_name}
         </span>
-        <a class="rm-src" href="https://github.com/{repo}/blob/{branch}/{readme_name}" rel="noopener">Read it on GitHub &nearr;</a>
+        <a class="rm-src" href="https://github.com/{repo}" rel="noopener">View on GitHub &nearr;</a>
       </div>
       <div class="markdown-body"{dir}>
 {body}
       </div>
     </article>
-
-    <section class="box next reveal">
-      <div>
-        <h2>Questions about this one?</h2>
-        <p>Happy to walk through any of it.</p>
-      </div>
-      <div class="acts">
-        <a class="btn key" href="contact.html">Get in touch</a>
-        <a class="btn" href="projects.html">Back to projects</a>
-      </div>
-    </section>
 
   </main>
 </div>
@@ -242,33 +201,9 @@ def build(p):
     # indenting the block silently pushes every code sample and ASCII diagram
     html = harden(absolutise(to_html(md, repo), repo, branch))
 
-    meta = json.loads(gh("api", "repos/" + repo,
-                         "--jq", '{lang:.language,size:.size,updated:.pushed_at,stars:.stargazers_count}'))
-    files = gh("api", "repos/%s/git/trees/%s?recursive=1" % (repo, branch),
-               "--jq", '[.tree[] | select(.type=="blob")] | length').strip()
-    updated = meta["updated"][:10]
-
-    facts = "".join(
-        '<div class="box fact"><dt>%s</dt><dd>%s</dd></div>' % (dt, dd)
-        for dt, dd in [
-            ("Language", meta["lang"] or "Mixed"),
-            ("Files", "%s tracked" % files),
-            ("Last push", updated),
-            ("Licence", "Public repository"),
-        ])
-
-    extra = "".join('<a class="btn" href="%s"%s>%s</a>'
-                    % (u, ' rel="noopener"' if u.startswith("http") else "", esc(t))
-                    for t, u in p["extra"])
-
     page = PAGE.format(
         slug=p["slug"], title=esc(p["title"]), desc=esc(p["tagline"]),
-        tagline=esc(p["tagline"]), tint=p["tint"], repo=repo, branch=branch,
-        crumb="Infrastructure", readme_name=p["readme"],
-        chips="".join('<span class="chip%s">%s</span>'
-                      % (" hot" if i == 0 else "", esc(c))
-                      for i, c in enumerate(p["chips"])),
-        acts="", extra=extra, facts=facts,
+        repo=repo, repo_name=repo.split("/")[1], readme_name=p["readme"],
         dir=' dir="rtl" lang="he"' if p["rtl"] else "",
         body=html)
 

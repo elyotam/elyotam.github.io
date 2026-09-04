@@ -43,6 +43,9 @@
 
 .works{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);padding-bottom:10px}
 .work{grid-column:span 6;padding:16px;display:flex;flex-direction:column}
+/* .work sets display, which outranks the browser's [hidden] rule, so the
+   filter had no effect at all until this line existed */
+.work[hidden]{display:none}
 .work.lg{grid-column:span 12}
 .canvas{position:relative;border-radius:18px;overflow:hidden;background:#0d0d0d}
 .canvas img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;

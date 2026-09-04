@@ -2,6 +2,14 @@
    palette instead of GitHub's. Structure follows .markdown-body so the class
    names GitHub emits keep working. */
 
+/* the page is the README and nothing else: one link back, then the document */
+.doc{padding-bottom:var(--gap)}
+.back{display:inline-flex;align-items:center;gap:7px;margin:0 0 18px;padding:9px 15px 9px 11px;
+  border-radius:11px;border:1px solid #2a2a2a;background:#151515;
+  font-size:13.5px;color:var(--dim);transition:.2s}
+.back:hover{color:var(--fg);border-color:#3f3f3f;background:#1b1b1b}
+.back svg{width:15px;height:15px;fill:currentColor}
+
 .readme{padding:0;overflow:hidden}
 
 /* the file bar across the top, the way a repo shows a README */
