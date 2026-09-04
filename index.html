@@ -95,10 +95,10 @@ a{color:inherit;text-decoration:none}
 
 .ticker{grid-column:span 6;padding:0;min-height:53px;display:flex;align-items:center}
 .track{display:flex;align-items:center;animation:slide 30s linear infinite;white-space:nowrap;padding-left:24px}
-.track i{font-style:normal;display:inline-flex;align-items:center;gap:9px;font-size:12.5px;
+.track i{font-style:normal;display:inline-flex;align-items:center;gap:8px;font-size:11.5px;
   letter-spacing:.6px;text-transform:uppercase;color:#c4c4c4}
-.track i img{width:20px;height:20px;border-radius:5px}
-.track s{text-decoration:none;color:#4d4d4d;margin:0 17px;font-size:13px}
+.track i img{width:18px;height:18px;border-radius:5px}
+.track s{text-decoration:none;color:#4d4d4d;margin:0 13px;font-size:12px}
 @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 .about{grid-column:span 3;min-height:246px;display:flex;flex-direction:column;justify-content:flex-end}
@@ -106,25 +106,30 @@ a{color:inherit;text-decoration:none}
 .sig svg{width:74%;max-width:220px;height:auto;stroke:#dcdcdc;fill:none;stroke-width:2.1;
   stroke-linecap:round;stroke-linejoin:round}
 .showcase{grid-column:span 3;min-height:246px;display:flex;flex-direction:column;justify-content:flex-end}
-.shot{position:absolute;left:26px;right:26px;top:36px;border-radius:9px;overflow:hidden;
-  border:1px solid #2b2b2b;box-shadow:0 14px 34px rgba(0,0,0,.6)}
-.shot img{width:100%;height:110px;object-fit:cover;object-position:top}
+.shot{position:absolute;left:26px;right:26px;top:38px;border-radius:10px;overflow:hidden;
+  border:1px solid #303030;box-shadow:0 16px 38px rgba(0,0,0,.65);background:#1c1c1c}
+.shot::before{content:'';display:block;height:15px;background:#242424;
+  border-bottom:1px solid #2e2e2e}
+.shot i{position:absolute;top:5px;left:9px;width:5px;height:5px;border-radius:50%;
+  background:#3d3d3d;box-shadow:8px 0 0 #3d3d3d,16px 0 0 #3d3d3d}
+.shot img{width:100%;height:100px;object-fit:cover;object-position:top}
 .ghostword{position:absolute;left:0;right:0;top:16px;text-align:center;font-size:34px;
   font-weight:800;letter-spacing:1px;color:#232323;user-select:none}
 
 /* row 2 ------------------------------------------------------------------ */
 .hobby{grid-column:span 3;min-height:270px;display:flex;flex-direction:column;justify-content:flex-end}
-.hobby .badge{position:absolute;left:24px;right:24px;top:44px;height:96px;border-radius:22px;
-  background:#161616;border:1px solid #262626;display:grid;place-items:center}
-.hobby .badge img{width:52px;height:52px}
-.blob{grid-column:span 5;min-height:270px;padding:0;
-  background:radial-gradient(120% 120% at 76% 34%,#2a1030 0%,#1a0c22 38%,#0d0d0d 74%)}
-.blob::before{content:"";position:absolute;inset:0;
-  background:radial-gradient(60% 55% at 70% 42%,rgba(190,60,140,.30),transparent 70%)}
+.hobby .badge{position:absolute;left:26px;right:26px;top:40px;height:104px;border-radius:24px;
+  background:linear-gradient(160deg,#232323,#171717);border:1px solid #2c2c2c;
+  display:grid;place-items:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.hobby .badge img{width:66px;height:66px}
+.blob{grid-column:span 5;min-height:270px;padding:0;background:
+    radial-gradient(58% 62% at 12% 16%,#33063a 0%,transparent 68%),
+    radial-gradient(52% 58% at 70% 60%,#3d0811 0%,transparent 72%),
+    #110a0c}
 .social{grid-column:span 4;min-height:270px;display:flex;flex-direction:column;justify-content:flex-end}
-.orbwrap{position:absolute;left:22px;right:22px;top:22px;background:var(--inner);border:1px solid var(--line);
+.orbwrap{position:absolute;left:24px;right:24px;top:24px;background:var(--inner);border:1px solid var(--line);
   border-radius:var(--ri);padding:22px;display:flex;gap:16px;justify-content:center}
-.orb{position:relative;z-index:10;width:78px;height:78px;border-radius:50%;background:#141414;border:1px solid #2e2e2e;
+.orb{position:relative;z-index:10;width:80px;height:80px;border-radius:50%;background:#141414;border:1px solid #2e2e2e;
   display:grid;place-items:center;transition:.2s}
 .orb:hover{border-color:#606060;transform:translateY(-3px)}
 .orb img{width:34px;height:34px}
@@ -228,7 +233,7 @@ footer .by{color:var(--blue)}
 
     <a class="box showcase reveal" href="#work">
       <div class="ghostword" aria-hidden="true">PROJECTS</div>
-      <div class="shot"><img src="assets/work/code92-website.jpg" alt="" loading="lazy"></div>
+      <div class="shot"><i></i><img src="assets/work/code92-website.jpg" alt="" loading="lazy"></div>
       <p class="kicker">Showcase</p>
       <h2 class="title">Projects</h2>
       <span class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
