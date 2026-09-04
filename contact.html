@@ -49,6 +49,7 @@
   text-transform:uppercase;cursor:pointer;transition:.2s;
 }
 .f button:hover{background:#383838;border-color:#4a4a4a}
+.f button:disabled{opacity:.55;cursor:default}
 .hint{margin:14px 0 0;font-size:13px;color:var(--faint)}
 .hint a{color:var(--blue)}
 @media (max-width:900px){ .rail,.formcard{grid-column:span 12} }
@@ -95,6 +96,8 @@
         <input type="email" name="email" placeholder="Email *" required autocomplete="email">
         <input type="text" name="subject" placeholder="Your Subject *" required>
         <textarea name="message" placeholder="Your Message *" required></textarea>
+        <input type="text" name="company" tabindex="-1" autocomplete="off"
+               aria-hidden="true" style="position:absolute;left:-9999px;opacity:0">
         <button type="submit">Send message</button>
       </form>
       <p class="hint" id="hint"></p>
@@ -115,37 +118,85 @@
 <script src="assets/site.js"></script>
 <script src="assets/cursor.js"></script>
 <script>
-/* Put your address here and the form will compose the message straight into the
-   visitor's mail client. Leave it empty and the form sends people to CODE92
-   instead, so nothing on the page is ever a dead end. */
-var CONTACT_EMAIL = '';
-var FALLBACK_URL  = 'https://elyotam.github.io/code92-website/';
+/* ---------------------------------------------------------------------------
+   Web3Forms delivers the message to your inbox without any server of our own,
+   which matters because GitHub Pages only serves static files.
+
+   To switch it on: go to https://web3forms.com, type your email, and they send
+   you an access key. Paste it below. No account, no password, free.
+
+   While the key is empty the form does not pretend to work - it says so and
+   points at CODE92 instead.
+--------------------------------------------------------------------------- */
+var ACCESS_KEY   = '';
+var FALLBACK_URL = 'https://elyotam.github.io/code92-website/';
 
 var form = document.getElementById('contactForm');
 var hint = document.getElementById('hint');
+var btn  = form.querySelector('button');
 
-hint.innerHTML = CONTACT_EMAIL
-  ? 'Your mail app will open with the message ready to send.'
-  : 'This form opens the contact page on <a href="' + FALLBACK_URL +
-    '" rel="noopener">CODE92</a>, where messages reach me directly.';
+function say(msg, tone) {
+  hint.innerHTML = msg;
+  hint.style.color = tone === 'ok' ? '#5fce7a' : tone === 'bad' ? '#e8736b' : '';
+}
+
+if (!ACCESS_KEY) {
+  say('The form is not connected yet &mdash; use ' +
+      '<a href="' + FALLBACK_URL + '" rel="noopener">CODE92</a> to reach me.');
+} else {
+  say('Straight to my inbox. I read every message.');
+}
 
 form.addEventListener('submit', function (e) {
   e.preventDefault();
+
   var f = new FormData(form);
+  if ((f.get('company') || '').trim()) return;          // honeypot: a bot filled it
+
   var name = (f.get('name') || '').trim();
   var mail = (f.get('email') || '').trim();
   var subj = (f.get('subject') || '').trim();
   var body = (f.get('message') || '').trim();
 
   if (!name || !mail || !subj || !body) {
-    hint.textContent = 'Please fill in every field before sending.';
+    say('Please fill in every field before sending.', 'bad');
     return;
   }
-  if (!CONTACT_EMAIL) { location.href = FALLBACK_URL; return; }
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)) {
+    say('That email address does not look right.', 'bad');
+    return;
+  }
+  if (!ACCESS_KEY) { location.href = FALLBACK_URL; return; }
 
-  location.href = 'mailto:' + CONTACT_EMAIL +
-    '?subject=' + encodeURIComponent(subj) +
-    '&body=' + encodeURIComponent(body + '\n\n— ' + name + ' (' + mail + ')');
+  btn.disabled = true;
+  var label = btn.textContent;
+  btn.textContent = 'Sending...';
+  say('');
+
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    body: JSON.stringify({
+      access_key: ACCESS_KEY,
+      name: name, email: mail, subject: subj, message: body,
+      from_name: 'elyotam.github.io'
+    })
+  })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      if (d && d.success) {
+        form.reset();
+        say('Thanks &mdash; your message is with me. I will reply to ' + mail + '.', 'ok');
+      } else {
+        say('That did not send. Please try ' +
+            '<a href="' + FALLBACK_URL + '" rel="noopener">CODE92</a> instead.', 'bad');
+      }
+    })
+    .catch(function () {
+      say('No connection. Please try ' +
+          '<a href="' + FALLBACK_URL + '" rel="noopener">CODE92</a> instead.', 'bad');
+    })
+    .finally(function () { btn.disabled = false; btn.textContent = label; });
 });
 </script>
 </body>
