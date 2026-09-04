@@ -6,7 +6,7 @@
   --bg:#111111; --inner:#1e1e1e; --line:#282828;
   --fg:#f4f4f4; --dim:#9a9a9a; --faint:#7b7b7b;
   --blue:#4B8BBE; --yellow:#FFD43B;
-  --gap:24px; --r:30px; --ri:20px; --max:1170px;
+  --gap:24px; --r:30px; --ri:20px; --max:1144px;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
