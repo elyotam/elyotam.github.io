@@ -4,443 +4,358 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Elyotam Cohen — Websites, Apps &amp; AI Automation</title>
-<meta name="description" content="Elyotam Cohen builds websites, apps and AI automation, and runs infrastructure on AWS, Kubernetes and Terraform.">
-<meta name="theme-color" content="#0b1220">
+<meta name="description" content="Elyotam Cohen builds websites, apps and AI automation, and runs the infrastructure behind them on AWS, Kubernetes and Terraform.">
+<meta name="theme-color" content="#080a0d">
 <link rel="canonical" href="https://elyotam.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Elyotam Cohen">
 <meta property="og:description" content="Websites, apps and AI automation.">
 <meta property="og:url" content="https://elyotam.github.io/">
-<meta property="og:image" content="https://elyotam.github.io/assets/og.png">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <style>
 :root{
-  --bg:#0b1220; --bg2:#0d1117; --panel:#111826; --line:#1e293b;
-  --fg:#e6edf3; --dim:#93a4b8;
-  --blue:#4B8BBE; --blue-deep:#3776AB; --yellow:#FFD43B; --yellow-pale:#FFE873;
-  --radius:14px; --max:1120px;
+  --bg:#080a0d; --card:#101318; --card2:#0c0f14; --line:#1c2129;
+  --fg:#f2f5f8; --dim:#8b95a5; --faint:#4a5361;
+  --blue:#4B8BBE; --yellow:#FFD43B; --pale:#FFE873;
+  --r:20px; --gap:14px; --max:1180px;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  margin:0; background:var(--bg); color:var(--fg);
-  font:16px/1.65 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  margin:0;background:var(--bg);color:var(--fg);overflow-x:hidden;
+  font:15px/1.6 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   -webkit-font-smoothing:antialiased;
 }
+/* faint graph-paper backdrop, like a dark studio wall */
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),
+                   linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:58px 58px;opacity:.32;
+  -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 30%,transparent 78%);
+          mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 30%,transparent 78%);
+}
 img{max-width:100%;display:block}
-a{color:var(--yellow);text-decoration:none}
-a:hover{text-decoration:underline}
-:focus-visible{outline:2px solid var(--yellow);outline-offset:3px;border-radius:6px}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--yellow);outline-offset:3px;border-radius:10px}
+.wrap{position:relative;z-index:1;max-width:var(--max);margin:0 auto;padding:0 20px}
 .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 
-/* ---------------------------------------------------------------- header */
-header{
-  position:sticky;top:0;z-index:40;backdrop-filter:blur(10px);
-  background:rgba(11,18,32,.78);border-bottom:1px solid var(--line);
+/* ------------------------------------------------------------- topbar */
+.top{display:flex;align-items:center;gap:18px;padding:26px 0 8px}
+.ghost{
+  font-weight:800;letter-spacing:-1px;font-size:clamp(20px,3.4vw,34px);
+  color:transparent;-webkit-text-stroke:1px #2a3038;white-space:nowrap;user-select:none;
 }
-header .wrap{display:flex;align-items:center;gap:20px;height:60px}
-.brand{font-weight:700;letter-spacing:.5px;color:var(--fg)}
-.brand b{color:var(--yellow)}
-nav{margin-left:auto;display:flex;gap:22px;flex-wrap:wrap}
-nav a{color:var(--dim);font-size:14.5px}
-nav a:hover{color:var(--fg);text-decoration:none}
-.menu-btn{display:none;margin-left:auto;background:none;border:1px solid var(--line);
-  color:var(--fg);border-radius:8px;padding:7px 11px;font-size:15px;cursor:pointer}
+.top nav{margin-left:auto;display:flex;gap:24px;font-size:14.5px;color:var(--dim)}
+.top nav a:hover{color:var(--fg)}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;padding:9px 17px;border-radius:999px;
+  border:1px solid var(--line);background:var(--card);font-size:14px;font-weight:600;
+  transition:.2s;white-space:nowrap;
+}
+.pill:hover{border-color:var(--yellow);color:var(--yellow)}
+.pill .dot{width:7px;height:7px;border-radius:50%;background:#3fb950;box-shadow:0 0 8px #3fb950}
+.burger{display:none;margin-left:auto;background:none;border:1px solid var(--line);color:var(--fg);
+  border-radius:10px;padding:8px 12px;cursor:pointer}
 
-/* ------------------------------------------------------------------ hero */
-.hero{position:relative;min-height:min(92vh,760px);display:grid;place-items:center;
-  overflow:hidden;border-bottom:1px solid var(--line)}
-#rain{position:absolute;inset:0;width:100%;height:100%}
-.hero::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse at center,rgba(11,18,32,.35) 22%,rgba(11,18,32,.72) 88%)}
-.plate{position:relative;z-index:2;text-align:center;padding:38px 30px;
-  border:2px solid var(--yellow-pale);border-radius:18px;background:rgba(13,17,23,.84);
-  box-shadow:0 0 26px rgba(255,232,115,.22),inset 0 0 26px rgba(0,0,0,.5);
-  margin:0 18px;max-width:760px}
-.plate h1{margin:0;font-size:clamp(30px,7vw,56px);font-weight:800;letter-spacing:.5px;line-height:1.1}
-.plate h1 .slash{color:var(--yellow)}
-.plate h1 .last{color:var(--blue)}
-.plate p{margin:16px 0 0;color:var(--blue);letter-spacing:2px;
-  font-size:clamp(12px,2.4vw,17px);text-transform:uppercase}
-.bar{margin:22px auto 0;max-width:420px;border:2px solid var(--yellow);border-radius:6px;
-  padding:5px;display:flex;gap:5px}
-.bar i{flex:1;height:13px;border-radius:2px;background:var(--yellow);
-  animation:blip 2.4s steps(1) infinite}
-@keyframes blip{0%,49%{opacity:1}50%,100%{opacity:.2}}
-.cta{margin-top:26px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:600;font-size:15px;
-  border:1px solid var(--yellow);color:var(--yellow);transition:.18s}
-.btn:hover{background:var(--yellow);color:#1a1500;text-decoration:none}
-.btn.solid{background:var(--yellow);color:#1a1500}
-.btn.solid:hover{background:var(--yellow-pale)}
+/* --------------------------------------------------------- bento grid */
+.bento{
+  display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);
+  padding:16px 0 26px;
+}
+.box{
+  position:relative;background:var(--card);border:1px solid var(--line);
+  border-radius:var(--r);padding:22px;overflow:hidden;
+  transition:border-color .25s,transform .25s;
+}
+.box:hover{border-color:#2c3542;transform:translateY(-2px)}
+.box::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity .3s;
+  pointer-events:none;background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),
+  rgba(75,139,190,.13),transparent 62%)}
+.box:hover::before{opacity:1}
+.box .kicker{
+  font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--faint);
+  margin:0 0 4px;font-weight:600;
+}
+.box h2{margin:0;font-size:19px;font-weight:650;letter-spacing:-.2px}
+.plus{
+  position:absolute;right:16px;bottom:16px;width:30px;height:30px;border-radius:50%;
+  border:1px solid var(--line);display:grid;place-items:center;color:var(--dim);
+  font-size:17px;line-height:1;transition:.2s;background:var(--card2);
+}
+.box:hover .plus{border-color:var(--yellow);color:var(--yellow);transform:rotate(90deg)}
 
-/* -------------------------------------------------------------- sections */
-section{padding:82px 0;border-bottom:1px solid var(--line)}
-h2{font-size:clamp(23px,3.6vw,32px);margin:0 0 10px;letter-spacing:-.3px}
-h2 span{color:var(--yellow)}
-.lede{color:var(--dim);margin:0 0 38px;max-width:62ch}
-.grid{display:grid;gap:18px}
-.g4{grid-template-columns:repeat(auto-fit,minmax(232px,1fr))}
-.g3{grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-  padding:24px;transition:.2s}
-.card:hover{border-color:var(--blue);transform:translateY(-3px)}
-.card h3{margin:12px 0 8px;font-size:18px}
-.card p{margin:0;color:var(--dim);font-size:14.6px}
-.card .ico{width:38px;height:38px;display:grid;place-items:center;border-radius:10px;
-  background:rgba(75,139,190,.16);color:var(--blue);font-size:19px}
+/* identity ------------------------------------------------------------ */
+.id{grid-column:span 6;display:flex;gap:20px;align-items:center;min-height:196px}
+.mark{
+  flex:0 0 118px;height:150px;border-radius:16px;border:1px solid var(--line);
+  background:radial-gradient(circle at 40% 25%,#16202c,#0a0d12);
+  display:grid;place-items:center;position:relative;overflow:hidden;
+}
+.mark span{font-size:52px;font-weight:800;color:var(--yellow);text-shadow:0 0 22px rgba(255,212,59,.45)}
+.mark::after{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(0deg,rgba(75,139,190,.14) 0 1px,transparent 1px 4px)}
+.id h1{margin:0 0 10px;font-size:clamp(25px,3.4vw,35px);line-height:1.12;font-weight:700;letter-spacing:-.6px}
+.roles{display:flex;flex-direction:column;gap:5px;font-size:13.5px;color:var(--dim)}
+.roles i{font-style:normal;color:var(--yellow);margin-right:7px}
 
-/* ----------------------------------------------------------------- stack */
-.stack{list-style:none;margin:0;padding:0;display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:14px}
-.stack li{display:flex;flex-direction:column;align-items:center;gap:7px;
-  padding:12px 4px;border-radius:12px;border:1px solid transparent;transition:.18s}
-.stack li:hover{border-color:var(--line);background:var(--panel)}
-.stack img{width:52px;height:52px;border-radius:12px}
-.stack span{font-size:11.5px;color:var(--dim);text-align:center;line-height:1.25}
+/* ticker -------------------------------------------------------------- */
+.ticker{grid-column:span 6;padding:0;display:flex;align-items:center;min-height:60px}
+.track{display:flex;gap:34px;padding:0 22px;animation:slide 26s linear infinite;white-space:nowrap}
+.track span{display:inline-flex;align-items:center;gap:9px;font-size:12px;letter-spacing:1.3px;
+  text-transform:uppercase;color:var(--dim);font-weight:600}
+.track img{width:19px;height:19px;border-radius:5px}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* ------------------------------------------------------------------ work */
-.work{overflow:hidden;padding:0;display:flex;flex-direction:column}
-.work img{aspect-ratio:16/10;object-fit:cover;object-position:top;
-  border-bottom:1px solid var(--line)}
-.work .body{padding:20px 22px 24px}
-.work h3{margin:0 0 6px;font-size:18px}
-.work p{margin:0 0 14px;color:var(--dim);font-size:14.4px;min-height:44px}
-.tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
-.tag{font-size:11.5px;color:var(--blue);border:1px solid rgba(75,139,190,.4);
-  border-radius:20px;padding:3px 11px}
-.work .links{display:flex;gap:14px;font-size:14px}
+.about{grid-column:span 3;min-height:122px}
+.showcase{grid-column:span 3;min-height:122px;display:flex;flex-direction:column;justify-content:flex-end}
+.showcase .thumb{position:absolute;inset:0;opacity:.55}
+.showcase .thumb::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(8,10,13,.35),rgba(8,10,13,.95) 72%)}
+.showcase .thumb img{width:100%;height:100%;object-fit:cover;object-position:top}
+.showcase .txt{position:relative}
 
-/* ----------------------------------------------------------------- stats */
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
-.stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-  padding:22px;text-align:center}
-.stat b{display:block;font-size:31px;color:var(--yellow);line-height:1.15}
-.stat span{color:var(--dim);font-size:13.5px}
+.wide{grid-column:span 5;min-height:210px;padding:0;overflow:hidden;position:relative}
+.wide img{width:100%;height:100%;object-fit:cover;object-position:top;position:absolute;inset:0}
+.wide .veil{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(8,10,13,.25),rgba(8,10,13,.97) 78%);}
+.wide .txt{position:absolute;left:22px;right:22px;bottom:20px}
 
-/* ---------------------------------------------------------------- footer */
-footer{padding:34px 0;color:var(--dim);font-size:13.5px}
+.stackbox{grid-column:span 3;min-height:210px}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}
+.chips img{width:31px;height:31px;border-radius:8px}
+
+.social{grid-column:span 4;min-height:210px;display:flex;flex-direction:column}
+.orbs{display:flex;gap:11px;margin:auto 0 12px}
+.orb{width:50px;height:50px;border-radius:50%;border:1px solid var(--line);background:var(--card2);
+  display:grid;place-items:center;transition:.2s}
+.orb:hover{border-color:var(--yellow);transform:translateY(-3px)}
+.orb img{width:23px;height:23px}
+.orb.txt{font-size:11px;font-weight:700;letter-spacing:.5px;color:var(--dim)}
+.orb.txt:hover{color:var(--yellow)}
+
+.stat{grid-column:span 2;min-height:132px;display:flex;flex-direction:column;justify-content:center;
+  align-items:center;text-align:center;gap:5px}
+.stat b{font-size:34px;font-weight:750;line-height:1;letter-spacing:-1px}
+.stat b.y{color:var(--yellow)}
+.stat small{font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--faint);
+  font-weight:600;line-height:1.5}
+
+.cta{grid-column:span 6;min-height:132px;display:flex;flex-direction:column;justify-content:center}
+.cta h2{font-size:clamp(23px,3.2vw,31px);font-weight:700;letter-spacing:-.6px;line-height:1.15}
+.cta h2 em{font-style:normal;color:var(--blue)}
+.cta h2 em b{color:var(--yellow);font-weight:700}
+
+footer{position:relative;z-index:1;border-top:1px solid var(--line);margin-top:10px;
+  padding:22px 0 34px;color:var(--faint);font-size:12.5px}
 footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+footer nav{display:flex;gap:20px;letter-spacing:1.2px;text-transform:uppercase;font-size:10.5px}
+footer a:hover{color:var(--fg)}
 
-/* --------------------------------------------------------------- reveals */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s}
 .reveal.in{opacity:1;transform:none}
 
-@media (max-width:720px){
-  nav{display:none;position:absolute;top:60px;left:0;right:0;background:var(--bg2);
-    border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:8px 22px 16px}
-  nav.open{display:flex}
-  nav a{padding:10px 0;border-bottom:1px solid var(--line)}
-  .menu-btn{display:block}
-  section{padding:60px 0}
+@media (max-width:960px){
+  .id,.ticker,.cta{grid-column:span 12}
+  .about,.showcase,.stackbox{grid-column:span 6}
+  .wide,.social{grid-column:span 6}
+  .stat{grid-column:span 4}
+}
+@media (max-width:640px){
+  .top nav{display:none;position:absolute;top:64px;left:20px;right:20px;z-index:20;
+    flex-direction:column;gap:0;background:var(--card);border:1px solid var(--line);
+    border-radius:14px;padding:6px 16px}
+  .top nav.open{display:flex}
+  .top nav a{padding:11px 0;border-bottom:1px solid var(--line)}
+  .top nav a:last-child{border-bottom:0}
+  .burger{display:block}
+  .top .pill{display:none}
+  .about,.showcase,.stackbox,.wide,.social,.stat{grid-column:span 12}
+  .id{flex-direction:column;align-items:flex-start;text-align:left}
+  .mark{width:100%;flex:0 0 auto;height:110px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .reveal{opacity:1;transform:none;transition:none}
-  .bar i{animation:none}
+  .track{animation:none}
+  .box:hover{transform:none}
 }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="wrap">
-    <a class="brand mono" href="#top">\<b>Elyotam</b>Cohen\</a>
-    <button class="menu-btn" aria-expanded="false" aria-controls="nav" id="menuBtn">Menu</button>
+<div class="wrap">
+  <div class="top">
+    <div class="ghost mono">HELLO WORLD!</div>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav id="nav">
-      <a href="#services">What I do</a>
+      <a href="#about">About</a>
+      <a href="#work">Projects</a>
       <a href="#stack">Stack</a>
-      <a href="#work">Work</a>
-      <a href="#github">GitHub</a>
       <a href="#contact">Contact</a>
     </nav>
-  </div>
-</header>
-
-<main id="top">
-
-  <div class="hero">
-    <canvas id="rain" aria-hidden="true"></canvas>
-    <div class="plate">
-      <h1 class="mono"><span class="slash">\</span>Elyotam<span class="last">Cohen</span><span class="slash">\</span></h1>
-      <p class="mono">Websites &middot; Apps &middot; AI Automation</p>
-      <div class="bar" aria-hidden="true">
-        <i style="animation-delay:0s"></i><i style="animation-delay:.12s"></i>
-        <i style="animation-delay:.24s"></i><i style="animation-delay:.36s"></i>
-        <i style="animation-delay:.48s"></i><i style="animation-delay:.6s"></i>
-        <i style="animation-delay:.72s"></i><i style="animation-delay:.84s"></i>
-        <i style="animation-delay:.96s"></i><i style="animation-delay:1.08s"></i>
-        <i style="animation-delay:1.2s"></i><i style="animation-delay:1.32s"></i>
-      </div>
-      <div class="cta">
-        <a class="btn solid" href="#work">See the work</a>
-        <a class="btn" href="#contact">Get in touch</a>
-      </div>
-    </div>
+    <a class="pill" href="#contact"><span class="dot"></span>Let&rsquo;s Connect</a>
   </div>
 
-  <section id="services">
-    <div class="wrap">
-      <h2 class="reveal">What I <span>do</span></h2>
-      <p class="lede reveal">Four things, end to end &mdash; from the first line of markup
-        to the pipeline that ships it and the box it runs on.</p>
-      <div class="grid g4">
-        <article class="card reveal">
-          <div class="ico">&#9679;</div>
-          <h3>Websites</h3>
-          <p>Fast, responsive, RTL-ready sites built to load quickly and rank &mdash;
-            not template drops.</p>
-        </article>
-        <article class="card reveal">
-          <div class="ico">&#9632;</div>
-          <h3>Apps &amp; systems</h3>
-          <p>Web apps, online stores and internal tools, with the database and
-            deployment behind them.</p>
-        </article>
-        <article class="card reveal">
-          <div class="ico">&#9670;</div>
-          <h3>AI automation</h3>
-          <p>Workflows that remove manual work: content, data handling, routing
-            and the glue between the tools you already pay for.</p>
-        </article>
-        <article class="card reveal">
-          <div class="ico">&#9650;</div>
-          <h3>Infrastructure</h3>
-          <p>AWS, Docker, Kubernetes and Terraform &mdash; CI/CD, monitoring and
-            the plumbing that keeps it all up.</p>
-        </article>
+  <main class="bento">
+
+    <section class="box id reveal">
+      <div class="mark mono"><span>E</span></div>
+      <div>
+        <h1>Elyotam<br>Cohen</h1>
+        <div class="roles">
+          <div><i>&#9670;</i>Websites, Apps &amp; AI Automation</div>
+          <div><i>&#9670;</i>DevOps &amp; Cloud Infrastructure</div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="stack">
-    <div class="wrap">
-      <h2 class="reveal">Tech <span>stack</span></h2>
-      <p class="lede reveal">What I actually build and run things with. Hover any tile for its name.</p>
-      <ul class="stack reveal">
-          <li><img src="assets/icons/linux.svg" alt="Linux" title="Linux" loading="lazy" width="52" height="52"><span>Linux</span></li>
-          <li><img src="assets/icons/windows.svg" alt="Windows" title="Windows" loading="lazy" width="52" height="52"><span>Windows</span></li>
-          <li><img src="assets/icons/fortinet.svg" alt="Fortinet" title="Fortinet" loading="lazy" width="52" height="52"><span>Fortinet</span></li>
-          <li><img src="assets/icons/falcon.svg" alt="CrowdStrike Falcon" title="CrowdStrike Falcon" loading="lazy" width="52" height="52"><span>CrowdStrike Falcon</span></li>
-          <li><img src="assets/icons/openvpn.svg" alt="OpenVPN" title="OpenVPN" loading="lazy" width="52" height="52"><span>OpenVPN</span></li>
-          <li><img src="assets/icons/jumpcloud.svg" alt="JumpCloud" title="JumpCloud" loading="lazy" width="52" height="52"><span>JumpCloud</span></li>
-          <li><img src="assets/icons/ninite.svg" alt="Ninite" title="Ninite" loading="lazy" width="52" height="52"><span>Ninite</span></li>
-          <li><img src="assets/icons/bash.svg" alt="Bash" title="Bash" loading="lazy" width="52" height="52"><span>Bash</span></li>
-          <li><img src="assets/icons/py.svg" alt="Python" title="Python" loading="lazy" width="52" height="52"><span>Python</span></li>
-          <li><img src="assets/icons/git.svg" alt="Git" title="Git" loading="lazy" width="52" height="52"><span>Git</span></li>
-          <li><img src="assets/icons/github.svg" alt="GitHub" title="GitHub" loading="lazy" width="52" height="52"><span>GitHub</span></li>
-          <li><img src="assets/icons/githubactions.svg" alt="GitHub Actions" title="GitHub Actions" loading="lazy" width="52" height="52"><span>GitHub Actions</span></li>
-          <li><img src="assets/icons/npm.svg" alt="npm" title="npm" loading="lazy" width="52" height="52"><span>npm</span></li>
-          <li><img src="assets/icons/docker.svg" alt="Docker" title="Docker" loading="lazy" width="52" height="52"><span>Docker</span></li>
-          <li><img src="assets/icons/kubernetes.svg" alt="Kubernetes" title="Kubernetes" loading="lazy" width="52" height="52"><span>Kubernetes</span></li>
-          <li><img src="assets/icons/helm.svg" alt="Helm" title="Helm" loading="lazy" width="52" height="52"><span>Helm</span></li>
-          <li><img src="assets/icons/argocd.svg" alt="Argo CD" title="Argo CD" loading="lazy" width="52" height="52"><span>Argo CD</span></li>
-          <li><img src="assets/icons/terraform.svg" alt="Terraform" title="Terraform" loading="lazy" width="52" height="52"><span>Terraform</span></li>
-          <li><img src="assets/icons/ansible.svg" alt="Ansible" title="Ansible" loading="lazy" width="52" height="52"><span>Ansible</span></li>
-          <li><img src="assets/icons/aws.svg" alt="AWS" title="AWS" loading="lazy" width="52" height="52"><span>AWS</span></li>
-          <li><img src="assets/icons/postgres.svg" alt="PostgreSQL" title="PostgreSQL" loading="lazy" width="52" height="52"><span>PostgreSQL</span></li>
-          <li><img src="assets/icons/prometheus.svg" alt="Prometheus" title="Prometheus" loading="lazy" width="52" height="52"><span>Prometheus</span></li>
-          <li><img src="assets/icons/grafana.svg" alt="Grafana" title="Grafana" loading="lazy" width="52" height="52"><span>Grafana</span></li>
-          <li><img src="assets/icons/microsoft365.svg" alt="Microsoft 365" title="Microsoft 365" loading="lazy" width="52" height="52"><span>Microsoft 365</span></li>
-          <li><img src="assets/icons/googleworkspace.svg" alt="Google Workspace" title="Google Workspace" loading="lazy" width="52" height="52"><span>Google Workspace</span></li>
-          <li><img src="assets/icons/salesforce.svg" alt="Salesforce" title="Salesforce" loading="lazy" width="52" height="52"><span>Salesforce</span></li>
-          <li><img src="assets/icons/voicenter.svg" alt="Voicenter" title="Voicenter" loading="lazy" width="52" height="52"><span>Voicenter</span></li>
-          <li><img src="assets/icons/slack.svg" alt="Slack" title="Slack" loading="lazy" width="52" height="52"><span>Slack</span></li>
-          <li><img src="assets/icons/figma.svg" alt="Figma" title="Figma" loading="lazy" width="52" height="52"><span>Figma</span></li>
-          <li><img src="assets/icons/vscode.svg" alt="VS Code" title="VS Code" loading="lazy" width="52" height="52"><span>VS Code</span></li>
-          <li><img src="assets/icons/cursor.svg" alt="Cursor" title="Cursor" loading="lazy" width="52" height="52"><span>Cursor</span></li>
-          <li><img src="assets/icons/claudecode.svg" alt="Claude Code" title="Claude Code" loading="lazy" width="52" height="52"><span>Claude Code</span></li>
-          <li><img src="assets/icons/codex.svg" alt="Codex" title="Codex" loading="lazy" width="52" height="52"><span>Codex</span></li>
-          <li><img src="assets/icons/antigravity.svg" alt="Google Antigravity" title="Google Antigravity" loading="lazy" width="52" height="52"><span>Google Antigravity</span></li>
-      </ul>
-    </div>
-  </section>
+    <section class="box ticker reveal" aria-label="Tools I work with">
+      <div class="track" id="track"></div>
+    </section>
 
-  <section id="work">
-    <div class="wrap">
-      <h2 class="reveal">Selected <span>work</span></h2>
-      <p class="lede reveal">Live sites, each one online right now.</p>
-      <div class="grid g3">
-        <article class="card work reveal">
-          <img src="assets/work/code92-website.jpg" alt="CODE92 agency site" loading="lazy" width="880" height="550">
-          <div class="body">
-            <h3>CODE92</h3>
-            <p>Digital agency site &mdash; websites, apps, online stores and AI
-              automation for businesses.</p>
-            <div class="tags"><span class="tag">JavaScript</span><span class="tag">RTL</span><span class="tag">Animation</span></div>
-            <div class="links">
-              <a href="https://elyotam.github.io/code92-website/" rel="noopener">Visit &rarr;</a>
-              <a href="https://github.com/elyotam/code92-website" rel="noopener">Source</a>
-            </div>
-          </div>
-        </article>
-        <article class="card work reveal">
-          <img src="assets/work/elyotam-website.jpg" alt="Elyotam agency site" loading="lazy" width="880" height="550">
-          <div class="body">
-            <h3>Elyotam</h3>
-            <p>Premium agency site with a cinematic, scroll-driven hero for
-              sites, stores, apps and automation.</p>
-            <div class="tags"><span class="tag">HTML</span><span class="tag">Scroll UX</span><span class="tag">RTL</span></div>
-            <div class="links">
-              <a href="https://elyotam.github.io/elyotam-website/" rel="noopener">Visit &rarr;</a>
-              <a href="https://github.com/elyotam/elyotam-website" rel="noopener">Source</a>
-            </div>
-          </div>
-        </article>
-        <article class="card work reveal">
-          <img src="assets/work/ahuvit-website.jpg" alt="Ahuvit Mor boutique cakes site" loading="lazy" width="880" height="550">
-          <div class="body">
-            <h3>Ahuvit Mor</h3>
-            <p>Boutique cake studio &mdash; a warm, image-led storefront for a
-              hand-made product.</p>
-            <div class="tags"><span class="tag">HTML</span><span class="tag">Client work</span><span class="tag">RTL</span></div>
-            <div class="links">
-              <a href="https://elyotam.github.io/ahuvit-website/" rel="noopener">Visit &rarr;</a>
-              <a href="https://github.com/elyotam/ahuvit-website" rel="noopener">Source</a>
-            </div>
-          </div>
-        </article>
+    <a class="box about reveal" href="#about" id="about">
+      <p class="kicker">Credentials</p>
+      <h2>More About Me</h2>
+      <p style="margin:9px 0 0;color:var(--dim);font-size:13.4px">
+        Building for the web, automating the boring parts, and running the
+        infrastructure underneath.</p>
+      <span class="plus">+</span>
+    </a>
+
+    <a class="box showcase reveal" href="#work">
+      <div class="thumb"><img src="assets/work/ahuvit-website.jpg" alt="" loading="lazy"></div>
+      <div class="txt">
+        <p class="kicker">Showcase</p>
+        <h2>Projects</h2>
       </div>
-    </div>
-  </section>
+      <span class="plus">+</span>
+    </a>
 
-  <section id="github">
-    <div class="wrap">
-      <h2 class="reveal">On <span>GitHub</span></h2>
-      <p class="lede reveal">Pulled live from the GitHub API when this page loads &mdash;
-        so it is never out of date.</p>
-      <div class="stats reveal">
-        <div class="stat"><b id="s-repos">&mdash;</b><span>Public repositories</span></div>
-        <div class="stat"><b id="s-langs">&mdash;</b><span>Languages</span></div>
-        <div class="stat"><b id="s-stars">&mdash;</b><span>Stars earned</span></div>
-        <div class="stat"><b id="s-since">&mdash;</b><span>On GitHub since</span></div>
+    <a class="box wide reveal" id="work" href="https://elyotam.github.io/code92-website/" rel="noopener">
+      <img src="assets/work/code92-website.jpg" alt="CODE92 agency site" loading="lazy">
+      <div class="veil"></div>
+      <div class="txt">
+        <p class="kicker">Featured build</p>
+        <h2>CODE92 &mdash; digital agency</h2>
+        <p style="margin:6px 0 0;color:var(--dim);font-size:13.2px">
+          Websites, apps, online stores and AI automation.</p>
       </div>
-      <p style="margin-top:26px" class="reveal">
-        <a class="btn" href="https://github.com/elyotam" rel="noopener">View the profile &rarr;</a>
-      </p>
-    </div>
-  </section>
+      <span class="plus">+</span>
+    </a>
 
-  <section id="contact" style="border-bottom:none">
-    <div class="wrap">
-      <h2 class="reveal">Let&rsquo;s <span>talk</span></h2>
-      <p class="lede reveal">Got a site, an app or a manual process that should be
-        running itself? Send it over.</p>
-      <div class="cta" style="justify-content:flex-start">
-        <a class="btn solid" href="https://github.com/elyotam" rel="noopener">GitHub</a>
-        <a class="btn" href="https://elyotam.github.io/code92-website/" rel="noopener">CODE92</a>
-        <!-- Add your own channels here, for example:
-             <a class="btn" href="mailto:you@example.com">Email</a>
-             <a class="btn" href="https://www.linkedin.com/in/USERNAME/">LinkedIn</a>
-             <a class="btn" href="https://wa.me/9725XXXXXXXX">WhatsApp</a>  -->
+    <section class="box stackbox reveal" id="stack">
+      <p class="kicker">Toolbox</p>
+      <h2><span id="toolCount">34</span> tools</h2>
+      <div class="chips" id="chips"></div>
+      <span class="plus">+</span>
+    </section>
+
+    <section class="box social reveal" id="contact">
+      <p class="kicker">Let&rsquo;s connect</p>
+      <h2>My Profiles</h2>
+      <div class="orbs">
+        <a class="orb" href="https://github.com/elyotam" rel="noopener" aria-label="GitHub">
+          <img src="assets/icons/github.svg" alt=""></a>
+        <a class="orb txt" href="https://elyotam.github.io/code92-website/" rel="noopener">C92</a>
+        <!-- Add more when you want them, for example:
+        <a class="orb txt" href="https://www.linkedin.com/in/USERNAME/">in</a>
+        <a class="orb txt" href="mailto:you@example.com">@</a> -->
       </div>
-    </div>
-  </section>
+      <p style="margin:0;color:var(--dim);font-size:13.2px">
+        Code on GitHub, client work through CODE92.</p>
+      <span class="plus">+</span>
+    </section>
 
-</main>
+    <section class="box stat reveal">
+      <b id="sRepos">5</b><small>Public<br>repositories</small></section>
+    <section class="box stat reveal">
+      <b class="y">&#9825;</b><small>Made<br>with love</small></section>
+    <section class="box stat reveal">
+      <b id="sLangs">3</b><small>Languages<br>in public code</small></section>
+
+    <section class="box cta reveal">
+      <h2>Let&rsquo;s<br>work <em>toge<b>t</b>her.</em></h2>
+      <span class="plus">+</span>
+    </section>
+
+  </main>
+</div>
 
 <footer>
   <div class="wrap">
-    <span>&copy; <span id="yr">2026</span> Elyotam Cohen</span>
-    <span class="mono">Built by hand &mdash; no framework, no build step.</span>
+    <nav>
+      <a href="#about">About</a><a href="#work">Projects</a>
+      <a href="#stack">Stack</a><a href="#contact">Contact</a>
+    </nav>
+    <span>&copy; <span id="yr">2026</span> Elyotam Cohen &mdash; built by hand, no framework.</span>
   </div>
 </footer>
 
 <script>
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.getElementById('yr').textContent = new Date().getFullYear();
 
-/* --- mobile nav ------------------------------------------------------- */
-const btn = document.getElementById('menuBtn'), nav = document.getElementById('nav');
-btn.addEventListener('click', () => {
+/* mobile nav ----------------------------------------------------------- */
+const burger = document.getElementById('burger'), nav = document.getElementById('nav');
+burger.addEventListener('click', () => {
   const open = nav.classList.toggle('open');
-  btn.setAttribute('aria-expanded', open);
+  burger.setAttribute('aria-expanded', open);
 });
-nav.addEventListener('click', e => {
-  if (e.target.tagName === 'A') { nav.classList.remove('open'); btn.setAttribute('aria-expanded', false); }
-});
+nav.addEventListener('click', e => { if (e.target.tagName === 'A') nav.classList.remove('open'); });
 
-/* --- scroll reveal ---------------------------------------------------- */
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-if (reduce) {
-  document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
-} else {
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
-  }, { threshold: .12 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+/* ticker + toolbox ------------------------------------------------------ */
+const TICKER = [['aws','AWS'],['kubernetes','Kubernetes'],['terraform','Terraform'],
+  ['docker','Docker'],['py','Python'],['linux','Linux'],['ansible','Ansible'],
+  ['githubactions','GitHub Actions'],['grafana','Grafana'],['figma','Figma']];
+const CHIPS = ['linux','windows','fortinet','falcon','openvpn','jumpcloud','bash','py','git',
+  'github','githubactions','npm','docker','kubernetes','helm','argocd','terraform','ansible',
+  'aws','postgres','prometheus','grafana','microsoft365','googleworkspace','salesforce',
+  'voicenter','slack','figma','vscode','cursor','claudecode','codex','antigravity','ninite'];
+
+const track = document.getElementById('track');
+const strip = TICKER.map(([s, n]) =>
+  `<span><img src="assets/icons/${s}.svg" alt="" loading="lazy">${n}</span>`).join('');
+track.innerHTML = strip + strip;          // doubled so the loop is seamless
+
+document.getElementById('chips').innerHTML = CHIPS.slice(0, 18).map(s =>
+  `<img src="assets/icons/${s}.svg" alt="" title="${s}" loading="lazy">`).join('');
+document.getElementById('toolCount').textContent = CHIPS.length;
+
+/* reveal ---------------------------------------------------------------- */
+const boxes = document.querySelectorAll('.reveal');
+if (reduce) { boxes.forEach(b => b.classList.add('in')); }
+else {
+  const io = new IntersectionObserver((es) => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .1 });
+  boxes.forEach((b, i) => { b.style.transitionDelay = Math.min(i * 45, 400) + 'ms'; io.observe(b); });
 }
 
-/* --- matrix rain ------------------------------------------------------ */
-(function () {
-  const cv = document.getElementById('rain');
-  if (!cv || reduce) return;
-  const ctx = cv.getContext('2d');
-  const STEP = 16, GLYPH = 17, TRAIL = 26;
-  let cols = [], w = 0, h = 0, dpr = Math.min(devicePixelRatio || 1, 2);
+/* cursor spotlight ------------------------------------------------------ */
+if (!reduce && matchMedia('(hover:hover)').matches) {
+  document.querySelectorAll('.box').forEach(b => {
+    b.addEventListener('pointermove', e => {
+      const r = b.getBoundingClientRect();
+      b.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      b.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+}
 
-  // Each column carries its whole ribbon of glyphs, redrawn every frame. Building
-  // the trail up by accumulating single glyphs left the hero blank for the first
-  // few seconds of a visit; this way it is full from frame one.
-  function size() {
-    w = cv.clientWidth; h = cv.clientHeight;
-    cv.width = w * dpr; cv.height = h * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    cols = Array.from({ length: Math.ceil(w / STEP) + 1 }, () => ({
-      y: Math.random() * h,
-      v: 22 + Math.random() * 52,                       // px per second
-      chars: Array.from({ length: TRAIL }, () => Math.random() < .5 ? '0' : '1')
-    }));
-  }
-  size();
-  addEventListener('resize', size, { passive: true });
-
-  let last = performance.now();
-  (function frame(now) {
-    requestAnimationFrame(frame);
-    const dt = Math.min((now - last) / 1000, .1);
-    last = now;
-
-    ctx.clearRect(0, 0, w, h);
-    ctx.font = GLYPH + 'px ui-monospace, Menlo, Consolas, monospace';
-    for (let i = 0; i < cols.length; i++) {
-      const c = cols[i], x = i * STEP + 4;
-      for (let k = 0; k < TRAIL; k++) {
-        const y = c.y - k * GLYPH;
-        if (y < -GLYPH || y > h + GLYPH) continue;
-        const fade = 1 - k / TRAIL;
-        ctx.globalAlpha = fade * fade * .55;
-        ctx.fillStyle = k === 0 ? '#FFE873' : '#4B8BBE';
-        ctx.fillText(c.chars[k], x, y);
-      }
-      c.y += c.v * dt;
-      if (c.y - TRAIL * GLYPH > h) {
-        c.y = -Math.random() * 120;
-        c.chars = c.chars.map(() => Math.random() < .5 ? '0' : '1');
-      }
-      if (Math.random() < .06) {                        // occasional flicker
-        c.chars[(Math.random() * TRAIL) | 0] = Math.random() < .5 ? '0' : '1';
-      }
-    }
-    ctx.globalAlpha = 1;
-  })(last);
-})();
-
-/* --- live GitHub numbers ---------------------------------------------- */
+/* live GitHub numbers --------------------------------------------------- */
 (async function () {
   const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
   try {
-    const [user, repos] = await Promise.all([
+    const [u, repos] = await Promise.all([
       fetch('https://api.github.com/users/elyotam').then(r => r.ok ? r.json() : Promise.reject()),
       fetch('https://api.github.com/users/elyotam/repos?per_page=100').then(r => r.ok ? r.json() : Promise.reject())
     ]);
-    set('s-repos', user.public_repos);
-    set('s-langs', new Set(repos.map(r => r.language).filter(Boolean)).size);
-    set('s-stars', repos.reduce((n, r) => n + r.stargazers_count, 0));
-    set('s-since', new Date(user.created_at).getFullYear());
+    set('sRepos', u.public_repos);
+    set('sLangs', new Set(repos.map(r => r.language).filter(Boolean)).size);
   } catch (e) {
-    // Rate-limited or offline: leave the dashes rather than showing a wrong number.
-    ['s-repos', 's-langs', 's-stars', 's-since'].forEach(id => set(id, '—'));
+    // Rate limited or offline: keep the seeded figures rather than blanking them.
   }
 })();
 </script>
