@@ -50,6 +50,10 @@
 }
 .f button:hover{background:#383838;border-color:#4a4a4a}
 .f button:disabled{opacity:.55;cursor:default}
+.notice{margin:-10px 0 22px;padding:13px 16px;border-radius:12px;font-size:13.6px;
+  background:rgba(232,115,107,.09);border:1px solid rgba(232,115,107,.32);color:#f0a49d;
+  position:relative;z-index:10}
+.notice a{color:#ffd0cb;text-decoration:underline}
 .hint{margin:14px 0 0;font-size:13px;color:var(--faint)}
 .hint a{color:var(--blue)}
 @media (max-width:900px){ .rail,.formcard{grid-column:span 12} }
@@ -90,6 +94,7 @@
         <svg viewBox="0 0 40 52"><path d="M20 0c.7 14 3 20 12 24-9 4-11.3 10-12 24-.7-14-3-20-12-24 9-4 11.3-10 12-24z"/></svg>
       </div>
       <h1>Let&rsquo;s get in <span class="accent">touch.</span></h1>
+      <p class="notice" id="notice" hidden></p>
       <form class="f" id="contactForm" novalidate>
         <input type="text" name="name" placeholder="Name *" required autocomplete="name">
         <input type="email" name="email" placeholder="Email *" required autocomplete="email">
@@ -140,8 +145,15 @@ function say(msg, tone) {
 }
 
 if (!ACCESS_KEY) {
-  say('The form is not connected yet &mdash; use ' +
-      '<a href="' + FALLBACK_URL + '" rel="noopener">GitHub</a> to reach me.');
+  // Say it before anyone types, not after they press send.
+  var notice = document.getElementById('notice');
+  notice.hidden = false;
+  notice.innerHTML = 'This form is not connected to an inbox yet, so it cannot ' +
+    'deliver a message. Reach me on <a href="' + FALLBACK_URL +
+    '" rel="noopener">GitHub</a> in the meantime.';
+  form.querySelectorAll('input,textarea').forEach(function (el) { el.disabled = true; });
+  btn.textContent = 'Message me on GitHub';
+  say('');
 } else {
   say('Straight to my inbox. I read every message.');
 }
