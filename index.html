@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Elyotam Cohen — Web Development &amp; AI Automation</title>
 <meta name="description" content="Elyotam Cohen builds websites, web applications and AI automation, and runs the cloud infrastructure behind them on AWS, Kubernetes and Terraform.">
-<meta name="theme-color" content="#fbfaf8">
+<meta name="theme-color" content="#0b0b0d">
 <link rel="canonical" href="https://elyotam.github.io/">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
@@ -23,86 +23,109 @@
 <meta name="twitter:image" content="https://elyotam.github.io/assets/og.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <link rel="preload" as="image" href="assets/portrait.jpg"
       imagesrcset="assets/portrait.jpg 380w, assets/portrait@2x.jpg 502w"
-      imagesizes="(max-width:760px) 40vw, 200px">
+      imagesizes="(max-width:760px) 90vw, 220px">
 <style>
+main{padding-bottom:20px}
+.band{padding:0 0 64px}
+
 /* ---------------------------------------------------------------- the hero */
-.hero{padding:74px 0 66px;border-bottom:1px solid var(--fg)}
-.hero h1{margin:0 0 46px;font-size:clamp(42px,7.4vw,86px);max-width:15ch}
-.hero h1 i{font-style:italic;color:var(--accent)}
-.herofoot{display:grid;grid-template-columns:190px 1fr auto;gap:44px;align-items:end}
-.herofoot > *{min-width:0}
-.mug{border-radius:2px;overflow:hidden;background:var(--sunk)}
-.mug img{width:100%;height:auto;aspect-ratio:380/480;object-fit:cover;display:block}
-.hero p{margin:0;font-size:16.5px;line-height:1.72;color:var(--dim);max-width:46ch}
-.hero .acts{display:flex;gap:12px;flex-wrap:wrap}
+.hero{display:grid;grid-template-columns:220px 1fr;gap:44px;align-items:center;
+  padding:14px 0 70px}
+.hero > *{min-width:0}
+.hero .shot{border-radius:18px;overflow:hidden;background:#0c0c0f;border:1px solid var(--line)}
+.hero .shot img{width:100%;height:auto;aspect-ratio:380/480;object-fit:cover;display:block}
+.eyebrow{margin:0 0 20px;font-size:11.5px;font-weight:600;letter-spacing:1.8px;
+  text-transform:uppercase;color:var(--faint)}
+.eyebrow span{color:var(--accent-dim)}
+.hero h1{margin:0 0 22px;font-size:clamp(30px,4.5vw,50px);font-weight:500;line-height:1.1;
+  letter-spacing:-1.7px;max-width:17ch}
+.hero h1 em{font-style:normal;color:var(--dim)}
+.hero .lede{margin:0 0 30px;font-size:16.5px;line-height:1.75;color:var(--dim);max-width:56ch}
+.acts{display:flex;gap:11px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:12px 22px;border-radius:9px;
+  border:1px solid var(--line);background:var(--surface);font-size:14.5px;font-weight:500;
+  transition:border-color .2s,background .2s,color .2s}
+.btn:hover{border-color:#3a3a42;background:var(--raised)}
+.btn.key{background:var(--fg);border-color:var(--fg);color:#0b0b0d}
+.btn.key:hover{background:#fff;border-color:#fff}
 
-/* ---------------------------------------------------------- numbered rows */
-.rows{border-top:1px solid var(--line)}
-.row{display:grid;grid-template-columns:56px 1fr 1.15fr;gap:36px;
-  padding:30px 0;border-bottom:1px solid var(--line);align-items:start}
-.row > *{min-width:0}
-.row .n{font-family:var(--serif);font-size:26px;color:var(--faint);line-height:1.1}
-.row h3{margin:0;font-size:26px;font-weight:400;font-family:var(--serif);letter-spacing:-.01em}
-.row .body p{margin:0 0 12px;font-size:15px;line-height:1.72;color:var(--dim);max-width:52ch}
-.row .body p:last-child{margin-bottom:0}
-.row ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px 16px}
-.row li{font-size:13px;color:var(--faint)}
-.row li::before{content:"— ";color:#cfcabf}
+/* ------------------------------------------------------------ band heading */
+.bandhead{display:flex;align-items:baseline;justify-content:space-between;gap:20px;
+  margin:0 0 26px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.bandhead h2{margin:0;font-size:12px;font-weight:600;letter-spacing:1.8px;
+  text-transform:uppercase;color:var(--faint)}
+.bandhead a{font-size:13.5px;color:var(--dim);white-space:nowrap;transition:color .2s}
+.bandhead a:hover{color:var(--fg)}
 
-/* ---------------------------------------------------------- selected work */
-.works{display:grid;grid-template-columns:1fr 1fr;gap:52px 40px}
-.works > *{min-width:0}
-.piece .frame{overflow:hidden;background:var(--sunk);border:1px solid var(--line);
-  border-radius:2px;margin-bottom:18px}
-.piece .frame img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;
-  display:block;transition:transform .7s cubic-bezier(.2,.7,.3,1)}
-.piece:hover .frame img{transform:scale(1.03)}
-.piece .frame.mark{display:grid;place-items:center;aspect-ratio:16/10}
-.piece .frame.mark img{width:64px;aspect-ratio:auto;border-radius:12px}
-.piece .cap{display:flex;align-items:baseline;justify-content:space-between;gap:16px;
-  margin:0 0 8px;font-size:11.5px;letter-spacing:1.3px;text-transform:uppercase;color:var(--faint)}
-.piece h3{margin:0 0 8px;font-family:var(--serif);font-size:27px;font-weight:400;
-  letter-spacing:-.01em}
-.piece .sum{margin:0;font-size:14.5px;line-height:1.68;color:var(--dim);max-width:44ch}
+/* --------------------------------------------------------------- what I do */
+.svcs{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+.svcs > *{min-width:0}
+.svc{padding:28px 26px 30px}
+.svc .no{display:block;font-size:11.5px;font-weight:600;letter-spacing:1.4px;
+  color:var(--accent-dim);margin:0 0 16px}
+.svc h3{margin:0 0 10px;font-size:18.5px;font-weight:500;letter-spacing:-.3px}
+.svc > p{margin:0;font-size:14.5px;line-height:1.72;color:var(--dim)}
+.svc ul{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:7px}
+.svc li{font-size:13.2px;color:var(--faint);padding-left:14px;position:relative}
+.svc li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:1px;
+  background:var(--accent-dim)}
 
-/* ------------------------------------------------------------------ stack */
-.stack{display:flex;flex-wrap:wrap;gap:8px 10px}
-.stack span{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--dim);
-  border:1px solid var(--line);border-radius:2px;padding:6px 11px;background:var(--surface);
-  transition:border-color .2s,color .2s}
-.stack span:hover{border-color:var(--fg);color:var(--fg)}
-.stack img{width:15px;height:15px;border-radius:3px}
+/* ----------------------------------------------------------- selected work */
+.work3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+.work3 > *{min-width:0}
+.wk{padding:14px 14px 22px;display:flex;flex-direction:column}
+.wk .shot{border-radius:12px;overflow:hidden;background:#0c0c0f;margin-bottom:16px}
+.wk .shot img{width:100%;aspect-ratio:16/11;object-fit:cover;object-position:top;
+  display:block;transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.wk .shot.glyph{display:grid;place-items:center;aspect-ratio:16/11;
+  background:linear-gradient(150deg,#151519,#101013)}
+.wk .shot.glyph img{width:62px !important;height:62px !important;aspect-ratio:auto;
+  border-radius:14px}
+.wk:hover .shot img{transform:scale(1.04)}
+.wk .meta{padding:0 8px}
+.wk .cat{margin:0 0 5px;font-size:11px;font-weight:600;letter-spacing:1.3px;
+  text-transform:uppercase;color:var(--faint)}
+.wk h3{margin:0 0 7px;font-size:17px;font-weight:500;letter-spacing:-.2px}
+.wk .sum{margin:0;font-size:13.5px;line-height:1.65;color:var(--dim)}
 
 /* ------------------------------------------------------------------ close */
-.close{display:grid;grid-template-columns:1.25fr 1fr;gap:60px;align-items:start}
+.close{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);align-items:stretch}
 .close > *{min-width:0}
-.close h2{margin:0 0 18px;font-family:var(--serif);font-size:clamp(30px,4vw,46px);
-  font-weight:400;letter-spacing:-.01em;line-height:1.1;max-width:15ch}
-.close p{margin:0 0 28px;font-size:16px;line-height:1.72;color:var(--dim);max-width:44ch}
-.figs{border-top:1px solid var(--line)}
-.fig{display:flex;align-items:baseline;gap:18px;padding:18px 0;
-  border-bottom:1px solid var(--line)}
-.fig b{font-family:var(--serif);font-size:38px;font-weight:400;line-height:1;
-  min-width:64px;letter-spacing:-.02em}
-.fig small{font-size:13.5px;color:var(--dim);line-height:1.5}
+.figures{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.fig{background:var(--surface);padding:32px 18px;text-align:center;
+  display:flex;flex-direction:column;justify-content:center}
+.fig b{display:block;font-size:32px;font-weight:400;letter-spacing:-1px;line-height:1}
+.fig small{display:block;margin-top:10px;font-size:11px;letter-spacing:1.2px;
+  text-transform:uppercase;color:var(--faint);line-height:1.5}
+.hire{padding:36px 34px;display:flex;flex-direction:column;justify-content:center}
+.hire h2{margin:0 0 10px;font-size:clamp(21px,2.6vw,27px);font-weight:500;
+  letter-spacing:-.7px;line-height:1.26}
+.hire p{margin:0 0 24px;font-size:14.6px;line-height:1.7;color:var(--dim);max-width:44ch}
+
+/* ------------------------------------------------------------------ stack */
+.tools{display:flex;flex-wrap:wrap;gap:8px}
+.tools span{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--dim);
+  background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:7px 12px;
+  transition:border-color .2s,color .2s}
+.tools span:hover{border-color:#33333a;color:var(--fg)}
+.tools img{width:16px;height:16px;border-radius:4px}
 
 @media (max-width:900px){
-  .hero{padding:52px 0 46px}
-  .hero h1{margin-bottom:36px}
-  .herofoot{grid-template-columns:150px 1fr;gap:26px}
-  .hero .acts{grid-column:1 / -1}
-  .row{grid-template-columns:38px 1fr;gap:6px 22px;padding:26px 0}
-  .row .body{grid-column:2}
-  .works{grid-template-columns:1fr;gap:42px}
-  .close{grid-template-columns:1fr;gap:36px}
+  .hero{grid-template-columns:170px 1fr;gap:30px;padding-bottom:52px}
+  .svcs,.work3{grid-template-columns:1fr 1fr}
+  .close{grid-template-columns:1fr}
+  .band{padding-bottom:48px}
 }
 @media (max-width:680px){
-  .herofoot{grid-template-columns:1fr;gap:24px}
-  .mug{max-width:148px}
+  .hero{grid-template-columns:1fr;gap:26px}
+  .hero .shot{max-width:200px}
+  .svcs,.work3{grid-template-columns:1fr}
+  .figures{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -123,116 +146,131 @@
       Get in touch
     </a>
   </div>
-</div>
 
-<main>
+  <main>
 
-  <section class="wrap hero reveal">
-    <h1 class="d">I build the system, and I keep it <i>running.</i></h1>
-    <div class="herofoot">
-      <div class="mug">
+    <section class="hero reveal">
+      <div class="shot">
         <img src="assets/portrait.jpg"
              srcset="assets/portrait.jpg 380w, assets/portrait@2x.jpg 502w"
-             sizes="(max-width:760px) 40vw, 190px"
+             sizes="(max-width:760px) 90vw, 220px"
              alt="Elyotam Cohen" width="380" height="480"
              fetchpriority="high" decoding="async">
       </div>
-      <p>Websites, web applications and online stores, the automation that runs behind
-        them, and the AWS infrastructure it all sits on. One person across the whole
-        chain, so nothing is handed over at a border and dropped.</p>
-      <div class="acts">
-        <a class="btn key" href="contact.html">Start a conversation</a>
-        <a class="btn" href="projects.html">See the work</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="wrap section reveal">
-    <p class="label">What I do <a href="about.html">More about me</a></p>
-    <div class="rows">
-      <article class="row">
-        <div class="n">01</div>
-        <h3>Web development</h3>
-        <div class="body">
-          <p>Sites, web applications and online stores &mdash; built to load fast and to
-            keep working long after launch.</p>
-          <ul><li>Marketing and content sites</li><li>Online stores</li>
-            <li>Right-to-left and bilingual</li></ul>
+      <div>
+        <p class="eyebrow">Elyotam Cohen <span>&middot;</span> Web development, automation, cloud</p>
+        <h1>I build the system, and I keep it <em>running.</em></h1>
+        <p class="lede">Websites, web applications and online stores, the automation that
+          runs behind them, and the AWS infrastructure it all sits on. One person across
+          the whole chain, so nothing is handed over at a border and dropped.</p>
+        <div class="acts">
+          <a class="btn key" href="contact.html">Start a conversation</a>
+          <a class="btn" href="projects.html">See the work</a>
         </div>
-      </article>
-      <article class="row">
-        <div class="n">02</div>
-        <h3>Process automation</h3>
-        <div class="body">
+      </div>
+    </section>
+
+    <section class="band reveal">
+      <div class="bandhead">
+        <h2>What I do</h2>
+        <a href="about.html">More about me &rarr;</a>
+      </div>
+      <div class="svcs">
+        <article class="box svc">
+          <span class="no">01</span>
+          <h3>Web development</h3>
+          <p>Sites, web applications and online stores &mdash; built to load fast and to
+            keep working after launch.</p>
+          <ul>
+            <li>Marketing and content sites</li>
+            <li>Online stores</li>
+            <li>Right-to-left and bilingual</li>
+          </ul>
+        </article>
+        <article class="box svc">
+          <span class="no">02</span>
+          <h3>Process automation</h3>
           <p>Orders, reports, follow-ups &mdash; the work someone is still doing by hand
             more than once. Most of it is built with AI.</p>
-          <ul><li>Business workflows</li><li>Integrations between systems</li>
-            <li>Scheduled and event-driven jobs</li></ul>
-        </div>
-      </article>
-      <article class="row">
-        <div class="n">03</div>
-        <h3>Cloud infrastructure</h3>
-        <div class="body">
+          <ul>
+            <li>Business workflows</li>
+            <li>Integrations between systems</li>
+            <li>Scheduled and event-driven jobs</li>
+          </ul>
+        </article>
+        <article class="box svc">
+          <span class="no">03</span>
+          <h3>Cloud infrastructure</h3>
           <p>Containers, orchestration and infrastructure as code, so what was built is
             deployed and run the same way every time.</p>
-          <ul><li>AWS, Terraform, Kubernetes</li><li>CI/CD from commit to production</li>
-            <li>Monitoring and alerting</li></ul>
+          <ul>
+            <li>AWS, Terraform, Kubernetes</li>
+            <li>CI/CD from commit to production</li>
+            <li>Monitoring and alerting</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="band reveal">
+      <div class="bandhead">
+        <h2>Selected work</h2>
+        <a href="projects.html">All eight projects &rarr;</a>
+      </div>
+      <div class="work3">
+        <a class="box wk" href="https://elyotam.github.io/cpa-ms/" rel="noopener">
+          <div class="shot"><img src="assets/work/cpa-ms.jpg" alt="Moshe Stern CPA" loading="lazy"></div>
+          <div class="meta">
+            <p class="cat">Client work</p>
+            <h3>Moshe Stern, CPA</h3>
+            <p class="sum">Eleven pages and four working tax calculators, with no framework behind them.</p>
+          </div>
+        </a>
+        <a class="box wk" href="https://elyotam.github.io/ahuvit-website/" rel="noopener">
+          <div class="shot"><img src="assets/work/ahuvit-website.jpg" alt="Ahuvit Mor" loading="lazy"></div>
+          <div class="meta">
+            <p class="cat">Client work</p>
+            <h3>Ahuvit Mor</h3>
+            <p class="sum">A cake atelier, built so the product carries the page and ordering stays one tap away.</p>
+          </div>
+        </a>
+        <a class="box wk" href="openvpn.html">
+          <div class="shot glyph"><img src="assets/icons/terraform.svg" alt="" loading="lazy"></div>
+          <div class="meta">
+            <p class="cat">Infrastructure</p>
+            <h3>OpenVPN on AWS</h3>
+            <p class="sum">A Terraform module that builds Access Server without a secret reaching state.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="band reveal">
+      <div class="bandhead">
+        <h2>The stack</h2>
+        <a href="about.html#stack">All 34 tools &rarr;</a>
+      </div>
+      <div class="tools" id="tools"></div>
+    </section>
+
+    <section class="band close reveal">
+      <div class="figures">
+        <div class="fig"><b>4</b><small>Live<br>client sites</small></div>
+        <div class="fig"><b>8</b><small>Projects<br>published</small></div>
+        <div class="fig"><b>34</b><small>Tools<br>in the stack</small></div>
+      </div>
+      <div class="box hire">
+        <h2>Have something that needs building, or fixing?</h2>
+        <p>Tell me what you are trying to get done. If it is not something I should be
+          taking on, I will say so.</p>
+        <div class="acts">
+          <a class="btn key" href="contact.html">Start a conversation</a>
         </div>
-      </article>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <section class="wrap section reveal">
-    <p class="label">Selected work <a href="projects.html">All eight projects</a></p>
-    <div class="works">
-      <a class="piece" href="https://elyotam.github.io/cpa-ms/" rel="noopener">
-        <div class="frame"><img src="assets/work/cpa-ms.jpg" alt="Moshe Stern CPA" loading="lazy"></div>
-        <p class="cap"><span>Client work</span><span>Live</span></p>
-        <h3>Moshe Stern, CPA</h3>
-        <p class="sum">Eleven pages and four working tax calculators, with no framework behind them.</p>
-      </a>
-      <a class="piece" href="https://elyotam.github.io/ahuvit-website/" rel="noopener">
-        <div class="frame"><img src="assets/work/ahuvit-website.jpg" alt="Ahuvit Mor" loading="lazy"></div>
-        <p class="cap"><span>Client work</span><span>Live</span></p>
-        <h3>Ahuvit Mor</h3>
-        <p class="sum">A cake atelier, built so the product carries the page and ordering stays one tap away.</p>
-      </a>
-      <a class="piece" href="https://elyotam.github.io/elyotam-website/" rel="noopener">
-        <div class="frame"><img src="assets/work/elyotam-website.jpg" alt="Elyotam" loading="lazy"></div>
-        <p class="cap"><span>Studio site</span><span>Live</span></p>
-        <h3>Elyotam</h3>
-        <p class="sum">A scroll-driven opening that reveals itself as you move, rather than loading all at once.</p>
-      </a>
-      <a class="piece" href="openvpn.html">
-        <div class="frame mark"><img src="assets/icons/terraform.svg" alt="" loading="lazy"></div>
-        <p class="cap"><span>Infrastructure</span><span>Open source</span></p>
-        <h3>OpenVPN on AWS</h3>
-        <p class="sum">A Terraform module that builds Access Server without a secret ever reaching state.</p>
-      </a>
-    </div>
-  </section>
-
-  <section class="wrap section reveal">
-    <p class="label">The stack <a href="about.html#stack">All 34 tools</a></p>
-    <div class="stack" id="stack"></div>
-  </section>
-
-  <section class="wrap section close reveal">
-    <div>
-      <h2>Have something that needs building, or fixing?</h2>
-      <p>Tell me what you are trying to get done. If it is not something I should be
-        taking on, I will say so.</p>
-      <a class="btn key" href="contact.html">Start a conversation</a>
-    </div>
-    <div class="figs">
-      <div class="fig"><b>4</b><small>Live client sites</small></div>
-      <div class="fig"><b>8</b><small>Projects published, all open source</small></div>
-      <div class="fig"><b>34</b><small>Tools in regular use</small></div>
-    </div>
-  </section>
-
-</main>
+  </main>
+</div>
 
 <footer>
   <div class="inner">
@@ -251,13 +289,15 @@
 </footer>
 
 <script src="assets/site.js"></script>
+<script src="assets/cursor.js"></script>
 <script>
+/* the stack strip: named, rather than left as bare logos */
 var TOOLS = [['aws','AWS'],['kubernetes','Kubernetes'],['terraform','Terraform'],
   ['docker','Docker'],['py','Python'],['linux','Linux'],['ansible','Ansible'],
   ['githubactions','GitHub Actions'],['argocd','Argo CD'],['helm','Helm'],
   ['grafana','Grafana'],['prometheus','Prometheus'],['postgres','PostgreSQL'],
   ['git','Git'],['figma','Figma']];
-document.getElementById('stack').innerHTML = TOOLS.map(function (t) {
+document.getElementById('tools').innerHTML = TOOLS.map(function (t) {
   return '<span><img src="assets/icons/' + t[0] + '.svg" alt="" loading="lazy">' +
          t[1] + '</span>';
 }).join('');
