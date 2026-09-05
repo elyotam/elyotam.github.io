@@ -32,8 +32,32 @@
 /* home page only: the bento arrangement */
 .bento{display:grid;grid-template-columns:repeat(22,1fr);
   gap:var(--gap);padding-bottom:var(--gap)}
-.bento > *{min-width:0}   /* or a long line widens its own track */
 
+/* Every card was the same grey, so nothing led the eye. Each one now owns a
+   colour: a soft tint in its top corner and a matching kicker. Kept low so the
+   page stays dark -- it is hierarchy, not decoration. */
+.tint::before{content:"";position:absolute;inset:0;z-index:0;border-radius:inherit;
+  pointer-events:none;opacity:.55;transition:opacity .45s ease;
+  background:radial-gradient(125% 95% at 100% 0%,var(--accent),transparent 60%)}
+/* a second, brighter pool that tracks the pointer -- site.js already writes
+   --mx and --my on every .box */
+.tint::before{background:
+  radial-gradient(260px circle at var(--mx,110%) var(--my,-10%),var(--accent),transparent 68%),
+  radial-gradient(125% 95% at 100% 0%,var(--accent),transparent 60%)}
+.tint:hover::before{opacity:.9}
+.id     {--accent:rgba(75,139,190,.22); --glow:rgba(122,181,231,.16); --markhi:#a9cdea; --markglow:rgba(75,139,190,.5)}
+.about  {--accent:rgba(11,132,145,.24); --glow:rgba(64,196,207,.15);  --markhi:#7fd6de; --markglow:rgba(11,132,145,.5)}
+.showcase{--accent:rgba(255,124,0,.20); --glow:rgba(255,150,60,.14);  --markhi:#ffb877; --markglow:rgba(255,124,0,.45)}
+.hobby  {--accent:rgba(241,101,33,.23); --glow:rgba(241,127,70,.15);  --markhi:#ffab84; --markglow:rgba(241,101,33,.45)}
+.social {--accent:rgba(139,104,224,.22);--glow:rgba(160,130,238,.16); --markhi:#bfa9ff; --markglow:rgba(139,104,224,.5)}
+.stats  {--accent:rgba(255,212,59,.15); --glow:rgba(255,212,59,.11);  --markhi:#ffe27a; --markglow:rgba(255,212,59,.35)}
+.cta    {--accent:rgba(232,129,166,.20);--glow:rgba(244,166,215,.16); --markhi:#1b1b1b; --markglow:transparent}
+.blob   {--glow:rgba(255,53,200,.14)}
+.ticker {--glow:rgba(255,255,255,.07)}
+.about .kicker{color:#5fb4bd}
+.showcase .kicker{color:#d68b4a}
+.hobby .kicker{color:#e0855c}
+.social .kicker{color:#a08ce0}
 .hobby,.blob,.social{margin-top:36px}
 .stats,.cta{margin-top:36px}
 
@@ -46,7 +70,11 @@
   transition:transform .6s cubic-bezier(.2,.7,.3,1)}
 .id:hover .mark img{transform:scale(1.05)}
 .id h1{margin:0 0 16px;font-size:clamp(27px,3.2vw,36px);font-weight:500;line-height:1.16;
-  letter-spacing:-.6px;color:var(--fg)}
+  letter-spacing:-.4px;
+  background:linear-gradient(100deg,#fff 0%,#fff 34%,#bcd9f0 44%,#fff 56%,#fff 100%);
+  background-size:280% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:sheen 8s ease-in-out infinite}
+@keyframes sheen{0%,100%{background-position:120% 0}50%{background-position:-60% 0}}
 /* The roles used to be italic grey text behind a text-glyph diamond. Inter's
    oblique is synthesised and the glyph renders differently on every platform,
    so both are gone: upright type, a little more weight, and a real mark. No
@@ -59,8 +87,13 @@
      whatever happens; balance makes the two lines even instead of leaving one
      orphaned word */
   text-wrap:balance}
-.roles em{position:relative;flex:0 0 5px;width:5px;height:5px;margin-top:9px;
-  font-size:0;border-radius:50%;background:var(--accent-dim)}
+.roles em{position:relative;flex:0 0 16px;width:16px;height:16px;margin-top:2px;
+  font-size:0;border-radius:5px;
+  background:rgba(255,212,59,.13);border:1px solid rgba(255,212,59,.32)}
+.roles em::after{content:"";position:absolute;inset:0;margin:auto;
+  width:4px;height:4px;border-radius:50%;background:var(--yellow)}
+.roles span:nth-child(2) em{background:rgba(75,139,190,.15);border-color:rgba(111,179,232,.36)}
+.roles span:nth-child(2) em::after{background:#6fb3e8}
 
 .ticker{grid-column:span 12;padding:0;min-height:53px;display:flex;align-items:center;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 34px,#000 calc(100% - 34px),transparent);
@@ -118,18 +151,57 @@
 .hobby .badge img{width:100%;height:100%;object-fit:cover;display:block;
   transition:transform .6s cubic-bezier(.2,.7,.3,1)}
 .hobby:hover .badge img{transform:scale(1.06)}
-/* This was a magenta neon sign. It is a statement panel now: the same slot in
-   the grid, carrying a line rather than a light show. */
-.blob{grid-column:span 9;min-height:213px;display:flex;flex-direction:column;
-  justify-content:center;padding:34px 38px;
-  background:linear-gradient(150deg,#141418,#0e0e11 60%,#101014)}
-.blob p{margin:0;font-size:clamp(21px,2.5vw,29px);font-weight:400;line-height:1.32;
-  letter-spacing:-.6px;color:var(--fg);max-width:20ch}
-.blob p b{font-weight:400;color:var(--accent)}
-.blob .sub{margin:14px 0 0;font-size:13.5px;line-height:1.6;color:var(--dim);
-  letter-spacing:.1px;max-width:34ch}
+/* His version is a three.js canvas. The look is two blurred gradient layers
+   that drift and rotate behind hollow neon type -- both gradients and both
+   keyframes below are his, copied out of his stylesheet. */
+.blob{grid-column:span 9;min-height:213px;padding:0;display:grid;place-items:center;
+  background:#0d0710;isolation:isolate;overflow:hidden;
+  container-type:inline-size}   /* so the type scales with the card, not the window */
+.blob::before,.blob::after{content:"";position:absolute;inset:-10%;
+  pointer-events:none;z-index:0}
+.blob::before{filter:blur(28px);
+  background:
+    radial-gradient(circle at 25% 30%,#4c055ad9 0%,#0000 45%),
+    radial-gradient(circle at 80% 70%,#500a14d9 0%,#0000 50%),
+    radial-gradient(circle at 50% 100%,#280a3cbf 0%,#0000 55%);
+  animation:futureGlowDrift 11s ease-in-out infinite alternate}
+.blob::after{filter:blur(22px);mix-blend-mode:multiply;
+  background:
+    radial-gradient(circle at 70% 25%,#78145080 0%,#0000 40%),
+    radial-gradient(circle at 20% 80%,#8c121e73 0%,#0000 45%),
+    conic-gradient(#500a3c59 0deg,#0000 60deg,#6e121e59 180deg,#0000 240deg,#500a3c59 360deg);
+  animation:futureGlowSpin 22s linear infinite}
+@keyframes futureGlowDrift{
+  0%{opacity:.85;transform:translate(-4%,-2%) scale(1)}
+  50%{opacity:1;transform:translate(3%,4%) scale(1.1)}
+  100%{opacity:.9;transform:translate(4%,-3%) scale(1.05)}}
+@keyframes futureGlowSpin{
+  0%{transform:rotate(0) scale(1)}
+  50%{transform:rotate(180deg) scale(1.15)}
+  100%{transform:rotate(360deg) scale(1)}}
+
+/* Hollow letters: the fill is transparent and only the stroke is painted, so
+   drop-shadow glows the outline. text-shadow would glow the solid glyph and
+   fill the counters with light. */
+.neon{position:relative;z-index:2;text-align:center;line-height:1.02;
+  margin:0;                         /* a <p> inherits 1em top and bottom, which
+                                       at this size added 166px to the row */
+  font-weight:800;letter-spacing:2px;color:transparent;
+  font-size:clamp(30px,7.4vw,62px);
+  font-size:min(19cqw,86px);        /* ignored where cqw is unsupported */
+  -webkit-text-stroke:1.9px #ff35c8;
+  filter:drop-shadow(0 0 3px #ff35c8) drop-shadow(0 0 11px #ff35c8b3)
+         drop-shadow(0 0 28px #d60096a6);
+  animation:neonFlicker 7s infinite;
+  transition:transform .5s ease}
+.neon span{display:block}
+.blob:hover .neon{transform:scale(1.04)}
+@keyframes neonFlicker{
+  0%,46%,50%,71%,75%,100%{opacity:1}
+  48%{opacity:.55}
+  73%{opacity:.7}}
 .social{grid-column:span 8;min-height:213px;display:flex;flex-direction:column;justify-content:flex-end}
-.orbwrap{position:absolute;left:22px;right:22px;top:22px;background:#101012;border:1px solid var(--line);
+.orbwrap{position:absolute;left:22px;right:22px;top:22px;background:var(--inner);border:1px solid var(--line);
   border-radius:var(--ri);padding:22px;display:flex;gap:16px;justify-content:center}
 .orb{position:relative;z-index:10;width:68px;height:68px;border-radius:50%;background:#141414;
   border:1px solid #2e2e2e;display:grid;place-items:center;transition:.2s}
@@ -147,19 +219,44 @@
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
   text-align:center;background:#1c1c1c;border:1px solid #282828;
   transition:border-color .3s,background .3s}
+.cell::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(100% 80% at 50% 0%,var(--c),transparent 70%);opacity:.75}
+.cell.r{--c:rgba(75,139,190,.16)}
+.cell.s{--c:rgba(224,162,106,.15)}
+.cell.t{--c:rgba(255,212,59,.13)}
+.cell > *{position:relative;z-index:1}
 .stats:hover .cell{border-color:#343434;background:#1f1f1f}
 .cell b{font-size:33px;font-weight:400;line-height:1;letter-spacing:-.5px}
-
+.cell.r b{color:#7db2dc}
+.cell.s b{color:#e0a26a}
+.cell.t b{color:var(--yellow)}
 .cell small{font-size:11.5px;color:var(--faint);line-height:1.35;text-transform:uppercase;letter-spacing:.3px}
 .cta{grid-column:span 11;min-height:170px;display:flex;flex-direction:column;justify-content:center;padding:28px}
-.cta h2{margin:0;font-size:clamp(30px,4.4vw,46px);font-weight:400;line-height:1.16;letter-spacing:-1px}
-.grad{color:var(--accent)}
+.spark{position:absolute;left:28px;top:20px;width:40px;height:48px;opacity:.9}
+.spark svg{width:100%;height:100%;fill:#e9e9e9}
+.cta h2{margin:28px 0 0;font-size:clamp(30px,4.4vw,46px);font-weight:400;line-height:1.16;letter-spacing:-1px}
+.grad{background:linear-gradient(90deg,#f472b6,#a78bfa 45%,#60a5fa);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
 
 
 /* hover states lifted from the reference: the cards recolour, they do not move */
-
-.cta:hover{background:#1b1b20;border-color:#3a3a42}
-.cta:hover .grad{color:#b8cde0}
+.id:hover{background:linear-gradient(109.6deg,#242d39 11.2%,#10253c 51.2%,#000 98.6%) padding-box,
+  linear-gradient(120deg,rgba(255,255,255,.13),rgba(255,255,255,.02)) border-box}
+.cta:hover{background:linear-gradient(122.3deg,#6f4785 14.6%,#e881a6 29.6%,#ededb7 42.1%,
+  #f4a6d7 56.7%,#9adbe8 68.7%,#eee29f 84.8%) padding-box,
+  linear-gradient(120deg,rgba(255,255,255,.2),rgba(255,255,255,.05)) border-box}
+.cta:hover h2{color:#1b1b1b}
+.cta:hover .grad{background:radial-gradient(523px at 7.1% 19.3%,#930fff 2%,#0531ff 100.7%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.cta:hover .spark svg{fill:#1b1b1b}
+.cta:hover .plus{color:#1b1b1b}   /* the mark is currentColor, so this darkens it */
+/* Projects: an orange core blooms from just off the left edge */
+.showcase:hover{background:
+  radial-gradient(circle at -15.9% 30%,#ff7c00 0% 16%,#ffa34d 15.9% 24.4%,#131e25 24.5% 66%) padding-box,
+  linear-gradient(120deg,rgba(255,255,255,.13),rgba(255,255,255,.02)) border-box}
+/* Credentials: black into teal */
+.about:hover{background:linear-gradient(109.6deg,#000 11.2%,#0b8491 91.1%) padding-box,
+  linear-gradient(120deg,rgba(255,255,255,.13),rgba(255,255,255,.02)) border-box}
 
 /* the social orbs flip to white */
 /* nav items lift, which is the one place he does move something */
@@ -213,7 +310,7 @@
 
 <div class="wrap">
   <div class="top">
-    <div class="ghost">Elyotam Cohen</div>
+    <div class="ghost">HELLO WORLD!</div>
     <button class="burger" id="burger" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav id="nav">
       <a class="on" href="#top">Home</a>
@@ -229,7 +326,7 @@
 
   <main class="bento" id="top">
 
-    <section class="box id reveal">
+    <section class="box id tint reveal">
       <a class="overlay" href="about.html" aria-label="More about me"></a>
       <div class="mark"><img src="assets/portrait.jpg"
         srcset="assets/portrait.jpg 380w, assets/portrait@2x.jpg 502w"
@@ -243,7 +340,7 @@
           <span><em></em>Cloud Infrastructure &amp; DevOps</span>
         </div>
       </div>
-      <span class="plus"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="plus"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
     </section>
 
     <section class="box ticker reveal" aria-label="Tools">
@@ -251,14 +348,14 @@
       <div class="track" id="track"></div>
     </section>
 
-    <a class="box about reveal" href="about.html">
+    <a class="box about tint reveal" href="about.html">
       <div class="sig" aria-hidden="true"><b>EC</b><i></i></div>
       <p class="kicker">Background</p>
       <h2 class="title">More about me</h2>
-      <span class="plus"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="plus"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
     </a>
 
-    <a class="box showcase reveal" href="projects.html">
+    <a class="box showcase tint reveal" href="projects.html">
       <div class="ghostword" aria-hidden="true">PROJECTS</div>
       <div class="laptop" aria-hidden="true">
         <div class="lid">
@@ -269,24 +366,23 @@
       </div>
       <p class="kicker">Selected work</p>
       <h2 class="title">Eight projects</h2>
-      <span class="plus"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="plus"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
     </a>
 
-    <a class="box hobby reveal" id="shop"
+    <a class="box hobby tint reveal" id="shop"
        href="https://www.etsy.com/shop/ColorCatt" rel="noopener">
       <div class="badge"><img src="assets/work/etsy.svg" alt=""></div>
       <p class="kicker">Side project</p>
       <h2 class="title">ColorCatt</h2>
-      <span class="plus"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="plus"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
     </a>
 
-    <section class="box blob reveal" aria-label="How I work">
+    <section class="box blob reveal" aria-label="Future is now">
       <a class="overlay" href="about.html" aria-label="More about me"></a>
-      <p>Build it, ship it, <b>then keep it running.</b></p>
-      <p class="sub">The same person writes the code and owns the server it lands on.</p>
+      <p class="neon"><span>FUTURE</span><span>IS NOW</span></p>
     </section>
 
-    <section class="box social reveal" id="contact">
+    <section class="box social tint reveal" id="contact">
       <a class="overlay" href="contact.html" aria-label="Ways to reach me"></a>
       <div class="orbwrap">
         <a class="orb" href="https://wa.me/972522057074?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9A%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%93%D7%91%D7%A8%20%D7%A2%D7%9C%20%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%20%F0%9F%91%8B" target="_blank" rel="noopener" aria-label="WhatsApp">
@@ -298,33 +394,35 @@
       </div>
       <p class="kicker">Say hello</p>
       <h2 class="title">Find me here</h2>
-      <span class="plus"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="plus"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
     </section>
 
-    <section class="box stats reveal">
+    <section class="box stats tint reveal">
       <a class="overlay" href="contact.html" aria-label="Ways to reach me"></a>
       <div class="cell r"><b id="sRepos">10</b><small>Public<br>repositories</small></div>
       <div class="cell s"><b>4</b><small>Live<br>client sites</small></div>
       <div class="cell t"><b>34</b><small>Tools<br>in the stack</small></div>
     </section>
 
-    <section class="box cta reveal">
+    <section class="box cta tint reveal">
       <a class="overlay" href="contact.html" aria-label="Get in touch"></a>
+      <div class="spark" aria-hidden="true">
+        <svg viewBox="0 0 40 52"><path d="M20 0c.7 14 3 20 12 24-9 4-11.3 10-12 24-.7-14-3-20-12-24 9-4 11.3-10 12-24z"/></svg>
+      </div>
       <h2>Let&rsquo;s<br>work <span class="grad">together.</span></h2>
-      <span class="plus"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="plus"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
     </section>
 
   </main>
 </div>
 
 <footer>
-  <div class="inner">
-    <nav>
-      <a href="./">Home</a><a href="about.html">About</a>
-      <a href="projects.html">Projects</a><a href="contact.html">Contact</a>
-    </nav>
-    <div><span id="yr">2026</span> &copy; Elyotam Cohen</div>
-  </div>
+  <nav>
+    <a href="#top">Home</a><a href="about.html">About</a>
+    <a href="projects.html">My Projects</a><a href="contact.html">Contact</a>
+  </nav>
+  <div><span id="yr">2026</span> &copy; Created with love by
+    <a class="by" href="https://github.com/elyotam" rel="noopener">Elyotam Cohen</a></div>
 </footer>
 
 <script src="assets/site.js"></script>

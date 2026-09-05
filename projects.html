@@ -26,18 +26,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-.head{padding:4px 0 30px}
-.pagehead{padding:4px 0 30px}
-.bigtitle{margin:0 0 10px;font-size:clamp(26px,3.6vw,40px);font-weight:500;
-  letter-spacing:-1.1px;color:var(--fg)}
-.head p{margin:0;color:var(--dim);max-width:62ch;font-size:15px;line-height:1.7}
+.head{padding:6px 0 26px;text-align:center}
+.bigtitle{margin:0 0 12px;font-size:clamp(30px,5vw,50px);font-weight:800;letter-spacing:-1px;
+  display:flex;align-items:center;justify-content:center;gap:18px}
+.bigtitle span{background:linear-gradient(92deg,#e8e8e8,#a9a9a9 45%,#f0c8dd);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.bigtitle i{font-style:normal;color:#cfcfcf;font-size:.55em;opacity:.8}
+.head p{margin:0 auto;color:var(--dim);max-width:62ch}
 
-.filters{display:flex;gap:8px;flex-wrap:wrap;padding:22px 0 30px}
+.filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:0 0 34px}
 .filters button{font:inherit;font-size:13.5px;font-weight:500;letter-spacing:.3px;cursor:pointer;
   padding:9px 18px;border-radius:999px;color:var(--dim);background:#171717;
   border:1px solid #262626;transition:.2s}
 .filters button:hover{color:var(--fg);border-color:#3a3a3a}
-.filters button[aria-pressed="true"]{background:var(--fg);color:#0b0b0d;border-color:var(--fg)}
+.filters button[aria-pressed="true"]{background:#f4f4f4;color:#111;border-color:#f4f4f4}
 
 /* Three to a row, the way his projects page is laid out. */
 .works{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);padding-bottom:10px}
@@ -64,7 +66,8 @@
 .badge span{font-size:10.5px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;
   padding:5px 11px;border-radius:999px;
   background:rgba(10,10,10,.66);border:1px solid rgba(255,255,255,.16);color:#e9e9e9}
-.badge .live{border-color:rgba(255,255,255,.28);color:#fff}
+.badge .live{background:rgba(18,58,30,.78);border-color:rgba(80,220,120,.4);color:#7ee89a}
+.badge .doc{background:rgba(24,44,66,.8);border-color:rgba(75,139,190,.45);color:#9dc6e8}
 
 .info{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;
   padding:0 4px;flex:1}
@@ -87,7 +90,7 @@
 
 <div class="wrap">
   <div class="top">
-    <a class="ghost" href="./">Elyotam Cohen</a>
+    <a class="ghost" href="./">HELLO WORLD!</a>
     <button class="burger" id="burger" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav id="nav">
       <a href="./">Home</a><a href="about.html">About</a>
@@ -100,9 +103,9 @@
   </div>
 
   <header class="head">
-    <h1 class="bigtitle">Selected work</h1>
-    <p>Client sites, infrastructure and one shop. Every project here is open
-        source, and every site has a live link.</p>
+    <h1 class="bigtitle"><i>&#10038;</i><span>ALL PROJECTS</span><i>&#10038;</i></h1>
+    <p>Sites, infrastructure and a shop. Every one of these has the source open, and
+      the sites have a live link you can click.</p>
   </header>
 
   <div class="filters" role="group" aria-label="Filter projects">
@@ -126,7 +129,7 @@
           <h2>Moshe Stern, CPA</h2>
           <p class="line">Eleven pages, four working tax calculators, no framework.</p>
         </div>
-        <div class="pbtns"><a class="pbtn gh" href="https://github.com/elyotam/cpa-ms" rel="noopener" aria-label="Moshe Stern, CPA on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a><a class="pbtn" href="https://elyotam.github.io/cpa-ms/" rel="noopener" aria-label="Open Moshe Stern, CPA"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        <div class="pbtns"><a class="pbtn gh" href="https://github.com/elyotam/cpa-ms" rel="noopener" aria-label="Moshe Stern, CPA on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a><a class="pbtn" href="https://elyotam.github.io/cpa-ms/" rel="noopener" aria-label="Open Moshe Stern, CPA"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></div>
       </div>
     </article>
 
@@ -142,7 +145,7 @@
           <h2>CODE92</h2>
           <p class="line">Dark and motion-led, fully right-to-left.</p>
         </div>
-        <div class="pbtns"><a class="pbtn gh" href="https://github.com/elyotam/code92-website" rel="noopener" aria-label="CODE92 on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a><a class="pbtn" href="https://elyotam.github.io/code92-website/" rel="noopener" aria-label="Open CODE92"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        <div class="pbtns"><a class="pbtn gh" href="https://github.com/elyotam/code92-website" rel="noopener" aria-label="CODE92 on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a><a class="pbtn" href="https://elyotam.github.io/code92-website/" rel="noopener" aria-label="Open CODE92"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></div>
       </div>
     </article>
 
@@ -158,7 +161,7 @@
           <h2>Ahuvit Mor</h2>
           <p class="line">A boutique cake studio, warm and image-led.</p>
         </div>
-        <div class="pbtns"><a class="pbtn gh" href="https://github.com/elyotam/ahuvit-website" rel="noopener" aria-label="Ahuvit Mor on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a><a class="pbtn" href="https://elyotam.github.io/ahuvit-website/" rel="noopener" aria-label="Open Ahuvit Mor"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        <div class="pbtns"><a class="pbtn gh" href="https://github.com/elyotam/ahuvit-website" rel="noopener" aria-label="Ahuvit Mor on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a><a class="pbtn" href="https://elyotam.github.io/ahuvit-website/" rel="noopener" aria-label="Open Ahuvit Mor"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></div>
       </div>
     </article>
 
@@ -174,13 +177,13 @@
           <h2>Elyotam</h2>
           <p class="line">A cinematic opening that reveals itself as you scroll.</p>
         </div>
-        <div class="pbtns"><a class="pbtn gh" href="https://github.com/elyotam/elyotam-website" rel="noopener" aria-label="Elyotam on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a><a class="pbtn" href="https://elyotam.github.io/elyotam-website/" rel="noopener" aria-label="Open Elyotam"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        <div class="pbtns"><a class="pbtn gh" href="https://github.com/elyotam/elyotam-website" rel="noopener" aria-label="Elyotam on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a><a class="pbtn" href="https://elyotam.github.io/elyotam-website/" rel="noopener" aria-label="Open Elyotam"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></div>
       </div>
     </article>
 
     <article class="box work reveal" data-cat="infra">
       <a class="overlay" href="openvpn.html" aria-label="OpenVPN on AWS"></a>
-      <div class="canvas glyph" style="background:linear-gradient(150deg,#151519,#101013)">
+      <div class="canvas glyph" style="background:radial-gradient(120% 120% at 30% 20%,#2a1f3d,#141019 60%,#0d0d0d)">
         <div class="badge"><span class="doc">Readme</span></div>
         <img src="assets/icons/terraform.svg" alt="">
       </div>
@@ -190,13 +193,13 @@
           <h2>OpenVPN on AWS</h2>
           <p class="line">Builds Access Server without putting a secret in state.</p>
         </div>
-        <div class="pbtns"><a class="pbtn gh" href="https://github.com/elyotam/aws-openvpn" rel="noopener" aria-label="OpenVPN on AWS on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a><a class="pbtn" href="openvpn.html" aria-label="Open OpenVPN on AWS"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        <div class="pbtns"><a class="pbtn gh" href="https://github.com/elyotam/aws-openvpn" rel="noopener" aria-label="OpenVPN on AWS on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a><a class="pbtn" href="openvpn.html" aria-label="Open OpenVPN on AWS"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></div>
       </div>
     </article>
 
     <article class="box work reveal" data-cat="infra">
       <a class="overlay" href="quakewatch.html" aria-label="QuakeWatch"></a>
-      <div class="canvas glyph" style="background:linear-gradient(150deg,#151519,#101013)">
+      <div class="canvas glyph" style="background:radial-gradient(120% 120% at 70% 25%,#123040,#0f2027 55%,#0d0d0d)">
         <div class="badge"><span class="doc">Readme</span></div>
         <img src="assets/icons/kubernetes.svg" alt="">
       </div>
@@ -206,13 +209,13 @@
           <h2>QuakeWatch</h2>
           <p class="line">Live USGS earthquake data, shipped all the way to a cluster.</p>
         </div>
-        <div class="pbtns"><a class="pbtn gh" href="https://github.com/elyotam/quakewatch-final-project" rel="noopener" aria-label="QuakeWatch on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a><a class="pbtn" href="quakewatch.html" aria-label="Open QuakeWatch"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        <div class="pbtns"><a class="pbtn gh" href="https://github.com/elyotam/quakewatch-final-project" rel="noopener" aria-label="QuakeWatch on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a><a class="pbtn" href="quakewatch.html" aria-label="Open QuakeWatch"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></div>
       </div>
     </article>
 
     <article class="box work reveal" data-cat="infra">
       <a class="overlay" href="devops-experts.html" aria-label="DevOps Experts"></a>
-      <div class="canvas glyph" style="background:linear-gradient(150deg,#151519,#101013)">
+      <div class="canvas glyph" style="background:radial-gradient(120% 120% at 40% 25%,#2b2410,#1a1608 55%,#0d0d0d)">
         <div class="badge"><span class="doc">Readme</span></div>
         <img src="assets/icons/docker.svg" alt="">
       </div>
@@ -222,7 +225,7 @@
           <h2>DevOps Experts</h2>
           <p class="line">Fourteen lessons from the course, one script each.</p>
         </div>
-        <div class="pbtns"><a class="pbtn gh" href="https://github.com/elyotam/devops-experts" rel="noopener" aria-label="DevOps Experts on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a><a class="pbtn" href="devops-experts.html" aria-label="Open DevOps Experts"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        <div class="pbtns"><a class="pbtn gh" href="https://github.com/elyotam/devops-experts" rel="noopener" aria-label="DevOps Experts on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a><a class="pbtn" href="devops-experts.html" aria-label="Open DevOps Experts"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></div>
       </div>
     </article>
 
@@ -238,20 +241,19 @@
           <h2>ColorCatt</h2>
           <p class="line">My shop — the artwork, the listings and the storefront.</p>
         </div>
-        <div class="pbtns"><a class="pbtn" href="https://www.etsy.com/shop/ColorCatt" rel="noopener" aria-label="Open ColorCatt"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        <div class="pbtns"><a class="pbtn" href="https://www.etsy.com/shop/ColorCatt" rel="noopener" aria-label="Open ColorCatt"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></div>
       </div>
     </article>
   </main>
 </div>
 
 <footer>
-  <div class="inner">
-    <nav>
-      <a href="./">Home</a><a href="about.html">About</a>
-      <a href="projects.html">Projects</a><a href="contact.html">Contact</a>
-    </nav>
-    <div><span id="yr">2026</span> &copy; Elyotam Cohen</div>
-  </div>
+  <nav>
+    <a href="./">Home</a><a href="about.html">About</a>
+    <a href="projects.html">My Projects</a><a href="contact.html">Contact</a>
+  </nav>
+  <div><span id="yr">2026</span> &copy; Created with love by
+    <a class="by" href="https://github.com/elyotam" rel="noopener">Elyotam Cohen</a></div>
 </footer>
 
 <script src="assets/site.js"></script>
