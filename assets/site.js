@@ -30,6 +30,9 @@
     });
   }
 
+  // decorative only, so it is created here rather than repeated in every page
+  document.body.insertAdjacentHTML('beforeend', '<div class="grain" aria-hidden="true"></div>');
+
   if (!reduce && matchMedia('(hover:hover)').matches) {
     document.querySelectorAll('.box').forEach(b => {
       b.addEventListener('pointermove', e => {

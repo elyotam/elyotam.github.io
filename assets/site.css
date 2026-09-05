@@ -10,15 +10,40 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
+/* The page colour lives on <html> so body can stay transparent and let the
+   aurora behind it show through. */
+html{background:var(--bg)}
 body{
-  margin:0;background:var(--bg);color:var(--fg);overflow-x:hidden;
+  margin:0;background:transparent;color:var(--fg);overflow-x:hidden;
   font:16px/1.55 Inter,ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   -webkit-font-smoothing:antialiased;
+}
+/* Four very soft lights that drift behind everything. Heavily blurred and low
+   opacity: the page still reads as black, it just stops being flat. */
+body::after{
+  content:"";position:fixed;inset:-25%;z-index:-1;pointer-events:none;
+  filter:blur(100px);opacity:.44;
+  background:
+    radial-gradient(34% 38% at 16% 20%,rgba(75,139,190,.55),transparent 62%),
+    radial-gradient(30% 34% at 84% 14%,rgba(139,104,224,.45),transparent 64%),
+    radial-gradient(32% 36% at 76% 80%,rgba(232,129,166,.34),transparent 62%),
+    radial-gradient(28% 32% at 22% 86%,rgba(11,132,145,.42),transparent 64%);
+  animation:aurora 28s ease-in-out infinite alternate;
+}
+@keyframes aurora{
+  0%{transform:translate(-2%,-1%) scale(1);opacity:.4}
+  50%{transform:translate(2.5%,2%) scale(1.09);opacity:.52}
+  100%{transform:translate(1%,-2.5%) scale(1.05);opacity:.44}
 }
 /* the fine dot grid the whole page sits on */
 body::before{
   content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:1;
   background-image:radial-gradient(#323232 .5px,transparent .5px);background-size:4.25px 4.25px;
+}
+/* film grain, so the large flat panels have some tooth */
+.grain{
+  position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.045;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
 }
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
@@ -53,8 +78,10 @@ a{color:inherit;text-decoration:none}
     linear-gradient(120deg,rgba(255,255,255,.13),rgba(255,255,255,.02)) border-box;
   transition:background .45s ease;
 }
-.box::after{content:"";position:absolute;inset:0;opacity:0;transition:opacity .3s;pointer-events:none;
-  background:radial-gradient(360px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.045),transparent 60%)}
+.box::after{content:"";position:absolute;inset:0;opacity:0;transition:opacity .35s;pointer-events:none;
+  border-radius:inherit;z-index:1;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),
+    var(--glow,rgba(255,255,255,.06)),transparent 62%)}
 .box:hover::after{opacity:1}
 .box > *{position:relative;z-index:2}
 .kicker{font-size:12px;font-weight:500;letter-spacing:.4px;color:var(--faint);
@@ -70,7 +97,8 @@ a{color:inherit;text-decoration:none}
   z-index:10;opacity:.2;transition:opacity .3s;
 }
 .plus svg{width:100%;height:100%;display:block}
-.box:hover .plus{opacity:1}
+.box:hover .plus{opacity:1;color:var(--markhi,#f4f4f4);
+  filter:drop-shadow(0 0 10px var(--markglow,transparent))}
 
 /* ------------------------------------------------------------------- footer */
 footer{position:relative;z-index:1;padding:26px 0 44px;text-align:center;color:#8a8a8a;font-size:14.5px}
@@ -115,6 +143,7 @@ footer .by{color:var(--blue)}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
+  body::after{animation:none}
   .reveal{opacity:1;transform:none;transition:none}
   .box:hover{transform:none}
 }

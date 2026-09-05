@@ -39,14 +39,21 @@
 .tint::before{content:"";position:absolute;inset:0;z-index:0;border-radius:inherit;
   pointer-events:none;opacity:.55;transition:opacity .45s ease;
   background:radial-gradient(125% 95% at 100% 0%,var(--accent),transparent 60%)}
+/* a second, brighter pool that tracks the pointer -- site.js already writes
+   --mx and --my on every .box */
+.tint::before{background:
+  radial-gradient(260px circle at var(--mx,110%) var(--my,-10%),var(--accent),transparent 68%),
+  radial-gradient(125% 95% at 100% 0%,var(--accent),transparent 60%)}
 .tint:hover::before{opacity:.9}
-.id{--accent:rgba(75,139,190,.22)}
-.about{--accent:rgba(11,132,145,.24)}
-.showcase{--accent:rgba(255,124,0,.20)}
-.hobby{--accent:rgba(241,101,33,.23)}
-.social{--accent:rgba(139,104,224,.22)}
-.stats{--accent:rgba(255,212,59,.15)}
-.cta{--accent:rgba(232,129,166,.20)}
+.id     {--accent:rgba(75,139,190,.22); --glow:rgba(122,181,231,.16); --markhi:#a9cdea; --markglow:rgba(75,139,190,.5)}
+.about  {--accent:rgba(11,132,145,.24); --glow:rgba(64,196,207,.15);  --markhi:#7fd6de; --markglow:rgba(11,132,145,.5)}
+.showcase{--accent:rgba(255,124,0,.20); --glow:rgba(255,150,60,.14);  --markhi:#ffb877; --markglow:rgba(255,124,0,.45)}
+.hobby  {--accent:rgba(241,101,33,.23); --glow:rgba(241,127,70,.15);  --markhi:#ffab84; --markglow:rgba(241,101,33,.45)}
+.social {--accent:rgba(139,104,224,.22);--glow:rgba(160,130,238,.16); --markhi:#bfa9ff; --markglow:rgba(139,104,224,.5)}
+.stats  {--accent:rgba(255,212,59,.15); --glow:rgba(255,212,59,.11);  --markhi:#ffe27a; --markglow:rgba(255,212,59,.35)}
+.cta    {--accent:rgba(232,129,166,.20);--glow:rgba(244,166,215,.16); --markhi:#1b1b1b; --markglow:transparent}
+.blob   {--glow:rgba(255,53,200,.14)}
+.ticker {--glow:rgba(255,255,255,.07)}
 .about .kicker{color:#5fb4bd}
 .showcase .kicker{color:#d68b4a}
 .hobby .kicker{color:#e0855c}
@@ -62,7 +69,12 @@
 .mark img{width:100%;height:100%;object-fit:cover;object-position:center;
   transition:transform .6s cubic-bezier(.2,.7,.3,1)}
 .id:hover .mark img{transform:scale(1.05)}
-.id h1{margin:0 0 16px;font-size:clamp(27px,3.2vw,36px);font-weight:500;line-height:1.16;letter-spacing:-.4px}
+.id h1{margin:0 0 16px;font-size:clamp(27px,3.2vw,36px);font-weight:500;line-height:1.16;
+  letter-spacing:-.4px;
+  background:linear-gradient(100deg,#fff 0%,#fff 34%,#bcd9f0 44%,#fff 56%,#fff 100%);
+  background-size:280% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:sheen 8s ease-in-out infinite}
+@keyframes sheen{0%,100%{background-position:120% 0}50%{background-position:-60% 0}}
 /* The roles used to be italic grey text behind a text-glyph diamond. Inter's
    oblique is synthesised and the glyph renders differently on every platform,
    so both are gone: upright type, a little more weight, and a real mark. No
@@ -288,6 +300,7 @@
 }
 @media (prefers-reduced-motion:reduce){
   .track,.blob::before,.blob::after,.neon{animation:none}
+  .id h1{animation:none;background:none;color:var(--fg)}
 }
 </style>
 </head>
