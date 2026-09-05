@@ -41,39 +41,49 @@
 .filters button:hover{color:var(--fg);border-color:#3a3a3a}
 .filters button[aria-pressed="true"]{background:#f4f4f4;color:#111;border-color:#f4f4f4}
 
-.works{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);padding-bottom:10px}
-.work{grid-column:span 6;padding:16px;display:flex;flex-direction:column}
+/* Three to a row, the way his projects page is laid out. */
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);padding-bottom:10px}
+.work{padding:16px 16px 26px;display:flex;flex-direction:column;height:100%}
+.works{align-items:stretch}
 /* .work sets display, which outranks the browser's [hidden] rule, so the
    filter had no effect at all until this line existed */
 .work[hidden]{display:none}
-.work.lg{grid-column:span 12}
-.canvas{position:relative;border-radius:18px;overflow:hidden;background:#0d0d0d}
-.canvas img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;
-  transition:transform .6s cubic-bezier(.2,.7,.3,1)}
-.work.lg .canvas img{aspect-ratio:24/9}
-.work:hover .canvas img{transform:scale(1.045)}
-.glyph{display:grid;place-items:center;aspect-ratio:16/10}
-.glyph img{width:96px !important;height:96px !important;aspect-ratio:auto !important;
-  border-radius:22px;object-fit:contain}
+
+/* his cards zoom in rather than slide up, and they do it again after a filter */
+.works .reveal{transform:scale(.6);
+  transition:opacity .5s ease,transform .5s cubic-bezier(.19,.9,.32,1)}
+.works .reveal.in{transform:none}
+
+.canvas{position:relative;border-radius:var(--r);overflow:hidden;background:#0d0d0d;
+  margin-bottom:13px}
+.canvas img{width:100%;aspect-ratio:7/6;object-fit:cover;object-position:top;
+  border-radius:var(--r);display:block;transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.work:hover .canvas img{transform:scale(1.05)}
+.glyph{display:grid;place-items:center;aspect-ratio:7/6}
+.glyph img{width:88px !important;height:88px !important;aspect-ratio:auto !important;
+  border-radius:20px;object-fit:contain}
 .badge{position:absolute;top:14px;left:14px;display:flex;gap:7px;z-index:3}
 .badge span{font-size:10.5px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;
   padding:5px 11px;border-radius:999px;
   background:rgba(10,10,10,.66);border:1px solid rgba(255,255,255,.16);color:#e9e9e9}
 .badge .live{background:rgba(18,58,30,.78);border-color:rgba(80,220,120,.4);color:#7ee89a}
 .badge .doc{background:rgba(24,44,66,.8);border-color:rgba(75,139,190,.45);color:#9dc6e8}
-.body{padding:20px 12px 4px;position:relative}
-.work h2{margin:0 0 8px;font-size:23px;font-weight:500;letter-spacing:-.3px}
-.sum{margin:0 0 16px;color:var(--dim);font-size:14.4px;line-height:1.66;max-width:64ch}
-.tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
-.tag{font-size:11px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;color:#a8a8a8;
-  border:1px solid #2c2c2c;background:#191919;border-radius:999px;padding:5px 12px}
-.links{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:10}
-.lnk{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;
-  padding:10px 18px;border-radius:11px;border:1px solid #2f2f2f;background:#161616;transition:.2s}
-.lnk:hover{border-color:#5a5a5a;background:#1d1d1d}
-.lnk.primary{background:#f4f4f4;color:#111;border-color:#f4f4f4}
-.lnk.primary:hover{background:#fff}
-@media (max-width:900px){ .work,.work.lg{grid-column:span 12} }
+
+.info{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;
+  padding:0 4px;flex:1}
+.cat{margin:5px 0 2px;font-size:13px;letter-spacing:.4px;text-transform:uppercase;
+  color:#bcbcbc;opacity:.5}
+.work h2{margin:0;font-size:21px;font-weight:500;letter-spacing:-.3px;color:#fff;opacity:.9}
+.line{margin:7px 0 0;font-size:13.8px;line-height:1.6;color:var(--dim);text-wrap:balance}
+.pbtns{display:flex;align-items:center;gap:4px;position:relative;z-index:10;flex:0 0 auto}
+.pbtn{display:block;color:#f4f4f4;opacity:.2;transition:opacity .3s}
+.pbtn svg{width:46px;height:42px;display:block}
+.pbtn.gh svg{width:19px;height:19px;margin:0 6px}
+.work:hover .pbtn{opacity:.5}
+.work:hover .pbtn:hover{opacity:1}
+
+@media (max-width:1000px){ .works{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:660px){ .works{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
@@ -107,180 +117,133 @@
 
   <main class="works" id="works">
 
-    <article class="box work lg reveal" data-cat="web">
-      <a class="overlay" href="https://elyotam.github.io/cpa-ms/" rel="noopener" aria-label="Open the Moshe Stern CPA site"></a>
-      <div class="canvas">
-        <div class="badge"><span class="live">Live</span><span>Client work</span><span>11 pages</span></div>
-        <img src="assets/work/cpa-ms.jpg" alt="Moshe Stern CPA website" loading="lazy">
-      </div>
-      <div class="body">
-        <h2>Moshe Stern &mdash; Certified Public Accountant</h2>
-        <p class="sum">A full content site for an accountancy practice: eleven pages,
-          four working tax calculators, internal search and a light/dark switch.
-          Entirely static &mdash; plain HTML, CSS and JavaScript. No framework, no
-          database, no hosting bill, and nothing that breaks when a library moves on.</p>
-        <div class="tags">
-          <span class="tag">HTML</span><span class="tag">JavaScript</span>
-          <span class="tag">RTL</span><span class="tag">Tax calculators</span>
-          <span class="tag">Static</span>
-        </div>
-        <div class="links">
-          <a class="lnk primary" href="https://elyotam.github.io/cpa-ms/" rel="noopener">Visit &rarr;</a>
-          <a class="lnk" href="https://github.com/elyotam/cpa-ms" rel="noopener">Source</a>
-        </div>
-      </div>
-    </article>
-
     <article class="box work reveal" data-cat="web">
-      <a class="overlay" href="https://elyotam.github.io/code92-website/" rel="noopener" aria-label="Open CODE92"></a>
+      <a class="overlay" href="https://elyotam.github.io/cpa-ms/" rel="noopener" aria-label="Moshe Stern, CPA"></a>
       <div class="canvas">
         <div class="badge"><span class="live">Live</span></div>
-        <img src="assets/work/code92-website.jpg" alt="CODE92 website" loading="lazy">
+        <img src="assets/work/cpa-ms.jpg" alt="Moshe Stern, CPA" loading="lazy">
       </div>
-      <div class="body">
-        <h2>CODE92</h2>
-        <p class="sum">A dark, motion-led marketing site, fully right-to-left, with the
-          hero built around a live product shot rather than stock art.</p>
-        <div class="tags">
-          <span class="tag">JavaScript</span><span class="tag">Motion</span><span class="tag">RTL</span>
+      <div class="info">
+        <div>
+          <p class="cat">Client work</p>
+          <h2>Moshe Stern, CPA</h2>
+          <p class="line">Eleven pages, four working tax calculators, no framework.</p>
         </div>
-        <div class="links">
-          <a class="lnk primary" href="https://elyotam.github.io/code92-website/" rel="noopener">Visit &rarr;</a>
-          <a class="lnk" href="https://github.com/elyotam/code92-website" rel="noopener">Source</a>
-        </div>
+        <div class="pbtns"><a class="pbtn gh" href="https://github.com/elyotam/cpa-ms" rel="noopener" aria-label="Moshe Stern, CPA on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a><a class="pbtn" href="https://elyotam.github.io/cpa-ms/" rel="noopener" aria-label="Open Moshe Stern, CPA"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></div>
       </div>
     </article>
 
     <article class="box work reveal" data-cat="web">
-      <a class="overlay" href="https://elyotam.github.io/ahuvit-website/" rel="noopener" aria-label="Open Ahuvit Mor"></a>
-      <div class="canvas">
-        <div class="badge"><span class="live">Live</span><span>Client work</span></div>
-        <img src="assets/work/ahuvit-website.jpg" alt="Ahuvit Mor cake atelier" loading="lazy">
-      </div>
-      <div class="body">
-        <h2>Ahuvit Mor &mdash; cake atelier</h2>
-        <p class="sum">A boutique cake studio. Warm and image-led, built so the product
-          carries the page and the ordering path stays one tap away.</p>
-        <div class="tags">
-          <span class="tag">HTML</span><span class="tag">RTL</span><span class="tag">Boutique</span>
-        </div>
-        <div class="links">
-          <a class="lnk primary" href="https://elyotam.github.io/ahuvit-website/" rel="noopener">Visit &rarr;</a>
-          <a class="lnk" href="https://github.com/elyotam/ahuvit-website" rel="noopener">Source</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="box work reveal" data-cat="web">
-      <a class="overlay" href="https://elyotam.github.io/elyotam-website/" rel="noopener" aria-label="Open Elyotam"></a>
+      <a class="overlay" href="https://elyotam.github.io/code92-website/" rel="noopener" aria-label="CODE92"></a>
       <div class="canvas">
         <div class="badge"><span class="live">Live</span></div>
-        <img src="assets/work/elyotam-website.jpg" alt="Elyotam website" loading="lazy">
+        <img src="assets/work/code92-website.jpg" alt="CODE92" loading="lazy">
       </div>
-      <div class="body">
-        <h2>Elyotam</h2>
-        <p class="sum">A cinematic, scroll-driven opening &mdash; the page reveals itself
-          as you move rather than loading everything at once.</p>
-        <div class="tags">
-          <span class="tag">HTML</span><span class="tag">Scroll UX</span><span class="tag">RTL</span>
+      <div class="info">
+        <div>
+          <p class="cat">Marketing site</p>
+          <h2>CODE92</h2>
+          <p class="line">Dark and motion-led, fully right-to-left.</p>
         </div>
-        <div class="links">
-          <a class="lnk primary" href="https://elyotam.github.io/elyotam-website/" rel="noopener">Visit &rarr;</a>
-          <a class="lnk" href="https://github.com/elyotam/elyotam-website" rel="noopener">Source</a>
+        <div class="pbtns"><a class="pbtn gh" href="https://github.com/elyotam/code92-website" rel="noopener" aria-label="CODE92 on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a><a class="pbtn" href="https://elyotam.github.io/code92-website/" rel="noopener" aria-label="Open CODE92"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></div>
+      </div>
+    </article>
+
+    <article class="box work reveal" data-cat="web">
+      <a class="overlay" href="https://elyotam.github.io/ahuvit-website/" rel="noopener" aria-label="Ahuvit Mor"></a>
+      <div class="canvas">
+        <div class="badge"><span class="live">Live</span></div>
+        <img src="assets/work/ahuvit-website.jpg" alt="Ahuvit Mor" loading="lazy">
+      </div>
+      <div class="info">
+        <div>
+          <p class="cat">Client work</p>
+          <h2>Ahuvit Mor</h2>
+          <p class="line">A boutique cake studio, warm and image-led.</p>
         </div>
+        <div class="pbtns"><a class="pbtn gh" href="https://github.com/elyotam/ahuvit-website" rel="noopener" aria-label="Ahuvit Mor on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a><a class="pbtn" href="https://elyotam.github.io/ahuvit-website/" rel="noopener" aria-label="Open Ahuvit Mor"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></div>
+      </div>
+    </article>
+
+    <article class="box work reveal" data-cat="web">
+      <a class="overlay" href="https://elyotam.github.io/elyotam-website/" rel="noopener" aria-label="Elyotam"></a>
+      <div class="canvas">
+        <div class="badge"><span class="live">Live</span></div>
+        <img src="assets/work/elyotam-website.jpg" alt="Elyotam" loading="lazy">
+      </div>
+      <div class="info">
+        <div>
+          <p class="cat">Studio site</p>
+          <h2>Elyotam</h2>
+          <p class="line">A cinematic opening that reveals itself as you scroll.</p>
+        </div>
+        <div class="pbtns"><a class="pbtn gh" href="https://github.com/elyotam/elyotam-website" rel="noopener" aria-label="Elyotam on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a><a class="pbtn" href="https://elyotam.github.io/elyotam-website/" rel="noopener" aria-label="Open Elyotam"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></div>
       </div>
     </article>
 
     <article class="box work reveal" data-cat="infra">
-      <a class="overlay" href="openvpn.html" aria-label="OpenVPN Terraform module"></a>
+      <a class="overlay" href="openvpn.html" aria-label="OpenVPN on AWS"></a>
       <div class="canvas glyph" style="background:radial-gradient(120% 120% at 30% 20%,#2a1f3d,#141019 60%,#0d0d0d)">
-        <div class="badge"><span class="doc">README</span><span>Terraform module</span></div>
+        <div class="badge"><span class="doc">Readme</span></div>
         <img src="assets/icons/terraform.svg" alt="">
       </div>
-      <div class="body">
-        <h2>OpenVPN Access Server on AWS</h2>
-        <p class="sum">A reusable, clean-room Terraform module. It builds the AWS side
-          and installs Access Server <em>without</em> ever putting admin passwords,
-          activation keys or client profiles into Terraform state &mdash; the part most
-          modules get wrong. Documented in English and Hebrew.</p>
-        <div class="tags">
-          <span class="tag">Terraform</span><span class="tag">AWS</span>
-          <span class="tag">EC2</span><span class="tag">Networking</span>
-          <span class="tag">Secrets hygiene</span>
+      <div class="info">
+        <div>
+          <p class="cat">Terraform module</p>
+          <h2>OpenVPN on AWS</h2>
+          <p class="line">Builds Access Server without putting a secret in state.</p>
         </div>
-        <div class="links">
-          <a class="lnk primary" href="openvpn.html">Read the README &rarr;</a>
-          <a class="lnk" href="https://github.com/elyotam/aws-openvpn" rel="noopener">Source</a>
-        </div>
+        <div class="pbtns"><a class="pbtn gh" href="https://github.com/elyotam/aws-openvpn" rel="noopener" aria-label="OpenVPN on AWS on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a><a class="pbtn" href="openvpn.html" aria-label="Open OpenVPN on AWS"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></div>
       </div>
     </article>
 
     <article class="box work reveal" data-cat="infra">
       <a class="overlay" href="quakewatch.html" aria-label="QuakeWatch"></a>
       <div class="canvas glyph" style="background:radial-gradient(120% 120% at 70% 25%,#123040,#0f2027 55%,#0d0d0d)">
-        <div class="badge"><span class="doc">README</span><span>Flask + Kubernetes</span></div>
+        <div class="badge"><span class="doc">Readme</span></div>
         <img src="assets/icons/kubernetes.svg" alt="">
       </div>
-      <div class="body">
-        <h2>QuakeWatch</h2>
-        <p class="sum">A Flask app that pulls live and historical earthquake data from
-          the USGS API and charts it. Shipped the whole way down: Docker image, Helm
-          chart, Kubernetes manifests and Argo CD for GitOps delivery.</p>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">Flask</span>
-          <span class="tag">Docker</span><span class="tag">Kubernetes</span>
-          <span class="tag">Helm</span><span class="tag">Argo CD</span>
+      <div class="info">
+        <div>
+          <p class="cat">Flask + Kubernetes</p>
+          <h2>QuakeWatch</h2>
+          <p class="line">Live USGS earthquake data, shipped all the way to a cluster.</p>
         </div>
-        <div class="links">
-          <a class="lnk primary" href="quakewatch.html">Read the README &rarr;</a>
-          <a class="lnk" href="https://github.com/elyotam/quakewatch-final-project" rel="noopener">Source</a>
-        </div>
+        <div class="pbtns"><a class="pbtn gh" href="https://github.com/elyotam/quakewatch-final-project" rel="noopener" aria-label="QuakeWatch on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a><a class="pbtn" href="quakewatch.html" aria-label="Open QuakeWatch"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></div>
       </div>
     </article>
 
     <article class="box work reveal" data-cat="infra">
-      <a class="overlay" href="devops-experts.html" aria-label="DevOps course archive"></a>
+      <a class="overlay" href="devops-experts.html" aria-label="DevOps Experts"></a>
       <div class="canvas glyph" style="background:radial-gradient(120% 120% at 40% 25%,#2b2410,#1a1608 55%,#0d0d0d)">
-        <div class="badge"><span class="doc">README</span><span>14 lessons</span></div>
+        <div class="badge"><span class="doc">Readme</span></div>
         <img src="assets/icons/docker.svg" alt="">
       </div>
-      <div class="body">
-        <h2>DevOps course archive</h2>
-        <p class="sum">Everything from the DevOps Experts programme, one script per
-          lesson: Linux, Docker, Kubernetes, Helm, Argo CD, Prometheus, Grafana, AWS,
-          Terraform and Ansible &mdash; plus six deliberately broken troubleshooting
-          exercises.</p>
-        <div class="tags">
-          <span class="tag">Bash</span><span class="tag">Kubernetes</span>
-          <span class="tag">Terraform</span><span class="tag">Ansible</span>
-          <span class="tag">Monitoring</span>
+      <div class="info">
+        <div>
+          <p class="cat">Course archive</p>
+          <h2>DevOps Experts</h2>
+          <p class="line">Fourteen lessons from the course, one script each.</p>
         </div>
-        <div class="links">
-          <a class="lnk primary" href="devops-experts.html">Read the README &rarr;</a>
-          <a class="lnk" href="https://github.com/elyotam/devops-experts" rel="noopener">Source</a>
-        </div>
+        <div class="pbtns"><a class="pbtn gh" href="https://github.com/elyotam/devops-experts" rel="noopener" aria-label="DevOps Experts on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a><a class="pbtn" href="devops-experts.html" aria-label="Open DevOps Experts"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></div>
       </div>
     </article>
 
     <article class="box work reveal" data-cat="shop">
-      <a class="overlay" href="https://www.etsy.com/shop/ColorCatt" rel="noopener" aria-label="ColorCatt on Etsy"></a>
+      <a class="overlay" href="https://www.etsy.com/shop/ColorCatt" rel="noopener" aria-label="ColorCatt"></a>
       <div class="canvas">
-        <div class="badge"><span class="live">Open</span><span>Etsy</span></div>
-        <img src="assets/work/etsy.svg" alt="ColorCatt on Etsy" loading="lazy">
+        <div class="badge"><span class="live">Open</span></div>
+        <img src="assets/work/etsy.svg" alt="ColorCatt" loading="lazy">
       </div>
-      <div class="body">
-        <h2>ColorCatt</h2>
-        <p class="sum">My shop on Etsy &mdash; the artwork, the listings and the
-          storefront, run end to end.</p>
-        <div class="tags">
-          <span class="tag">Etsy</span><span class="tag">E-commerce</span><span class="tag">Design</span>
+      <div class="info">
+        <div>
+          <p class="cat">Etsy shop</p>
+          <h2>ColorCatt</h2>
+          <p class="line">My shop — the artwork, the listings and the storefront.</p>
         </div>
-        <div class="links">
-          <a class="lnk primary" href="https://www.etsy.com/shop/ColorCatt" rel="noopener">Visit the shop &rarr;</a>
-        </div>
+        <div class="pbtns"><a class="pbtn" href="https://www.etsy.com/shop/ColorCatt" rel="noopener" aria-label="Open ColorCatt"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></div>
       </div>
     </article>
-
   </main>
 </div>
 
