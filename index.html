@@ -38,9 +38,25 @@
   transition:transform .5s ease}
 .id:hover .mark img{transform:scale(1.04)}
 .id h1{margin:0 0 16px;font-size:clamp(27px,3.2vw,36px);font-weight:500;line-height:1.16;letter-spacing:-.4px}
-.roles{display:flex;flex-direction:column;gap:6px;font-size:14.5px;font-style:italic;color:#a6a6a6}
-.roles span{display:flex;align-items:center;gap:9px;white-space:nowrap}
-.roles em{font-style:normal;font-size:14px;color:var(--yellow)}
+/* The roles used to be italic grey text behind a text-glyph diamond. Inter's
+   oblique is synthesised and the glyph renders differently on every platform,
+   so both are gone: upright type, a little more weight, and a real mark. No
+   pill around it -- the column is too narrow for one, and text that can wrap
+   survives every width. */
+.roles{display:flex;flex-direction:column;gap:13px}
+.roles span{display:flex;align-items:flex-start;gap:11px;
+  font-size:13.6px;font-weight:450;line-height:1.42;letter-spacing:.15px;color:#c8c8c8;
+  /* the column is 215px and the longest role wants 256px, so it will wrap
+     whatever happens; balance makes the two lines even instead of leaving one
+     orphaned word */
+  text-wrap:balance}
+.roles em{position:relative;flex:0 0 16px;width:16px;height:16px;margin-top:2px;
+  font-size:0;border-radius:5px;
+  background:rgba(255,212,59,.13);border:1px solid rgba(255,212,59,.32)}
+.roles em::after{content:"";position:absolute;inset:0;margin:auto;
+  width:4px;height:4px;border-radius:50%;background:var(--yellow)}
+.roles span:nth-child(2) em{background:rgba(75,139,190,.15);border-color:rgba(111,179,232,.36)}
+.roles span:nth-child(2) em::after{background:#6fb3e8}
 
 .ticker{grid-column:span 12;padding:0;min-height:53px;display:flex;align-items:center}
 .track{display:flex;align-items:center;animation:slide 30s linear infinite;white-space:nowrap;padding-left:24px}
