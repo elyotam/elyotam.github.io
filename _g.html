@@ -160,7 +160,7 @@
 }
 @media (max-width:680px){
   .about,.showcase{min-height:330px}
-  .ghostword{top:20px;font-size:46px}
+  .ghostword{top:20px;font-size:50px}
   .laptop{top:66px;width:270px}
   .sig{top:60px}
 }
@@ -328,5 +328,5 @@ fetch('https://api.github.com/users/elyotam')
   .then(function (u) { document.getElementById('sRepos').textContent = u.public_repos; })
   .catch(function () { /* rate limited: the seeded figure stays */ });
 </script>
-</body>
+<style>.reveal{opacity:1!important;transform:none!important;transition:none!important}</style><script>addEventListener("load",function(){setTimeout(function(){var c=document.querySelector(".showcase").getBoundingClientRect();var R=function(s){var e=document.querySelector(s);if(!e)return null;var r=e.getBoundingClientRect();return Math.round(r.top-c.top)+".."+Math.round(r.bottom-c.top)+" w="+Math.round(r.width)};var g=document.querySelector(".ghostword");var rg=g.getBoundingClientRect();var rr=document.createRange();rr.selectNodeContents(g);var rt=rr.getBoundingClientRect();document.body.setAttribute("data-probe",JSON.stringify({cardH:Math.round(c.height),cardW:Math.round(c.width),wordBox:Math.round(rt.top-c.top)+".."+Math.round(rt.bottom-c.top)+" w="+Math.round(rt.width),laptop:R(".laptop"),base:R(".base"),kicker:R(".showcase .kicker")}));},500)});</script></body>
 </html>
