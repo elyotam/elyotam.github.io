@@ -32,6 +32,25 @@
 /* home page only: the bento arrangement */
 .bento{display:grid;grid-template-columns:repeat(22,1fr);
   gap:var(--gap);padding-bottom:var(--gap)}
+
+/* Every card was the same grey, so nothing led the eye. Each one now owns a
+   colour: a soft tint in its top corner and a matching kicker. Kept low so the
+   page stays dark -- it is hierarchy, not decoration. */
+.tint::before{content:"";position:absolute;inset:0;z-index:0;border-radius:inherit;
+  pointer-events:none;opacity:.55;transition:opacity .45s ease;
+  background:radial-gradient(125% 95% at 100% 0%,var(--accent),transparent 60%)}
+.tint:hover::before{opacity:.9}
+.id{--accent:rgba(75,139,190,.22)}
+.about{--accent:rgba(11,132,145,.24)}
+.showcase{--accent:rgba(255,124,0,.20)}
+.hobby{--accent:rgba(241,101,33,.23)}
+.social{--accent:rgba(139,104,224,.22)}
+.stats{--accent:rgba(255,212,59,.15)}
+.cta{--accent:rgba(232,129,166,.20)}
+.about .kicker{color:#5fb4bd}
+.showcase .kicker{color:#d68b4a}
+.hobby .kicker{color:#e0855c}
+.social .kicker{color:#a08ce0}
 .hobby,.blob,.social{margin-top:36px}
 .stats,.cta{margin-top:36px}
 
@@ -81,7 +100,8 @@
    so it reads as a mark and not as a forged hand. */
 .sig{position:absolute;left:0;right:0;top:44px;text-align:center;line-height:1;
   font-size:74px;font-weight:200;letter-spacing:10px;text-indent:10px;
-  color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.3);user-select:none}
+  color:transparent;-webkit-text-stroke:1px rgba(160,232,238,.4);user-select:none;
+  filter:drop-shadow(0 0 14px rgba(11,132,145,.35))}
 .sig b{font-weight:200}
 .sig i{display:block;width:52px;height:1px;margin:16px auto 0;
   background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent)}
@@ -114,10 +134,11 @@
   user-select:none}
 
 .hobby{grid-column:span 5;min-height:213px;display:flex;flex-direction:column;justify-content:flex-end}
-.hobby .badge{position:absolute;left:22px;right:22px;top:28px;height:82px;border-radius:24px;
-  background:linear-gradient(160deg,#232323,#171717);border:1px solid #2c2c2c;
-  display:grid;place-items:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
-.hobby .badge img{width:52px;height:52px}
+.hobby .badge{position:absolute;left:22px;right:22px;top:24px;height:96px;border-radius:20px;
+  overflow:hidden;border:1px solid #33241d;box-shadow:0 12px 26px rgba(0,0,0,.4)}
+.hobby .badge img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.hobby:hover .badge img{transform:scale(1.06)}
 /* His version is a three.js canvas. The look is two blurred gradient layers
    that drift and rotate behind hollow neon type -- both gradients and both
    keyframes below are his, copied out of his stylesheet. */
@@ -177,10 +198,21 @@
 .orb b{font-size:15px;font-weight:600;color:#bdbdbd;letter-spacing:.5px}
 
 .stats{grid-column:span 11;min-height:170px;padding:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.cell{background:#202020;border:1px solid #282828;border-radius:var(--ri);padding:12px 8px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center}
-.cell b{font-size:31px;font-weight:400;line-height:1;letter-spacing:-.5px}
-.cell .heart{font-size:29px;line-height:1}
+.cell{border-radius:var(--ri);padding:12px 8px;position:relative;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  text-align:center;background:#1c1c1c;border:1px solid #282828;
+  transition:border-color .3s,background .3s}
+.cell::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(100% 80% at 50% 0%,var(--c),transparent 70%);opacity:.75}
+.cell.r{--c:rgba(75,139,190,.16)}
+.cell.s{--c:rgba(224,162,106,.15)}
+.cell.t{--c:rgba(255,212,59,.13)}
+.cell > *{position:relative;z-index:1}
+.stats:hover .cell{border-color:#343434;background:#1f1f1f}
+.cell b{font-size:33px;font-weight:400;line-height:1;letter-spacing:-.5px}
+.cell.r b{color:#7db2dc}
+.cell.s b{color:#e0a26a}
+.cell.t b{color:var(--yellow)}
 .cell small{font-size:11.5px;color:var(--faint);line-height:1.35;text-transform:uppercase;letter-spacing:.3px}
 .cta{grid-column:span 11;min-height:170px;display:flex;flex-direction:column;justify-content:center;padding:28px}
 .spark{position:absolute;left:28px;top:20px;width:40px;height:48px;opacity:.9}
@@ -248,7 +280,6 @@
   .mark{width:100%;flex:0 0 auto;height:260px}
   .stats{grid-template-columns:repeat(3,1fr);gap:10px;padding:14px;min-height:0}
   .cell b{font-size:26px}
-  .cell .heart{font-size:24px}
   .cell small{font-size:10.5px}
 }
 @media (max-width:430px){
@@ -280,7 +311,7 @@
 
   <main class="bento" id="top">
 
-    <section class="box id reveal">
+    <section class="box id tint reveal">
       <a class="overlay" href="about.html" aria-label="More about me"></a>
       <div class="mark"><img src="assets/portrait.jpg"
         srcset="assets/portrait.jpg 380w, assets/portrait@2x.jpg 502w"
@@ -302,14 +333,14 @@
       <div class="track" id="track"></div>
     </section>
 
-    <a class="box about reveal" href="about.html">
+    <a class="box about tint reveal" href="about.html">
       <div class="sig" aria-hidden="true"><b>EC</b><i></i></div>
-      <p class="kicker">Credentials</p>
-      <h2 class="title">More About Me</h2>
+      <p class="kicker">Background</p>
+      <h2 class="title">More about me</h2>
       <span class="plus"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
     </a>
 
-    <a class="box showcase reveal" href="projects.html">
+    <a class="box showcase tint reveal" href="projects.html">
       <div class="ghostword" aria-hidden="true">PROJECTS</div>
       <div class="laptop" aria-hidden="true">
         <div class="lid">
@@ -318,15 +349,15 @@
         </div>
         <div class="base"></div>
       </div>
-      <p class="kicker">Showcase</p>
-      <h2 class="title">Projects</h2>
+      <p class="kicker">Selected work</p>
+      <h2 class="title">Eight projects</h2>
       <span class="plus"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
     </a>
 
-    <a class="box hobby reveal" id="shop"
+    <a class="box hobby tint reveal" id="shop"
        href="https://www.etsy.com/shop/ColorCatt" rel="noopener">
-      <div class="badge"><img src="assets/icons/etsy.svg" alt=""></div>
-      <p class="kicker">Etsy shop</p>
+      <div class="badge"><img src="assets/work/etsy.svg" alt=""></div>
+      <p class="kicker">Side project</p>
       <h2 class="title">ColorCatt</h2>
       <span class="plus"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
     </a>
@@ -336,7 +367,7 @@
       <p class="neon"><span>FUTURE</span><span>IS NOW</span></p>
     </section>
 
-    <section class="box social reveal" id="contact">
+    <section class="box social tint reveal" id="contact">
       <a class="overlay" href="https://github.com/elyotam" rel="noopener" aria-label="GitHub profile"></a>
       <div class="orbwrap">
         <a class="orb" href="https://github.com/elyotam" rel="noopener" aria-label="GitHub">
@@ -346,19 +377,19 @@
         <a class="orb" href="https://www.etsy.com/shop/ColorCatt" rel="noopener" aria-label="ColorCatt on Etsy">
           <img src="assets/icons/etsy.svg" alt=""></a>
       </div>
-      <p class="kicker">Let&rsquo;s connect</p>
-      <h2 class="title">My Social Profiles</h2>
+      <p class="kicker">Say hello</p>
+      <h2 class="title">Find me here</h2>
       <span class="plus"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
     </section>
 
-    <section class="box stats reveal">
+    <section class="box stats tint reveal">
       <a class="overlay" href="https://github.com/elyotam" rel="noopener" aria-label="GitHub profile"></a>
-      <div class="cell"><b id="sRepos">10</b><small>Public<br>repositories</small></div>
-      <div class="cell"><span class="heart">&#10084;</span><small>Made<br>with love</small></div>
-      <div class="cell"><b>34</b><small>Tools<br>in the stack</small></div>
+      <div class="cell r"><b id="sRepos">10</b><small>Public<br>repositories</small></div>
+      <div class="cell s"><b>4</b><small>Live<br>client sites</small></div>
+      <div class="cell t"><b>34</b><small>Tools<br>in the stack</small></div>
     </section>
 
-    <section class="box cta reveal">
+    <section class="box cta tint reveal">
       <a class="overlay" href="contact.html" aria-label="Get in touch"></a>
       <div class="spark" aria-hidden="true">
         <svg viewBox="0 0 40 52"><path d="M20 0c.7 14 3 20 12 24-9 4-11.3 10-12 24-.7-14-3-20-12-24 9-4 11.3-10 12-24z"/></svg>
