@@ -50,19 +50,35 @@
 .track s{text-decoration:none;color:#4d4d4d;margin:0 13px;font-size:12px}
 @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-.about{grid-column:span 6;min-height:198px;display:flex;flex-direction:column;justify-content:flex-end}
-.sig{position:absolute;left:0;right:0;top:26px;display:grid;place-items:center;opacity:.85}
+/* 247px is the reference's own card height; the laptop needs the room */
+.about{grid-column:span 6;min-height:247px;display:flex;flex-direction:column;justify-content:flex-end}
+.sig{position:absolute;left:0;right:0;top:40px;display:grid;place-items:center;opacity:.85}
 .sig svg{width:74%;max-width:220px;height:auto;stroke:#dcdcdc;fill:none;stroke-width:2.1;
   stroke-linecap:round;stroke-linejoin:round}
-.showcase{grid-column:span 6;min-height:198px;display:flex;flex-direction:column;justify-content:flex-end}
-.shot{position:absolute;left:22px;right:22px;top:24px;border-radius:10px;overflow:hidden;
-  border:1px solid #303030;box-shadow:0 16px 38px rgba(0,0,0,.65);background:#1c1c1c}
-.shot::before{content:'';display:block;height:15px;background:#242424;border-bottom:1px solid #2e2e2e}
-.shot i{position:absolute;top:5px;left:9px;width:5px;height:5px;border-radius:50%;
-  background:#3d3d3d;box-shadow:8px 0 0 #3d3d3d,16px 0 0 #3d3d3d}
-.shot img{width:100%;height:60px;object-fit:cover;object-position:top}
-.ghostword{position:absolute;left:0;right:0;top:10px;text-align:center;font-size:30px;
-  font-weight:800;letter-spacing:1px;color:#232323;user-select:none}
+.showcase{grid-column:span 6;min-height:247px;display:flex;flex-direction:column;justify-content:flex-end}
+
+/* A laptop drawn in CSS rather than shipped as a PNG: it stays sharp on any
+   screen, and swapping the project means swapping one <img src>. */
+.laptop{position:absolute;left:50%;top:34px;transform:translateX(-50%);
+  width:188px;max-width:calc(100% - 56px)}
+.lid{position:relative;border-radius:11px;padding:6px 6px 7px;
+  background:linear-gradient(#212429,#141619);border:1px solid #383d43;
+  box-shadow:0 20px 40px rgba(0,0,0,.62),inset 0 1px 0 rgba(255,255,255,.07)}
+.lid .cam{position:absolute;left:50%;top:2.5px;transform:translateX(-50%);
+  width:3px;height:3px;border-radius:50%;background:#33383e}
+.screen{border-radius:5px;overflow:hidden;background:#000;aspect-ratio:16/10}
+.screen img{width:100%;height:100%;object-fit:cover;object-position:top;
+  transition:transform .5s ease}
+.showcase:hover .screen img{transform:scale(1.04)}
+.base{position:relative;width:114%;left:-7%;height:7px;
+  background:linear-gradient(#4c525a,#20242a);border-radius:0 0 8px 8px;
+  box-shadow:0 10px 18px rgba(0,0,0,.5)}
+.base::after{content:'';position:absolute;left:50%;top:0;transform:translateX(-50%);
+  width:17%;height:3.5px;background:#181b1f;border-radius:0 0 4px 4px}
+
+.ghostword{position:absolute;left:0;right:0;top:11px;text-align:center;
+  font-size:clamp(26px,3vw,36px);font-weight:800;letter-spacing:1.5px;
+  color:#262626;user-select:none;line-height:1}
 
 .hobby{grid-column:span 5;min-height:213px;display:flex;flex-direction:column;justify-content:flex-end}
 .hobby .badge{position:absolute;left:22px;right:22px;top:28px;height:82px;border-radius:24px;
@@ -209,7 +225,13 @@
 
     <a class="box showcase reveal" href="projects.html">
       <div class="ghostword" aria-hidden="true">PROJECTS</div>
-      <div class="shot"><i></i><img src="assets/work/cpa-ms.jpg" alt="" loading="lazy"></div>
+      <div class="laptop" aria-hidden="true">
+        <div class="lid">
+          <span class="cam"></span>
+          <div class="screen"><img src="assets/work/cpa-ms.jpg" alt="" loading="lazy"></div>
+        </div>
+        <div class="base"></div>
+      </div>
       <p class="kicker">Showcase</p>
       <h2 class="title">Projects</h2>
       <span class="plus"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
