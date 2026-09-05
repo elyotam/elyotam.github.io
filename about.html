@@ -28,70 +28,136 @@
 <style>
 .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);padding-bottom:var(--gap)}
 
-/* row 1: portrait beside the summary */
-.shotcard{grid-column:span 3;padding:16px}
-.shotcard img{width:100%;aspect-ratio:380/480;object-fit:cover;object-position:center;
-  border-radius:18px;display:block}
-.summary{grid-column:span 9;display:flex;flex-direction:column;gap:18px;background:none;border:0;padding:0}
+/* the same accent system the home page uses */
+.tint::before{content:"";position:absolute;inset:0;z-index:0;border-radius:inherit;
+  pointer-events:none;opacity:.55;transition:opacity .45s ease;
+  background:
+    radial-gradient(260px circle at var(--mx,110%) var(--my,-10%),var(--accent),transparent 68%),
+    radial-gradient(125% 95% at 100% 0%,var(--accent),transparent 60%)}
+.tint:hover::before{opacity:.9}
+.shotcard{--accent:rgba(75,139,190,.22); --glow:rgba(122,181,231,.16)}
+.card    {--accent:rgba(232,129,166,.18);--glow:rgba(244,166,215,.14)}
+.cv.exp  {--accent:rgba(11,132,145,.22); --glow:rgba(64,196,207,.14);  --markhi:#7fd6de}
+.cv.edu  {--accent:rgba(255,124,0,.18);  --glow:rgba(255,150,60,.13);  --markhi:#ffb877}
+.social  {--accent:rgba(139,104,224,.22);--glow:rgba(160,130,238,.16); --markhi:#bfa9ff; --markglow:rgba(139,104,224,.5)}
+.cta     {--accent:rgba(232,129,166,.20);--glow:rgba(244,166,215,.16); --markhi:#1b1b1b}
+.stacklink{--accent:rgba(255,212,59,.17);--glow:rgba(255,212,59,.12);  --markhi:#ffe27a; --markglow:rgba(255,212,59,.35)}
+.stackwrap{--glow:rgba(255,255,255,.05)}
+
+/* ------------------------------------------------ row 1: portrait + summary */
+.shotcard{grid-column:span 4;padding:14px;align-self:start}
+/* height:auto is load-bearing. The <img> carries height="480" as an attribute,
+   which the browser applies as a style, and it beat aspect-ratio -- the photo
+   was being stretched to 480px tall at every column width. */
+.shotcard img{width:100%;height:auto;aspect-ratio:380/480;object-fit:cover;
+  object-position:center;border-radius:20px;display:block;
+  transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.shotcard:hover img{transform:scale(1.04)}
+.summary{grid-column:span 8;display:flex;flex-direction:column;gap:18px;
+  background:none;border:0;padding:0}
 .summary:hover{transform:none}
 .summary::after{display:none}
-.bigtitle{margin:0;text-align:center;font-size:clamp(30px,5vw,50px);font-weight:800;letter-spacing:-1px;
-  display:flex;align-items:center;justify-content:center;gap:18px}
+.bigtitle{margin:0;text-align:center;font-size:clamp(30px,5vw,50px);font-weight:800;
+  letter-spacing:-1px;display:flex;align-items:center;justify-content:center;gap:18px}
 .bigtitle span{background:linear-gradient(92deg,#e8e8e8,#a9a9a9 45%,#f0c8dd);
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .bigtitle i{font-style:normal;color:#cfcfcf;font-size:.55em;opacity:.8}
-.summary .card{flex:1;padding:66px 32px 30px}
-.summary h2{margin:0 0 10px;font-size:26px;font-weight:500;
+.summary .card{flex:1;padding:60px 34px 32px}
+.summary h2{margin:0 0 12px;font-size:27px;font-weight:500;
   background:linear-gradient(92deg,#f472b6,#a78bfa 48%,#60a5fa);
   -webkit-background-clip:text;background-clip:text;color:transparent}
-.summary p{margin:0;color:#bdbdbd;font-size:15px;line-height:1.75;max-width:66ch}
-.spark{position:absolute;left:30px;top:20px;width:34px;height:42px;opacity:.85}
+.summary p{margin:0;color:#c0c0c0;font-size:15.2px;line-height:1.78;max-width:66ch}
+.spark{position:absolute;left:32px;top:22px;width:34px;height:42px;opacity:.85;z-index:2}
 .spark svg{width:100%;height:100%;fill:#e9e9e9}
+/* two lines of standing about what the work actually is */
+.facts{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 0}
+.facts span{font-size:12px;letter-spacing:.4px;text-transform:uppercase;color:#c9c9c9;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  border-radius:999px;padding:7px 14px}
 
-/* row 2: experience and education */
+/* ------------------------------------------ row 2: a timeline, not a list */
 .cv{grid-column:span 6;padding:30px 32px}
-.cv h3{margin:0 0 22px;font-size:13px;letter-spacing:1.1px;text-transform:uppercase;color:#cfcfcf;font-weight:500}
-.entry{margin-bottom:22px}
+.cv h3{margin:0 0 24px;font-size:13px;letter-spacing:1.1px;text-transform:uppercase;
+  font-weight:600;color:var(--railhi,#cfcfcf)}
+.cv.exp{--railhi:#7fd6de}
+.cv.edu{--railhi:#ffb877}
+.rail{position:relative;padding-left:26px}
+.rail::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1px;
+  background:linear-gradient(var(--railhi),rgba(255,255,255,.06))}
+.entry{position:relative;margin-bottom:26px}
 .entry:last-child{margin-bottom:0}
-.entry .when{font-size:12.5px;color:var(--faint);margin:0 0 5px}
-.entry .what{font-size:16px;color:var(--fg);margin:0 0 3px;font-weight:400}
-.entry .where{font-size:13.6px;color:var(--blue);margin:0}
+.entry::before{content:"";position:absolute;left:-26px;top:5px;width:11px;height:11px;
+  border-radius:50%;background:#141414;border:1px solid var(--railhi);
+  box-shadow:0 0 0 3px rgba(0,0,0,.5)}
+.entry.now::before{background:var(--railhi);box-shadow:0 0 0 3px rgba(0,0,0,.5),
+  0 0 12px var(--railhi)}
+.entry .when{font-size:12.5px;color:var(--faint);margin:0 0 5px;letter-spacing:.3px}
+.entry .what{font-size:16.4px;color:var(--fg);margin:0 0 4px;font-weight:500}
+.entry .where{font-size:13.6px;color:#a4a4a4;margin:0}
 
-/* row 3 */
+/* ------------------------------------------------------------------ row 3 */
 .social{grid-column:span 3;min-height:200px;display:flex;flex-direction:column;justify-content:flex-end}
 .orbwrap{position:absolute;left:24px;right:24px;top:24px;display:flex;gap:14px}
 .orb{position:relative;z-index:10;width:58px;height:58px;border-radius:50%;background:#141414;
   border:1px solid #2e2e2e;display:grid;place-items:center;transition:.2s}
-.orb:hover{background:#fff;border-color:#fff}
+.orb:hover{background:#fff;border-color:#fff;transform:translateY(-3px)}
 .orb:hover img{filter:invert(1)}
-.orb:hover b{color:#111}
 .orb img{width:25px;height:25px}
-.orb b{font-size:13px;font-weight:600;color:#bdbdbd}
 .cta{grid-column:span 5;min-height:200px;display:flex;flex-direction:column;justify-content:center;padding:32px}
 .cta h2{margin:30px 0 0;font-size:clamp(26px,3.6vw,38px);font-weight:400;line-height:1.16;letter-spacing:-.8px}
 .grad{background:linear-gradient(90deg,#f472b6,#a78bfa 45%,#60a5fa);
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .stacklink{grid-column:span 4;min-height:200px;display:flex;flex-direction:column;justify-content:flex-end}
 .stacklink .row{position:absolute;left:26px;right:26px;top:30px;display:flex;flex-wrap:wrap;gap:8px}
-.stacklink .row img{width:34px;height:34px;border-radius:9px}
+.stacklink .row img{width:34px;height:34px;border-radius:9px;
+  transition:transform .3s cubic-bezier(.2,.7,.3,1)}
+.stacklink:hover .row img{transform:translateY(-3px)}
+.stacklink .row img:nth-child(2){transition-delay:.03s}
+.stacklink .row img:nth-child(3){transition-delay:.06s}
+.stacklink .row img:nth-child(4){transition-delay:.09s}
+.stacklink .row img:nth-child(5){transition-delay:.12s}
+.stacklink .row img:nth-child(6){transition-delay:.15s}
 
-/* the stack itself */
-.stackwrap{grid-column:span 12;padding:32px}
-.stackwrap h3{margin:0 0 6px;font-size:22px;font-weight:500}
-.stackwrap p{margin:0 0 22px;color:var(--dim);font-size:14.6px}
-.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:14px}
-.tiles a{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 6px;
-  border-radius:14px;border:1px solid transparent;transition:.18s}
-.tiles a:hover{border-color:var(--line);background:var(--inner)}
-.tiles img{width:46px;height:46px;border-radius:11px}
-.tiles span{font-size:11.5px;color:var(--dim);text-align:center;line-height:1.3}
+/* -------------------------------------------------------------- the stack */
+.stackwrap{grid-column:span 12;padding:34px 34px 38px}
+.stackwrap h3{margin:0 0 6px;font-size:23px;font-weight:500;letter-spacing:-.3px}
+.stackwrap > p{margin:0 0 30px;color:var(--dim);font-size:14.6px}
+.grp{margin-bottom:30px}
+.grp:last-child{margin-bottom:0}
+.grp h4{display:flex;align-items:center;gap:12px;margin:0 0 16px;
+  font-size:12px;letter-spacing:1.1px;text-transform:uppercase;font-weight:600;
+  color:var(--c)}
+.grp h4::after{content:"";flex:1;height:1px;
+  background:linear-gradient(90deg,var(--line),transparent)}
+.grp h4 b{font-weight:500;color:var(--faint);letter-spacing:.4px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(94px,1fr));gap:12px}
+.tiles a{display:flex;flex-direction:column;align-items:center;gap:9px;padding:15px 6px;
+  border-radius:16px;border:1px solid transparent;position:relative;
+  transition:transform .22s cubic-bezier(.2,.7,.3,1),background .22s,border-color .22s}
+.tiles a::before{content:"";position:absolute;inset:0;border-radius:inherit;opacity:0;
+  transition:opacity .25s;
+  background:radial-gradient(70% 60% at 50% 0%,var(--c),transparent 70%)}
+.tiles a:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.1);
+  background:rgba(255,255,255,.03)}
+.tiles a:hover::before{opacity:1}
+.tiles img{width:46px;height:46px;border-radius:11px;position:relative;z-index:1;
+  transition:filter .25s}
+.tiles a:hover img{filter:drop-shadow(0 6px 14px var(--c))}
+.tiles span{font-size:11.5px;color:var(--dim);text-align:center;line-height:1.3;
+  position:relative;z-index:1;transition:color .2s}
+.tiles a:hover span{color:var(--fg)}
 
 @media (max-width:980px){
-  .shotcard{grid-column:span 4}.summary{grid-column:span 8}
+  .shotcard{grid-column:span 5}.summary{grid-column:span 7}
   .cv{grid-column:span 12}
   .social,.stacklink{grid-column:span 6}.cta{grid-column:span 12}
 }
-@media (max-width:680px){ .shotcard,.summary,.social,.cta,.stacklink{grid-column:span 12} }
+@media (max-width:680px){
+  .shotcard,.summary,.social,.cta,.stacklink{grid-column:span 12}
+  .stackwrap{padding:26px 20px 30px}
+  .tiles{grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:9px}
+  .tiles img{width:40px;height:40px}
+}
 </style>
 </head>
 <body>
@@ -112,7 +178,7 @@
 
   <main class="grid">
 
-    <section class="box shotcard reveal">
+    <section class="box shotcard tint reveal">
       <img src="assets/portrait.jpg"
            srcset="assets/portrait.jpg 380w, assets/portrait@2x.jpg 502w"
            sizes="(max-width:900px) 92vw, 300px"
@@ -121,7 +187,7 @@
 
     <div class="summary">
       <h1 class="bigtitle"><i>&#10038;</i><span>SELF-SUMMARY</span><i>&#10038;</i></h1>
-      <div class="box card reveal">
+      <div class="box card tint reveal">
         <div class="spark" aria-hidden="true">
           <svg viewBox="0 0 40 52"><path d="M20 0c.7 14 3 20 12 24-9 4-11.3 10-12 24-.7-14-3-20-12-24 9-4 11.3-10 12-24z"/></svg>
         </div>
@@ -134,36 +200,40 @@
       </div>
     </div>
 
-    <section class="box cv reveal">
+    <section class="box cv exp tint reveal">
       <h3>Experience</h3>
-      <div class="entry">
+      <div class="rail">
+      <div class="entry now">
         <p class="when">Present</p>
         <p class="what">Web &amp; AI Automation Developer</p>
         <p class="where">Sites, apps and automated workflows</p>
       </div>
-      <div class="entry">
+      <div class="entry now">
         <p class="when">Present</p>
         <p class="what">DevOps &amp; Cloud Infrastructure</p>
         <p class="where">AWS, Kubernetes, Terraform, CI/CD</p>
       </div>
+      </div>
       <!-- Roles and dates are placeholders until you give me the real ones. -->
     </section>
 
-    <section class="box cv reveal">
+    <section class="box cv edu tint reveal">
       <h3>Education</h3>
+      <div class="rail">
       <div class="entry">
         <p class="when">11/2025 &ndash; 08/2026</p>
         <p class="what">DevOps Engineering</p>
         <p class="where">DevOps Experts &mdash; cohort 1125</p>
       </div>
-      <div class="entry">
+      <div class="entry now">
         <p class="when">Ongoing</p>
         <p class="what">Self-taught web &amp; AI engineering</p>
         <p class="where">Shipping is the syllabus</p>
       </div>
+      </div>
     </section>
 
-    <section class="box social reveal">
+    <section class="box social tint reveal">
       <a class="overlay" href="contact.html" aria-label="Contact"></a>
       <div class="orbwrap">
         <a class="orb" href="https://github.com/elyotam" rel="noopener" aria-label="GitHub">
@@ -178,7 +248,7 @@
       <span class="plus"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
     </section>
 
-    <section class="box cta reveal">
+    <section class="box cta tint reveal">
       <a class="overlay" href="contact.html" aria-label="Get in touch"></a>
       <div class="spark" aria-hidden="true" style="left:32px;top:24px">
         <svg viewBox="0 0 40 52"><path d="M20 0c.7 14 3 20 12 24-9 4-11.3 10-12 24-.7-14-3-20-12-24 9-4 11.3-10 12-24z"/></svg>
@@ -187,7 +257,7 @@
       <span class="plus"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
     </section>
 
-    <a class="box stacklink reveal" href="#stack">
+    <a class="box stacklink tint reveal" href="#stack">
       <div class="row" id="peek"></div>
       <p class="kicker">Everything I use</p>
       <h2 class="title">The Stack</h2>
@@ -197,7 +267,26 @@
     <section class="box stackwrap reveal" id="stack">
       <h3>The stack</h3>
       <p>Everything I actually build and run things with. Hover any tile for its name.</p>
-      <div class="tiles" id="tiles"></div>
+        <div class="grp" style="--c:#6fb3e8">
+          <h4>Systems &amp; security <b>8</b></h4>
+          <div class="tiles" style="--c:rgba(75,139,190,.16)"><a title="Linux"><img src="assets/icons/linux.svg" alt="" loading="lazy"><span>Linux</span></a><a title="Windows"><img src="assets/icons/windows.svg" alt="" loading="lazy"><span>Windows</span></a><a title="Bash"><img src="assets/icons/bash.svg" alt="" loading="lazy"><span>Bash</span></a><a title="Fortinet"><img src="assets/icons/fortinet.svg" alt="" loading="lazy"><span>Fortinet</span></a><a title="CrowdStrike Falcon"><img src="assets/icons/falcon.svg" alt="" loading="lazy"><span>CrowdStrike Falcon</span></a><a title="OpenVPN"><img src="assets/icons/openvpn.svg" alt="" loading="lazy"><span>OpenVPN</span></a><a title="JumpCloud"><img src="assets/icons/jumpcloud.svg" alt="" loading="lazy"><span>JumpCloud</span></a><a title="Ninite"><img src="assets/icons/ninite.svg" alt="" loading="lazy"><span>Ninite</span></a></div>
+        </div>
+        <div class="grp" style="--c:#7fd6de">
+          <h4>Build &amp; ship <b>8</b></h4>
+          <div class="tiles" style="--c:rgba(11,132,145,.18)"><a title="Git"><img src="assets/icons/git.svg" alt="" loading="lazy"><span>Git</span></a><a title="GitHub"><img src="assets/icons/github.svg" alt="" loading="lazy"><span>GitHub</span></a><a title="GitHub Actions"><img src="assets/icons/githubactions.svg" alt="" loading="lazy"><span>GitHub Actions</span></a><a title="npm"><img src="assets/icons/npm.svg" alt="" loading="lazy"><span>npm</span></a><a title="Docker"><img src="assets/icons/docker.svg" alt="" loading="lazy"><span>Docker</span></a><a title="Kubernetes"><img src="assets/icons/kubernetes.svg" alt="" loading="lazy"><span>Kubernetes</span></a><a title="Helm"><img src="assets/icons/helm.svg" alt="" loading="lazy"><span>Helm</span></a><a title="Argo CD"><img src="assets/icons/argocd.svg" alt="" loading="lazy"><span>Argo CD</span></a></div>
+        </div>
+        <div class="grp" style="--c:#ffb877">
+          <h4>Cloud &amp; infrastructure <b>6</b></h4>
+          <div class="tiles" style="--c:rgba(255,124,0,.16)"><a title="AWS"><img src="assets/icons/aws.svg" alt="" loading="lazy"><span>AWS</span></a><a title="Terraform"><img src="assets/icons/terraform.svg" alt="" loading="lazy"><span>Terraform</span></a><a title="Ansible"><img src="assets/icons/ansible.svg" alt="" loading="lazy"><span>Ansible</span></a><a title="PostgreSQL"><img src="assets/icons/postgres.svg" alt="" loading="lazy"><span>PostgreSQL</span></a><a title="Prometheus"><img src="assets/icons/prometheus.svg" alt="" loading="lazy"><span>Prometheus</span></a><a title="Grafana"><img src="assets/icons/grafana.svg" alt="" loading="lazy"><span>Grafana</span></a></div>
+        </div>
+        <div class="grp" style="--c:#bfa9ff">
+          <h4>Code &amp; design <b>7</b></h4>
+          <div class="tiles" style="--c:rgba(139,104,224,.18)"><a title="Python"><img src="assets/icons/py.svg" alt="" loading="lazy"><span>Python</span></a><a title="VS Code"><img src="assets/icons/vscode.svg" alt="" loading="lazy"><span>VS Code</span></a><a title="Cursor"><img src="assets/icons/cursor.svg" alt="" loading="lazy"><span>Cursor</span></a><a title="Claude Code"><img src="assets/icons/claudecode.svg" alt="" loading="lazy"><span>Claude Code</span></a><a title="Codex"><img src="assets/icons/codex.svg" alt="" loading="lazy"><span>Codex</span></a><a title="Google Antigravity"><img src="assets/icons/antigravity.svg" alt="" loading="lazy"><span>Google Antigravity</span></a><a title="Figma"><img src="assets/icons/figma.svg" alt="" loading="lazy"><span>Figma</span></a></div>
+        </div>
+        <div class="grp" style="--c:#ffe27a">
+          <h4>Business platforms <b>5</b></h4>
+          <div class="tiles" style="--c:rgba(255,212,59,.14)"><a title="Microsoft 365"><img src="assets/icons/microsoft365.svg" alt="" loading="lazy"><span>Microsoft 365</span></a><a title="Google Workspace"><img src="assets/icons/googleworkspace.svg" alt="" loading="lazy"><span>Google Workspace</span></a><a title="Salesforce"><img src="assets/icons/salesforce.svg" alt="" loading="lazy"><span>Salesforce</span></a><a title="Voicenter"><img src="assets/icons/voicenter.svg" alt="" loading="lazy"><span>Voicenter</span></a><a title="Slack"><img src="assets/icons/slack.svg" alt="" loading="lazy"><span>Slack</span></a></div>
+        </div>
     </section>
 
   </main>
@@ -215,24 +304,9 @@
 <script src="assets/site.js"></script>
 <script src="assets/cursor.js"></script>
 <script>
-var STACK = [
-  ['linux','Linux'],['windows','Windows'],['fortinet','Fortinet'],['falcon','CrowdStrike Falcon'],
-  ['openvpn','OpenVPN'],['jumpcloud','JumpCloud'],['ninite','Ninite'],['bash','Bash'],
-  ['py','Python'],['git','Git'],['github','GitHub'],['githubactions','GitHub Actions'],
-  ['npm','npm'],['docker','Docker'],['kubernetes','Kubernetes'],['helm','Helm'],
-  ['argocd','Argo CD'],['terraform','Terraform'],['ansible','Ansible'],['aws','AWS'],
-  ['postgres','PostgreSQL'],['prometheus','Prometheus'],['grafana','Grafana'],
-  ['microsoft365','Microsoft 365'],['googleworkspace','Google Workspace'],
-  ['salesforce','Salesforce'],['voicenter','Voicenter'],['slack','Slack'],['figma','Figma'],
-  ['vscode','VS Code'],['cursor','Cursor'],['claudecode','Claude Code'],['codex','Codex'],
-  ['antigravity','Google Antigravity']
-];
-document.getElementById('tiles').innerHTML = STACK.map(function (t) {
-  return '<a title="' + t[1] + '"><img src="assets/icons/' + t[0] +
-         '.svg" alt="" loading="lazy"><span>' + t[1] + '</span></a>';
-}).join('');
-document.getElementById('peek').innerHTML = STACK.slice(0, 12).map(function (t) {
-  return '<img src="assets/icons/' + t[0] + '.svg" alt="" title="' + t[1] + '" loading="lazy">';
+var PEEK = ['linux','docker','kubernetes','terraform','aws','py','github','grafana','ansible','helm','argocd','postgres'];
+document.getElementById('peek').innerHTML = PEEK.map(function (t) {
+  return '<img src="assets/icons/' + t + '.svg" alt="" loading="lazy">';
 }).join('');
 </script>
 </body>
