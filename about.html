@@ -95,6 +95,11 @@
 .entry .when{font-size:12.5px;color:var(--faint);margin:0 0 5px;letter-spacing:.3px}
 .entry .what{font-size:16.4px;color:var(--fg);margin:0 0 4px;font-weight:500}
 .entry .where{font-size:13.6px;color:#a4a4a4;margin:0}
+/* the course covered eleven things; a comma list of eleven is a wall */
+.kit{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
+.kit span{font-size:11.5px;letter-spacing:.3px;color:#c6c6c6;white-space:nowrap;
+  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.075);
+  border-radius:999px;padding:5px 11px}
 
 /* ------------------------------------------------------------------ row 3 */
 .social{grid-column:span 3;min-height:200px;display:flex;flex-direction:column;justify-content:flex-end}
@@ -230,7 +235,8 @@
       <div class="entry">
         <p class="when">11/2025 &ndash; 08/2026</p>
         <p class="what">DevOps Experts</p>
-        <p class="where">Cohort 1125 &mdash; Linux, containers, Kubernetes, GitOps, monitoring, AWS, Terraform and Ansible</p>
+        <p class="where">Cohort 1125</p>
+        <div class="kit"><span>Linux</span><span>Containers</span><span>Docker</span><span>Kubernetes</span><span>Helm</span><span>Git &amp; GitHub</span><span>Argo CD &amp; GitOps</span><span>Prometheus &amp; Grafana</span><span>AWS</span><span>Terraform</span><span>Terragrunt</span></div>
       </div>
       <div class="entry now">
         <p class="when">Ongoing</p>
