@@ -59,12 +59,12 @@
 .markdown-body[dir="rtl"] .anchor{float:right;margin:0 -22px 0 0;padding:0 0 0 6px}
 .markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,
 .markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor{opacity:.5}
-.markdown-body .anchor::before{content:"#";color:var(--blue);font-weight:400}
+.markdown-body .anchor::before{content:"#";color:var(--accent-dim);font-weight:400}
 
 /* ------------------------------------------------------------------ links */
-.markdown-body a{color:#6aa6d8;text-decoration:none;
-  border-bottom:1px solid rgba(106,166,216,.28);transition:.15s}
-.markdown-body a:hover{color:#9cc8ea;border-bottom-color:rgba(156,200,234,.6)}
+.markdown-body a{color:var(--accent);text-decoration:none;
+  border-bottom:1px solid rgba(139,166,193,.3);transition:.15s}
+.markdown-body a:hover{color:#b8cde0;border-bottom-color:rgba(184,205,224,.6)}
 .markdown-body a.anchor{border:0}
 .markdown-body a:has(> img),.markdown-body a:has(> picture){border:0}
 
@@ -76,17 +76,17 @@
 .markdown-body li > ul,.markdown-body li > ol{margin:.35em 0}
 .markdown-body .task-list-item{list-style:none}
 .markdown-body .task-list-item input{margin:0 8px 0 -22px;vertical-align:middle;
-  accent-color:var(--blue)}
+  accent-color:var(--accent-dim)}
 
 /* ------------------------------------------------------------------- code */
 .markdown-body code,.markdown-body tt{
   font:13.2px/1.6 ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
-  background:#1b2129;border:1px solid #262f39;border-radius:6px;
-  padding:.14em .42em;color:#cbd9e6;white-space:break-spaces}
-.markdown-body pre{background:#131820;border:1px solid #202832;border-radius:14px;
+  background:#17171b;border:1px solid var(--line);border-radius:5px;
+  padding:.14em .42em;color:#cfd4da;white-space:break-spaces}
+.markdown-body pre{background:#101013;border:1px solid var(--line);border-radius:12px;
   padding:18px 20px;overflow-x:auto;direction:ltr;text-align:left}
 .markdown-body pre code{background:none;border:0;padding:0;font-size:13.2px;
-  line-height:1.75;color:#c8d6e4;white-space:pre}
+  line-height:1.75;color:#cfd4da;white-space:pre}
 .markdown-body pre + p{margin-top:16px}
 
 /* ----------------------------------------------------------------- tables */
@@ -127,7 +127,7 @@
 .markdown-body details{background:#161616;border:1px solid #242424;
   border-radius:14px;padding:14px 18px}
 .markdown-body summary{cursor:pointer;font-weight:500;color:var(--fg)}
-.markdown-body summary::marker{color:var(--blue)}
+.markdown-body summary::marker{color:var(--accent-dim)}
 
 .markdown-body kbd{background:#1d1d1d;border:1px solid #333;border-bottom-width:2px;
   border-radius:6px;padding:2px 6px;font-size:12.5px}

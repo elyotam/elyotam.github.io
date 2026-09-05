@@ -13,7 +13,7 @@
     hint.textContent = msg;
     hint.style.color = bad ? '#e8736b' : '';
   }
-  say('Opens WhatsApp with your message ready to send.');
+  say('Opens WhatsApp with the message ready to send.');
 
   var EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
@@ -50,7 +50,7 @@
 
     var win = window.open(url, '_blank', 'noopener');
     if (win) {
-      say('WhatsApp is opening with your message.');
+      say('Opening WhatsApp with your message.');
     } else {
       // Pop-up blocked: navigate in place rather than failing silently.
       say('Opening WhatsApp...');

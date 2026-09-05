@@ -16,15 +16,14 @@
 .lost{display:grid;place-items:center;text-align:center;padding:70px 30px 90px;
   min-height:46vh;gap:0}
 .code{font-size:clamp(92px,19vw,190px);font-weight:500;line-height:.92;letter-spacing:-7px;
-  background:linear-gradient(90deg,#f472b6,#a78bfa 45%,#60a5fa);
-  -webkit-background-clip:text;background-clip:text;color:transparent}
+  color:#1e1e23}
 .lost h1{margin:20px 0 10px;font-size:clamp(22px,3.4vw,30px);font-weight:400;letter-spacing:-.6px}
 .lost p{margin:0 0 34px;color:var(--dim);font-size:15px;max-width:44ch;line-height:1.7}
 .ways{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 .way{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:13px;
   border:1px solid #2f2f2f;background:#151515;font-size:14.5px;font-weight:500;transition:.2s}
 .way:hover{border-color:#4a4a4a;background:#1b1b1b;transform:translateY(-2px)}
-.way.key{background:#f0f0f0;border-color:#f0f0f0;color:#111}
+.way.key{background:var(--fg);border-color:var(--fg);color:#0b0b0d}
 .way.key:hover{background:#fff;border-color:#fff}
 </style>
 </head>
@@ -32,7 +31,7 @@
 
 <div class="wrap">
   <div class="top">
-    <a class="ghost" href="/">HELLO WORLD!</a>
+    <a class="ghost" href="/">Elyotam Cohen</a>
     <button class="burger" id="burger" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav id="nav">
       <a href="/">Home</a><a href="/about.html">About</a>
@@ -60,12 +59,13 @@
 </div>
 
 <footer>
-  <nav>
-    <a href="/">Home</a><a href="/about.html">About</a>
-    <a href="/projects.html">My Projects</a><a href="/contact.html">Contact</a>
-  </nav>
-  <div><span id="yr">2026</span> &copy; Created with love by
-    <a class="by" href="https://github.com/elyotam" rel="noopener">Elyotam Cohen</a></div>
+  <div class="inner">
+    <nav>
+      <a href="/">Home</a><a href="/about.html">About</a>
+      <a href="/projects.html">Projects</a><a href="/contact.html">Contact</a>
+    </nav>
+    <div><span id="yr">2026</span> &copy; Elyotam Cohen</div>
+  </div>
 </footer>
 
 <script src="/assets/site.js"></script>
