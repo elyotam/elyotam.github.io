@@ -205,7 +205,12 @@
   border-radius:var(--ri);padding:22px;display:flex;gap:16px;justify-content:center}
 .orb{position:relative;z-index:10;width:68px;height:68px;border-radius:50%;background:#141414;
   border:1px solid #2e2e2e;display:grid;place-items:center;transition:.2s}
-.orb:hover{border-color:#606060;transform:translateY(-3px)}
+/* the tiles are brand-coloured now, so inverting them on a white orb read
+   wrong; they lift and glow instead */
+.orb{transition:transform .22s cubic-bezier(.2,.7,.3,1),border-color .22s,box-shadow .22s}
+.orb:nth-child(1):hover{box-shadow:0 10px 24px rgba(37,211,102,.28)}
+.orb:nth-child(2):hover{box-shadow:0 10px 24px rgba(200,50,150,.30)}
+.orb:nth-child(3):hover{box-shadow:0 10px 24px rgba(8,102,255,.30)}
 .orb img{width:34px;height:34px}
 .orb b{font-size:15px;font-weight:600;color:#bdbdbd;letter-spacing:.5px}
 
@@ -254,9 +259,6 @@
   linear-gradient(120deg,rgba(255,255,255,.13),rgba(255,255,255,.02)) border-box}
 
 /* the social orbs flip to white */
-.orb:hover{background:#fff;border-color:#fff;transform:none}
-.orb:hover img{filter:invert(1)}
-.orb:hover b{color:#111}
 /* nav items lift, which is the one place he does move something */
 .top nav a{transition:.2s;border-radius:9px;padding:4px 2px}
 .top nav a:hover{transform:translateY(-2px)}
@@ -381,14 +383,14 @@
     </section>
 
     <section class="box social tint reveal" id="contact">
-      <a class="overlay" href="https://github.com/elyotam" rel="noopener" aria-label="GitHub profile"></a>
+      <a class="overlay" href="contact.html" aria-label="Ways to reach me"></a>
       <div class="orbwrap">
-        <a class="orb" href="https://github.com/elyotam" rel="noopener" aria-label="GitHub">
-          <img src="assets/icons/github.svg" alt=""></a>
         <a class="orb" href="https://wa.me/972522057074" rel="noopener" aria-label="WhatsApp">
           <img src="assets/icons/whatsapp.svg" alt=""></a>
-        <a class="orb" href="https://www.etsy.com/shop/ColorCatt" rel="noopener" aria-label="ColorCatt on Etsy">
-          <img src="assets/icons/etsy.svg" alt=""></a>
+        <a class="orb" href="https://www.instagram.com/yotamcohenn/" rel="noopener" aria-label="Instagram">
+          <img src="assets/icons/instagram.svg" alt=""></a>
+        <a class="orb" href="https://www.facebook.com/Elyotamcohen" rel="noopener" aria-label="Facebook">
+          <img src="assets/icons/facebook.svg" alt=""></a>
       </div>
       <p class="kicker">Say hello</p>
       <h2 class="title">Find me here</h2>
@@ -396,7 +398,7 @@
     </section>
 
     <section class="box stats tint reveal">
-      <a class="overlay" href="https://github.com/elyotam" rel="noopener" aria-label="GitHub profile"></a>
+      <a class="overlay" href="contact.html" aria-label="Ways to reach me"></a>
       <div class="cell r"><b id="sRepos">10</b><small>Public<br>repositories</small></div>
       <div class="cell s"><b>4</b><small>Live<br>client sites</small></div>
       <div class="cell t"><b>34</b><small>Tools<br>in the stack</small></div>

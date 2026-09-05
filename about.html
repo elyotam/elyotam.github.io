@@ -100,8 +100,12 @@
 .orbwrap{position:absolute;left:24px;right:24px;top:24px;display:flex;gap:14px}
 .orb{position:relative;z-index:10;width:58px;height:58px;border-radius:50%;background:#141414;
   border:1px solid #2e2e2e;display:grid;place-items:center;transition:.2s}
-.orb:hover{background:#fff;border-color:#fff;transform:translateY(-3px)}
-.orb:hover img{filter:invert(1)}
+/* the tiles are brand-coloured now, so inverting them on a white orb read
+   wrong; they lift and glow instead */
+.orb{transition:transform .22s cubic-bezier(.2,.7,.3,1),border-color .22s,box-shadow .22s}
+.orb:nth-child(1):hover{box-shadow:0 10px 24px rgba(37,211,102,.28)}
+.orb:nth-child(2):hover{box-shadow:0 10px 24px rgba(200,50,150,.30)}
+.orb:nth-child(3):hover{box-shadow:0 10px 24px rgba(8,102,255,.30)}
 .orb img{width:25px;height:25px}
 .cta{grid-column:span 5;min-height:200px;display:flex;flex-direction:column;justify-content:center;padding:32px}
 .cta h2{margin:30px 0 0;font-size:clamp(26px,3.6vw,38px);font-weight:400;line-height:1.16;letter-spacing:-.8px}
@@ -241,12 +245,12 @@
     <section class="box social tint reveal">
       <a class="overlay" href="contact.html" aria-label="Contact"></a>
       <div class="orbwrap">
-        <a class="orb" href="https://github.com/elyotam" rel="noopener" aria-label="GitHub">
-          <img src="assets/icons/github.svg" alt=""></a>
         <a class="orb" href="https://wa.me/972522057074" rel="noopener" aria-label="WhatsApp">
           <img src="assets/icons/whatsapp.svg" alt=""></a>
-        <a class="orb" href="https://www.etsy.com/shop/ColorCatt" rel="noopener" aria-label="ColorCatt on Etsy">
-          <img src="assets/icons/etsy.svg" alt=""></a>
+        <a class="orb" href="https://www.instagram.com/yotamcohenn/" rel="noopener" aria-label="Instagram">
+          <img src="assets/icons/instagram.svg" alt=""></a>
+        <a class="orb" href="https://www.facebook.com/Elyotamcohen" rel="noopener" aria-label="Facebook">
+          <img src="assets/icons/facebook.svg" alt=""></a>
       </div>
       <p class="kicker">Let&rsquo;s connect</p>
       <h2 class="title">My Social Profiles</h2>
