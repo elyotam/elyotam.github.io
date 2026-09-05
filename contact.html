@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contact — Elyotam Cohen</title>
 <meta name="description" content="Get in touch with Elyotam Cohen about a website, an app or an automation.">
-<meta name="theme-color" content="#111111">
+<meta name="theme-color" content="#fbfaf8">
 <link rel="canonical" href="https://elyotam.github.io/contact.html">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
@@ -23,54 +23,48 @@
 <meta name="twitter:image" content="https://elyotam.github.io/assets/og.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);padding-bottom:40px;align-items:start}
+.grid{display:grid;grid-template-columns:1fr 1.35fr;gap:70px;
+  padding:56px 0 20px;align-items:start}
+.grid > *{min-width:0}
 
-/* left rail sits on the page itself, with no card behind it */
-.rail{grid-column:span 3;padding-top:10px}
-.rail h3{margin:0 0 14px;font-size:13.5px;letter-spacing:.6px;text-transform:uppercase;
-  color:var(--fg);font-weight:600}
-.rail p{margin:0 0 30px;color:var(--dim);font-size:14.2px;line-height:1.7;max-width:34ch}
-.orbs{display:flex;gap:12px;flex-wrap:wrap}
-.orb{width:56px;height:56px;border-radius:50%;background:#141414;border:1px solid #2e2e2e;
-  display:grid;place-items:center;transition:.2s}
-/* the tiles are brand-coloured now, so inverting them on a white orb read
-   wrong; they lift and glow instead */
-.orb{transition:transform .22s cubic-bezier(.2,.7,.3,1),border-color .22s,box-shadow .22s}
-.orb:nth-child(1):hover{box-shadow:0 10px 24px rgba(37,211,102,.28)}
-.orb:nth-child(2):hover{box-shadow:0 10px 24px rgba(200,50,150,.30)}
-.orb:nth-child(3):hover{box-shadow:0 10px 24px rgba(8,102,255,.30)}
-.orb img{width:24px;height:24px}
-.orb b{font-size:13px;font-weight:600;color:#bdbdbd}
+.rail h3{margin:0 0 14px;font-size:11px;letter-spacing:1.6px;text-transform:uppercase;
+  color:var(--faint);font-weight:600}
+.rail p{margin:0 0 38px;color:var(--dim);font-size:15.5px;line-height:1.75;max-width:34ch}
+.orbs{display:flex;gap:14px}
+.orb{display:grid;place-items:center;width:38px;height:38px;border:1px solid var(--line);
+  border-radius:3px;background:var(--surface);transition:border-color .2s,transform .2s}
+.orb:hover{border-color:var(--fg);transform:translateY(-2px)}
+.orb img{width:19px;height:19px;border-radius:4px}
 
-/* the form card */
-.formcard{grid-column:span 9;padding:36px 40px 40px}
-.formcard h1{margin:0 0 26px;font-size:clamp(26px,3.6vw,38px);font-weight:400;letter-spacing:-.8px}
-.formcard h1 .accent{color:var(--accent)}
-.f{display:flex;flex-direction:column;gap:14px;position:relative;z-index:10}
+.formcard{padding:0;background:none;border:0}
+.formcard:hover{box-shadow:none;border:0}
+.formcard h1{margin:0 0 30px;font-family:var(--serif);font-weight:400;
+  font-size:clamp(38px,5.6vw,64px);letter-spacing:-.015em;line-height:1.05}
+.formcard h1 .accent{color:var(--accent);font-style:italic}
+.f{display:flex;flex-direction:column;gap:0}
 .f input,.f textarea{
-  width:100%;background:#1a1a1a;border:1px solid #262626;border-radius:12px;
-  padding:15px 18px;color:var(--fg);font:inherit;font-size:14.6px;transition:.2s;
+  width:100%;background:none;border:0;border-bottom:1px solid var(--line);
+  padding:16px 2px;color:var(--fg);font:inherit;font-size:16px;transition:border-color .2s;
 }
-.f textarea{min-height:126px;resize:vertical}
-.f input::placeholder,.f textarea::placeholder{color:#6f6f6f}
-.f input:focus,.f textarea:focus{outline:none;border-color:#4a4a4a;background:#1e1e1e}
+.f textarea{min-height:110px;resize:vertical}
+.f input::placeholder,.f textarea::placeholder{color:var(--faint)}
+.f input:focus,.f textarea:focus{outline:none;border-bottom-color:var(--fg)}
 .f button{
-  margin-top:6px;width:100%;padding:16px;border-radius:12px;border:1px solid #333;
-  background:#2b2b2b;color:var(--fg);font:inherit;font-size:13.5px;letter-spacing:1.2px;
-  text-transform:uppercase;cursor:pointer;transition:.2s;
-}
-.f button:hover{background:#383838;border-color:#4a4a4a}
-.f button:disabled{opacity:.55;cursor:default}
-.notice{margin:-10px 0 22px;padding:13px 16px;border-radius:12px;font-size:13.6px;
-  background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--dim);
-  position:relative;z-index:10}
-.notice a{color:var(--accent);text-decoration:underline}
-.hint{margin:14px 0 0;font-size:13px;color:var(--faint)}
+  margin-top:30px;align-self:flex-start;padding:13px 30px;border-radius:3px;
+  border:1px solid var(--fg);background:var(--fg);color:var(--bg);font:inherit;
+  font-size:14.5px;font-weight:500;cursor:pointer;transition:background .2s}
+.f button:hover{background:#000}
+.f button:disabled{opacity:.5;cursor:default}
+.notice{margin:0 0 26px;padding:14px 16px;border-radius:3px;font-size:14px;
+  background:var(--accent-soft);border:1px solid #cddbe4;color:var(--accent)}
+.notice a{text-decoration:underline}
+.hint{margin:16px 0 0;font-size:13.5px;color:var(--faint)}
 .hint a{color:var(--accent)}
-@media (max-width:900px){ .rail,.formcard{grid-column:span 12} }
+
+@media (max-width:900px){ .grid{grid-template-columns:1fr;gap:44px;padding-top:38px} }
 </style>
 </head>
 <body>
@@ -127,7 +121,7 @@
   <div class="inner">
     <nav>
       <a href="./">Home</a><a href="about.html">About</a>
-      <a href="projects.html">Projects</a><a href="contact.html">Contact</a>
+      <a href="projects.html">Work</a><a href="contact.html">Contact</a>
     </nav>
     <div class="fsoc">
       <a href="https://wa.me/972522057074?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9A%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%93%D7%91%D7%A8%20%D7%A2%D7%9C%20%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%20%F0%9F%91%8B" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="assets/icons/whatsapp.svg" alt=""></a>
@@ -140,7 +134,6 @@
 </footer>
 
 <script src="assets/site.js"></script>
-<script src="assets/cursor.js"></script>
 <script src="assets/contact.js"></script>
 </body>
 </html>

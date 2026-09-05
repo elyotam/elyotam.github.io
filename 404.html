@@ -6,25 +6,27 @@
 <title>Page not found — Elyotam Cohen</title>
 <meta name="description" content="That page does not exist on elyotam.github.io.">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#111111">
+<meta name="theme-color" content="#fbfaf8">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
 <style>
-.lost{display:grid;place-items:center;text-align:center;padding:70px 30px 90px;
-  min-height:46vh;gap:0}
-.code{font-size:clamp(92px,19vw,190px);font-weight:500;line-height:.92;letter-spacing:-7px;
-  color:#1e1e23}
-.lost h1{margin:20px 0 10px;font-size:clamp(22px,3.4vw,30px);font-weight:400;letter-spacing:-.6px}
-.lost p{margin:0 0 34px;color:var(--dim);font-size:15px;max-width:44ch;line-height:1.7}
-.ways{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-.way{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:13px;
-  border:1px solid #2f2f2f;background:#151515;font-size:14.5px;font-weight:500;transition:.2s}
-.way:hover{border-color:#4a4a4a;background:#1b1b1b;transform:translateY(-2px)}
-.way.key{background:var(--fg);border-color:var(--fg);color:#0b0b0d}
-.way.key:hover{background:#fff;border-color:#fff}
+.lost{padding:110px 0 130px}
+.code{font-family:var(--serif);font-size:clamp(80px,16vw,168px);font-weight:400;
+  line-height:.9;letter-spacing:-.03em;color:var(--fg)}
+.lost h1{margin:26px 0 12px;font-family:var(--serif);font-size:clamp(24px,3.4vw,34px);
+  font-weight:400;letter-spacing:-.01em}
+.lost p{margin:0 0 34px;color:var(--dim);font-size:16px;max-width:46ch;line-height:1.7}
+.ways{display:flex;gap:12px;flex-wrap:wrap}
+.way{display:inline-flex;align-items:center;padding:12px 22px;border-radius:3px;
+  border:1px solid var(--fg);font-size:14.5px;font-weight:500;
+  transition:background .2s,color .2s}
+.way:hover{background:var(--fg);color:var(--bg)}
+.way.key{background:var(--fg);color:var(--bg)}
+.way.key:hover{background:#000;border-color:#000}
+@media (max-width:680px){ .lost{padding:70px 0 90px} }
 </style>
 </head>
 <body>
@@ -62,7 +64,7 @@
   <div class="inner">
     <nav>
       <a href="/">Home</a><a href="/about.html">About</a>
-      <a href="/projects.html">Projects</a><a href="/contact.html">Contact</a>
+      <a href="/projects.html">Work</a><a href="/contact.html">Contact</a>
     </nav>
     <div class="fsoc">
       <a href="https://wa.me/972522057074?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9A%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%93%D7%91%D7%A8%20%D7%A2%D7%9C%20%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%20%F0%9F%91%8B" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="/assets/icons/whatsapp.svg" alt=""></a>
@@ -75,6 +77,5 @@
 </footer>
 
 <script src="/assets/site.js"></script>
-<script src="/assets/cursor.js"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About — Elyotam Cohen</title>
 <meta name="description" content="Elyotam Cohen — web development, AI automation, and the cloud infrastructure that runs it.">
-<meta name="theme-color" content="#111111">
+<meta name="theme-color" content="#fbfaf8">
 <link rel="canonical" href="https://elyotam.github.io/about.html">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
@@ -23,125 +23,86 @@
 <meta name="twitter:image" content="https://elyotam.github.io/assets/og.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);padding-bottom:var(--gap)}
+.grid{display:grid;grid-template-columns:240px 1fr;column-gap:44px;align-items:start}
+.grid > *{min-width:0}
 
-
-/* ------------------------------------------------ row 1: portrait + summary */
-.shotcard{grid-column:span 4;padding:14px;align-self:start}
-/* height:auto is load-bearing. The <img> carries height="480" as an attribute,
-   which the browser applies as a style, and it beat aspect-ratio -- the photo
-   was being stretched to 480px tall at every column width. */
+/* ------------------------------------------------- the opening: photo + bio */
+.shotcard{grid-column:1;grid-row:1;margin-top:62px;padding:0;background:none;border:0}
+.shotcard:hover{box-shadow:none;border:0}
 .shotcard img{width:100%;height:auto;aspect-ratio:380/480;object-fit:cover;
-  object-position:center;border-radius:20px;display:block;
-  transition:transform .6s cubic-bezier(.2,.7,.3,1)}
-.shotcard:hover img{transform:scale(1.04)}
-.summary{grid-column:span 8;display:flex;flex-direction:column;gap:18px;
-  background:none;border:0;padding:0}
-.summary:hover{transform:none}
-.summary::after{display:none}
-.bigtitle{margin:0 0 10px;font-size:clamp(26px,3.6vw,40px);font-weight:500;
-  letter-spacing:-1.1px;color:var(--fg)}
-.summary .card{flex:1;padding:34px}
-.summary h2{margin:0 0 14px;font-size:22px;font-weight:500;letter-spacing:-.3px;color:var(--fg)}
-.summary p{margin:0;color:#c0c0c0;font-size:15.2px;line-height:1.78;max-width:66ch}
-.summary p + p{margin-top:14px}
-/* two lines of standing about what the work actually is */
-.facts{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 0}
-.facts span{font-size:12px;letter-spacing:.4px;text-transform:uppercase;color:#c9c9c9;
-  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
-  border-radius:999px;padding:7px 14px}
+  border-radius:2px;display:block;border:1px solid var(--line)}
+.summary{grid-column:2;grid-row:1;padding:56px 0 46px}
+.bigtitle{margin:0 0 26px;font-family:var(--serif);font-weight:400;
+  font-size:clamp(40px,6.4vw,74px);letter-spacing:-.015em;line-height:1.03}
+.summary .card{padding:0;background:none;border:0}
+.summary .card:hover{box-shadow:none;border:0}
+.summary h2{margin:0 0 16px;font-family:var(--serif);font-size:26px;font-weight:400;
+  letter-spacing:-.01em}
+.summary p{margin:0 0 15px;color:var(--dim);font-size:16.5px;line-height:1.78;max-width:60ch}
+.summary p:last-child{margin-bottom:0}
 
-/* ------------------------------------------ row 2: a timeline, not a list */
-.cv{grid-column:span 6;padding:30px 32px}
-.cv h3{margin:0 0 24px;font-size:13px;letter-spacing:1.1px;text-transform:uppercase;
+/* ------------------------------------------------------- experience rows */
+.cv{grid-column:1 / -1;padding:52px 0;border-bottom:1px solid var(--line);background:none;border-left:0;
+  border-right:0;border-top:0;border-radius:0}
+.cv:hover{box-shadow:none}
+.cv h3{margin:0 0 30px;font-size:11px;letter-spacing:1.6px;text-transform:uppercase;
   font-weight:600;color:var(--faint)}
-.rail{position:relative;padding-left:26px}
-.rail::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1px;
-  background:linear-gradient(var(--accent-dim),rgba(255,255,255,.06))}
-.entry{position:relative;margin-bottom:26px}
-.entry:last-child{margin-bottom:0}
-.entry::before{content:"";position:absolute;left:-26px;top:5px;width:11px;height:11px;
-  border-radius:50%;background:#141414;border:1px solid var(--accent-dim);
-  box-shadow:0 0 0 3px rgba(0,0,0,.5)}
-.entry.now::before{background:var(--accent-dim);box-shadow:0 0 0 3px rgba(0,0,0,.5),
-  0 0 12px var(--accent-dim)}
-.entry .when{font-size:12.5px;color:var(--faint);margin:0 0 5px;letter-spacing:.3px}
-.entry .what{font-size:16.4px;color:var(--fg);margin:0 0 4px;font-weight:500}
-.entry .where{font-size:13.6px;color:var(--dim);margin:0}
-/* the course covered eleven things; a comma list of eleven is a wall */
-.kit{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
-.kit span{font-size:11.5px;letter-spacing:.3px;color:#c6c6c6;white-space:nowrap;
-  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.075);
-  border-radius:999px;padding:5px 11px}
+.rail{display:grid;gap:0}
+.entry{display:grid;grid-template-columns:150px 1fr;column-gap:30px;padding:22px 0;
+  border-top:1px solid var(--line-soft)}
+.entry:first-child{border-top:0;padding-top:0}
+.entry > *{min-width:0}
+.entry .when{grid-column:1;grid-row:1}
+.entry .what{grid-column:2;grid-row:1}
+.entry .where{grid-column:2;grid-row:2}
+.entry .kit{grid-column:2;grid-row:3}
+.entry .when{font-size:13px;color:var(--faint);margin:3px 0 0;letter-spacing:.2px}
+.entry .what{font-family:var(--serif);font-size:25px;color:var(--fg);margin:0 0 6px;
+  font-weight:400;letter-spacing:-.01em}
+.entry .where{font-size:14.5px;color:var(--dim);margin:0;line-height:1.65;max-width:56ch}
+.kit{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+.kit span{font-size:12px;color:var(--dim);border:1px solid var(--line);border-radius:2px;
+  padding:4px 10px;background:var(--surface)}
 
-/* ------------------------------------------------------------------ row 3 */
-.social{grid-column:span 3;min-height:200px;display:flex;flex-direction:column;justify-content:flex-end}
-.orbwrap{position:absolute;left:24px;right:24px;top:24px;display:flex;gap:14px}
-.orb{position:relative;z-index:10;width:58px;height:58px;border-radius:50%;background:#141414;
-  border:1px solid #2e2e2e;display:grid;place-items:center;transition:.2s}
-/* the tiles are brand-coloured now, so inverting them on a white orb read
-   wrong; they lift and glow instead */
-.orb{transition:transform .22s cubic-bezier(.2,.7,.3,1),border-color .22s,box-shadow .22s}
-.orb:nth-child(1):hover{box-shadow:0 10px 24px rgba(37,211,102,.28)}
-.orb:nth-child(2):hover{box-shadow:0 10px 24px rgba(200,50,150,.30)}
-.orb:nth-child(3):hover{box-shadow:0 10px 24px rgba(8,102,255,.30)}
-.orb img{width:25px;height:25px}
-.cta{grid-column:span 5;min-height:200px;display:flex;flex-direction:column;justify-content:center;padding:32px}
-.cta h2{margin:0;font-size:clamp(26px,3.6vw,38px);font-weight:400;line-height:1.16;letter-spacing:-.8px}
-.grad{color:var(--accent)}
-.stacklink{grid-column:span 4;min-height:200px;display:flex;flex-direction:column;justify-content:flex-end}
-.stacklink .row{position:absolute;left:26px;right:26px;top:30px;display:flex;flex-wrap:wrap;gap:8px}
-.stacklink .row img{width:34px;height:34px;border-radius:9px;
-  transition:transform .3s cubic-bezier(.2,.7,.3,1)}
-.stacklink:hover .row img{transform:translateY(-3px)}
-.stacklink .row img:nth-child(2){transition-delay:.03s}
-.stacklink .row img:nth-child(3){transition-delay:.06s}
-.stacklink .row img:nth-child(4){transition-delay:.09s}
-.stacklink .row img:nth-child(5){transition-delay:.12s}
-.stacklink .row img:nth-child(6){transition-delay:.15s}
+/* ------------------------------------------------------------ the closing */
+.social,.cta,.stacklink{display:none}
 
-/* -------------------------------------------------------------- the stack */
-.stackwrap{grid-column:span 12;padding:34px 34px 38px}
-.stackwrap h3{margin:0 0 6px;font-size:23px;font-weight:500;letter-spacing:-.3px}
-.stackwrap > p{margin:0 0 30px;color:var(--dim);font-size:14.6px}
-.grp{margin-bottom:30px}
-.grp:last-child{margin-bottom:0}
-.grp h4{display:flex;align-items:center;gap:12px;margin:0 0 16px;
-  font-size:12px;letter-spacing:1.1px;text-transform:uppercase;font-weight:600;
-  color:var(--c)}
-.grp h4::after{content:"";flex:1;height:1px;
-  background:linear-gradient(90deg,var(--line),transparent)}
-.grp h4 b{font-weight:500;color:var(--faint);letter-spacing:.4px}
-.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(94px,1fr));gap:12px}
-.tiles a{display:flex;flex-direction:column;align-items:center;gap:9px;padding:15px 6px;
-  border-radius:16px;border:1px solid transparent;position:relative;
-  transition:transform .22s cubic-bezier(.2,.7,.3,1),background .22s,border-color .22s}
-.tiles a::before{content:"";position:absolute;inset:0;border-radius:inherit;opacity:0;
-  transition:opacity .25s;
-  background:radial-gradient(70% 60% at 50% 0%,var(--c),transparent 70%)}
-.tiles a:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.1);
-  background:rgba(255,255,255,.03)}
-.tiles a:hover::before{opacity:1}
-.tiles img{width:46px;height:46px;border-radius:11px;position:relative;z-index:1;
-  transition:filter .25s}
-.tiles a:hover img{filter:drop-shadow(0 6px 14px var(--c))}
-.tiles span{font-size:11.5px;color:var(--dim);text-align:center;line-height:1.3;
-  position:relative;z-index:1;transition:color .2s}
-.tiles a:hover span{color:var(--fg)}
+/* ------------------------------------------------------------- the stack */
+.stackwrap{grid-column:1 / -1;padding:52px 0 10px;background:none;border:0;border-radius:0;
+  border-top:1px solid var(--fg)}
+.stackwrap:hover{box-shadow:none}
+.stackwrap h3{margin:0 0 8px;font-family:var(--serif);font-size:34px;font-weight:400;
+  letter-spacing:-.01em}
+.stackwrap > p{margin:0 0 36px;color:var(--dim);font-size:15.5px;line-height:1.7}
+.grp{padding:26px 0;border-top:1px solid var(--line)}
+.grp h4{display:flex;align-items:baseline;gap:12px;margin:0 0 20px;
+  font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;
+  color:var(--faint)}
+.grp h4 b{font-weight:400;color:#bdb9b0}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:16px 10px}
+.tiles a{display:flex;flex-direction:column;align-items:center;gap:9px;padding:10px 4px;
+  border-radius:3px;transition:background .2s}
+.tiles a:hover{background:var(--sunk)}
+.tiles img{width:38px;height:38px;border-radius:9px}
+.tiles span{font-size:11.5px;color:var(--dim);text-align:center;line-height:1.35}
 
-@media (max-width:980px){
-  .shotcard{grid-column:span 5}.summary{grid-column:span 7}
-  .cv{grid-column:span 12}
-  .social,.stacklink{grid-column:span 6}.cta{grid-column:span 12}
+@media (max-width:900px){
+  .grid{grid-template-columns:180px 1fr;column-gap:30px}
+  .entry{grid-template-columns:1fr}
+  .entry .when,.entry .what,.entry .where,.entry .kit{grid-column:1}
+  .entry .when{grid-row:1;margin:0 0 5px}
+  .entry .what{grid-row:2}.entry .where{grid-row:3}.entry .kit{grid-row:4}
 }
 @media (max-width:680px){
-  .shotcard,.summary,.social,.cta,.stacklink{grid-column:span 12}
-  .stackwrap{padding:26px 20px 30px}
-  .tiles{grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:9px}
-  .tiles img{width:40px;height:40px}
+  .summary{padding:34px 0 30px}
+  .grid{grid-template-columns:1fr}
+  .shotcard{grid-row:1;max-width:170px;margin:0 0 4px}
+  .summary{grid-column:1;grid-row:2;padding-top:10px}
+  .tiles{grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:14px 8px}
+  .tiles img{width:34px;height:34px}
 }
 </style>
 </head>
@@ -218,34 +179,6 @@
       </div>
     </section>
 
-    <section class="box social reveal">
-      <a class="overlay" href="contact.html" aria-label="Contact"></a>
-      <div class="orbwrap">
-        <a class="orb" href="https://wa.me/972522057074?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9A%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%93%D7%91%D7%A8%20%D7%A2%D7%9C%20%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%20%F0%9F%91%8B" target="_blank" rel="noopener" aria-label="WhatsApp">
-          <img src="assets/icons/whatsapp.svg" alt=""></a>
-        <a class="orb" href="https://www.instagram.com/yotamcohenn/" target="_blank" rel="noopener" aria-label="Instagram">
-          <img src="assets/icons/instagram.svg" alt=""></a>
-        <a class="orb" href="https://www.facebook.com/Elyotamcohen" target="_blank" rel="noopener" aria-label="Facebook">
-          <img src="assets/icons/facebook.svg" alt=""></a>
-      </div>
-      <p class="kicker">Let&rsquo;s connect</p>
-      <h2 class="title">My Social Profiles</h2>
-      <span class="plus"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-    </section>
-
-    <section class="box cta reveal">
-      <a class="overlay" href="contact.html" aria-label="Get in touch"></a>
-      <h2>Let&rsquo;s<br>work <span class="grad">together.</span></h2>
-      <span class="plus"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-    </section>
-
-    <a class="box stacklink reveal" href="#stack">
-      <div class="row" id="peek"></div>
-      <p class="kicker">Everything I use</p>
-      <h2 class="title">The Stack</h2>
-      <span class="plus"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-    </a>
-
     <section class="box stackwrap reveal" id="stack">
       <h3>The stack</h3>
       <p>Everything I actually build and run things with. Hover any tile for its name.</p>
@@ -278,7 +211,7 @@
   <div class="inner">
     <nav>
       <a href="./">Home</a><a href="about.html">About</a>
-      <a href="projects.html">Projects</a><a href="contact.html">Contact</a>
+      <a href="projects.html">Work</a><a href="contact.html">Contact</a>
     </nav>
     <div class="fsoc">
       <a href="https://wa.me/972522057074?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9A%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%93%D7%91%D7%A8%20%D7%A2%D7%9C%20%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%20%F0%9F%91%8B" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="assets/icons/whatsapp.svg" alt=""></a>
@@ -291,12 +224,5 @@
 </footer>
 
 <script src="assets/site.js"></script>
-<script src="assets/cursor.js"></script>
-<script>
-var PEEK = ['linux','docker','kubernetes','terraform','aws','py','github','grafana','ansible','helm','argocd','postgres'];
-document.getElementById('peek').innerHTML = PEEK.map(function (t) {
-  return '<img src="assets/icons/' + t + '.svg" alt="" loading="lazy">';
-}).join('');
-</script>
 </body>
 </html>
