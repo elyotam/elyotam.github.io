@@ -109,9 +109,20 @@
 .cta:hover .grad{background:radial-gradient(523px at 7.1% 19.3%,#930fff 2%,#0531ff 100.7%);
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .cta:hover .spark svg{fill:#1b1b1b}
-.cta:hover .plus{border-color:#1b1b1b;color:#1b1b1b}
+.cta:hover .plus{color:#1b1b1b}   /* the mark is currentColor, so this darkens it */
+/* Projects: an orange core blooms from just off the left edge */
+.showcase:hover{background:
+  radial-gradient(circle at -15.9% 30%,#ff7c00 0% 16%,#ffa34d 15.9% 24.4%,#131e25 24.5% 66%) padding-box,
+  linear-gradient(120deg,rgba(255,255,255,.13),rgba(255,255,255,.02)) border-box}
+/* Credentials: black into teal */
+.about:hover{background:linear-gradient(109.6deg,#000 11.2%,#0b8491 91.1%) padding-box,
+  linear-gradient(120deg,rgba(255,255,255,.13),rgba(255,255,255,.02)) border-box}
+/* the ghost word and the signature have to stay legible once the card lights up */
+.showcase:hover .ghostword{color:#2b1a07}
+.about:hover .sig svg{stroke:#eaf6f7}
+
 /* the blob warms to red slowly, the way his does */
-.blob{transition:background 4s ease}
+.blob{transition:background 5s ease}
 .blob:hover{background:radial-gradient(circle at 50.4% 50.5%,#ff5858 0%,#870202 90%)}
 /* the social orbs flip to white */
 .orb:hover{background:#fff;border-color:#fff;transform:none}
@@ -179,7 +190,7 @@
           <span><em>&#9670;</em>DevOps &amp; Cloud Infrastructure</span>
         </div>
       </div>
-      <span class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+      <span class="plus"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
     </section>
 
     <section class="box ticker reveal" aria-label="Tools">
@@ -193,7 +204,7 @@
       </div>
       <p class="kicker">Credentials</p>
       <h2 class="title">More About Me</h2>
-      <span class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+      <span class="plus"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
     </a>
 
     <a class="box showcase reveal" href="projects.html">
@@ -201,7 +212,7 @@
       <div class="shot"><i></i><img src="assets/work/cpa-ms.jpg" alt="" loading="lazy"></div>
       <p class="kicker">Showcase</p>
       <h2 class="title">Projects</h2>
-      <span class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+      <span class="plus"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
     </a>
 
     <a class="box hobby reveal" id="shop"
@@ -209,7 +220,7 @@
       <div class="badge"><img src="assets/icons/etsy.svg" alt=""></div>
       <p class="kicker">Etsy shop</p>
       <h2 class="title">ColorCatt</h2>
-      <span class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+      <span class="plus"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
     </a>
 
     <section class="box blob reveal">
@@ -229,7 +240,7 @@
       </div>
       <p class="kicker">Let&rsquo;s connect</p>
       <h2 class="title">My Social Profiles</h2>
-      <span class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+      <span class="plus"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
     </section>
 
     <section class="box stats reveal">
@@ -245,7 +256,7 @@
         <svg viewBox="0 0 40 52"><path d="M20 0c.7 14 3 20 12 24-9 4-11.3 10-12 24-.7-14-3-20-12-24 9-4 11.3-10 12-24z"/></svg>
       </div>
       <h2>Let&rsquo;s<br>work <span class="grad">together.</span></h2>
-      <span class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+      <span class="plus"><svg viewBox="0 0 46 42" fill="none" aria-hidden="true"><path d="M30.9224 21.2014C25.1291 21.2014 24.618 24.7796 24.618 27.3354C24.618 21.5421 21.5509 21.2014 17.9727 21.2014C24.618 21.2014 24.618 17.2824 24.618 14.8969C24.618 20.3494 27.8554 21.2014 30.9224 21.2014Z" fill="currentColor" stroke="currentColor"/><rect y="21.6981" width="1" height="18" transform="rotate(-90 0 21.6981)" fill="currentColor"/><path d="M9.93715 16.8555C10.9514 13.0701 13.2829 9.77074 16.5123 7.55063C19.7417 5.33052 23.6571 4.33531 27.5547 4.74394C31.4522 5.15258 35.0762 6.93825 37.7749 9.77989C40.4736 12.6215 42.07 16.3327 42.2771 20.2461C42.4842 24.1596 41.2884 28.0185 38.9047 31.1291C36.5211 34.2398 33.1059 36.398 29.2732 37.2157C25.4406 38.0335 21.4419 37.4571 17.9962 35.5903C14.5505 33.7234 11.8839 30.6886 10.4757 27.0314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
     </section>
 
   </main>

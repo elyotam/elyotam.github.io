@@ -63,13 +63,14 @@ a{color:inherit;text-decoration:none}
 /* an invisible anchor over the whole card, so the pointer cursor and the click
    target cover it end to end */
 .overlay{position:absolute;inset:0;z-index:9;border-radius:inherit;opacity:0}
+/* the corner mark: a spark inside an open ring, matching the reference. The
+   ring is part of the artwork, so there is no CSS circle here. */
 .plus{
-  position:absolute;right:30px;bottom:35px;width:40px;height:40px;border-radius:50%;
-  border:1px solid #3a3a3a;display:grid;place-items:center;color:#8d8d8d;z-index:10;
-  opacity:.28;transition:opacity .3s,border-color .25s,color .25s,transform .25s;
+  position:absolute;right:28px;bottom:30px;width:46px;height:42px;color:#f4f4f4;
+  z-index:10;opacity:.2;transition:opacity .3s;
 }
-.plus svg{width:17px;height:17px;stroke:currentColor;stroke-width:1.6;fill:none}
-.box:hover .plus{opacity:1;border-color:#666;color:#e8e8e8;transform:rotate(90deg)}
+.plus svg{width:100%;height:100%;display:block}
+.box:hover .plus{opacity:1}
 
 /* ------------------------------------------------------------------- footer */
 footer{position:relative;z-index:1;padding:26px 0 44px;text-align:center;color:#8a8a8a;font-size:14.5px}
